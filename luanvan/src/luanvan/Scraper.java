@@ -118,8 +118,8 @@ public class Scraper {
     public static void main(String[] args) throws IOException, Exception {
 
         Scraper s = new Scraper();
-        s.scrapVN("http://www.vietnamplus.vn/kinhte/batdongsan.vnp");
-        File file = new File(System.getProperty("user.dir") + "/VNDATA12");
+        s.scrapVN("http://www.vietnamplus.vn/kinhte/doanhnghiep.vnp");
+        File file = new File(System.getProperty("user.dir") + "/VNDATA13");
         if (!file.exists()) {
             if (file.mkdir()) {
                 System.out.println("Directory is created!");
@@ -131,7 +131,7 @@ public class Scraper {
         int i=1;
         for (Article a : s.articles) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA12/"+i+".txt"), "utf-8"))) {
+                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA13/"+i+".txt"), "utf-8"))) {
                 writer.write(a.getLink()+"\n-----------------\n");
                 if(a.getTitle()!= null && a.getContent() != null)
                 {
