@@ -1,6 +1,0 @@
-http://www.vietnamplus.vn/hon-100-ngan-hang-tren-toan-the-gioi-bi-tin-tac-ghe-tham/308016.vnp
------------------
-Hơn 100 ngân hàng trên toàn thế giới bị tin tặc "ghé thăm"
------------------
-Hacker có thể buộc các máy để phân chia bằng tiền mặt tại thời điểm cụ thể. (Nguồn; henewsnigeria) Hơn 100 ngân hàng tại 30 quốc gia trên thế giới đã trở thành nạn nhân của một vụ tấn công mạng quy mô lớn với thiệt hại lên tới hàng trăm triệu USD. Tờ New York Times của Mỹ ngày 14/2 dẫn nguồn tin từ công ty an ninh mạng Kaspersky Lab cho biết tin tặc đã sử dụng phần mềm độc hại để tiến hành hàng loạt vụ tấn công nhằm vào hệ thống máy tính của các ngân hàng lớn trên thế giới. Phần mềm này cho phép các tin tặc có thể dễ dàng rút trộm tiền từ các tài khoản tại các cây rút tiền tự động (ATM) ở bất kỳ địa điểm nào. Thủ đoạn của nhóm tin tặc tinh vi ở chỗ mỗi lần chúng chỉ rút một khoản tiền rất ít để tránh bị phát giác. Số tiền lớn nhất mà nhóm này "cướp" thông qua ATM là 300 triệu USD. Đây cũng là một trong những vụ cướp ngân hàng lớn nhất trên thế giới từ trước tới nay. Theo báo trên, nhóm tin tặc được cho là đến từ Nga, Trung Quốc và châu Âu. Các vụ tấn công chủ yếu nhằm vào các ngân hàng ở Nga, Nhật Bản, Hà Lan, Thụy Sĩ và Mỹ./.
------------------
