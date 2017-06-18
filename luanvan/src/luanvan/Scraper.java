@@ -109,17 +109,17 @@ public class Scraper {
             ar.setTitle(doc1.select("h1.cms-title").first().text());
             ar.setContent(doc1.select("div.cms-body").first().text());
         } catch (Exception ex) {
-            System.out.println("@@@@@@@@@@@");
+            System.out.println("This link error");
             System.out.println(ar.getLink());
-            System.out.println("@@@@@@@@@@@");
+          
         }
     }
 
     public static void main(String[] args) throws IOException, Exception {
 
         Scraper s = new Scraper();
-        s.scrapVN("http://www.vietnamplus.vn/kinhte/kinhdoanh.vnp");
-        File file = new File(System.getProperty("user.dir") + "/VNDATA7");
+        s.scrapVN("http://www.vietnamplus.vn/kinhte/taichinh.vnp");
+        File file = new File(System.getProperty("user.dir") + "/VNDATA8");
         if (!file.exists()) {
             if (file.mkdir()) {
                 System.out.println("Directory is created!");
@@ -131,7 +131,7 @@ public class Scraper {
         int i=1;
         for (Article a : s.articles) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA7/"+i+".txt"), "utf-8"))) {
+                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA8/"+i+".txt"), "utf-8"))) {
                 writer.write(a.getLink()+"\n-----------------\n");
                  writer.write(a.getTitle()+"\n-----------------\n");
                   writer.write(a.getContent()+"\n-----------------\n");

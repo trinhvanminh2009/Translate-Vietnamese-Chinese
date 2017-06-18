@@ -1,6 +1,0 @@
-http://www.vietnamplus.vn/trang-bbc-bat-ngo-bi-hacker-danh-sap-trong-ngay-cuoi-nam/363964.vnp
------------------
-Trang BBC bất ngờ bị hacker đánh “sập” trong ngày cuối năm
------------------
-Trang web của BBC bị hacker tấn công. Tổ hợp truyền thông BBC của Anh ngày 31/12 thông báo trang tin tức của hãng này bất ngờ bị các hacker đánh “sập” trong vài giờ. Vụ tấn công quy mô lớn này theo hình thức tấn công từ chối dịch vụ (DDoS) đã khiến các trang mạng của BBC không thể truy cập. Hàng nghìn tài khoản Twitter đã bình luận về vụ “sập” trang BBC sau khi nhận được thông báo lỗi từ khoảng 8 giờ 30 phút ngày 31/12 với nội dung “lỗi nội bộ” mỗi lúc truy cập vào trang này. BBC đã xin lỗi độc giả vì sự bất tiện này và cho rằng đây là “sự cố kỹ thuật” và đang được khắc phục. Tên miền bbc.co.uk bị lỗi khiến những ứng dụng khác trên trang thông tin này như video trực tuyến, radio... và các dịch vụ khác đều bị ảnh hưởng. Theo thông tin mới nhận được, các trang web của BBC đã được khôi phục và trở lại hoạt động bình thường. Theo ước tính, trung bình mỗi tháng có hơn 101 triệu lượt độc giả trên toàn thể giới truy cập vào trang tin tức của BBC./.
------------------
