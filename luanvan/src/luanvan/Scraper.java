@@ -12,10 +12,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-/**
- *
- * @author quang
- */
 public class Scraper {
 
     private ArrayList<Article> articles;
@@ -116,11 +112,9 @@ public class Scraper {
     }
 
     public static void main(String[] args) throws IOException, Exception {
-
-    	
         Scraper s = new Scraper();
-        s.scrapVN("http://www.vietnamplus.vn/xahoi/yte.vnp");
-        File file = new File(System.getProperty("user.dir") + "/VNDATA15");
+        s.scrapVN("http://www.vietnamplus.vn/xahoi/phapluat.vnp");
+        File file = new File(System.getProperty("user.dir") + "/VNDATA16");
         if (!file.exists()) {
             if (file.mkdir()) {
                 System.out.println("Directory is created!");
@@ -132,7 +126,7 @@ public class Scraper {
         int i=1;
         for (Article a : s.articles) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA15/"+i+".txt"), "utf-8"))) {
+                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA16/"+i+".txt"), "utf-8"))) {
                 writer.write(a.getLink()+"\n-----------------\n");
                 if(a.getTitle()!= null && a.getContent() != null)
                 {

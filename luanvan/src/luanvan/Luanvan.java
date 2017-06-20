@@ -5,10 +5,7 @@
  */
 package luanvan;
 
-/**
- *
- * @author quang
- */
+
 public class Luanvan {
 
     /**
