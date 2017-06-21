@@ -7,10 +7,14 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.concurrent.CyclicBarrier;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.sun.xml.internal.bind.CycleRecoverable;
 
 public class Scraper {
 
@@ -112,9 +116,10 @@ public class Scraper {
     }
 
     public static void main(String[] args) throws IOException, Exception {
+    	
         Scraper s = new Scraper();
-        s.scrapVN("http://www.vietnamplus.vn/thegioi/asean.vnp");
-        File file = new File(System.getProperty("user.dir") + "/VNDATA21");
+        s.scrapVN("http://www.vietnamplus.vn/thegioi/chaumy.vnp");
+        File file = new File(System.getProperty("user.dir") + "/VNDATA22");
         if (!file.exists()) {
             if (file.mkdir()) {
                 System.out.println("Directory is created!");
@@ -126,7 +131,7 @@ public class Scraper {
         int i=1;
         for (Article a : s.articles) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA21/"+i+".txt"), "utf-8"))) {
+                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA22/"+i+".txt"), "utf-8"))) {
                 writer.write(a.getLink()+"\n-----------------\n");
                 if(a.getTitle()!= null && a.getContent() != null && a.getLink() != null && a.getTitle() != "" && a.getContent() != "")
                 {
