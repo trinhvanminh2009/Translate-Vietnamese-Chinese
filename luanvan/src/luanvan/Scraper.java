@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.concurrent.CyclicBarrier;
 
@@ -14,6 +15,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.sun.media.sound.JavaSoundAudioClip;
 import com.sun.xml.internal.bind.CycleRecoverable;
 
 public class Scraper {
@@ -29,7 +31,7 @@ public class Scraper {
 
         doc = Jsoup.connect(pageName).timeout(0).get();
         getAllLink(pageName, 1, getCountPagesVN());
-       // getAllLink(pageName, 1, getCountPagesCN());
+      
 
         //getAllLink(pageName, 1, 30);
         System.out.println(articles.size());
@@ -38,9 +40,11 @@ public class Scraper {
 
     public void scrapCN(String pageName) throws IOException {
 
-        doc = Jsoup.connect(pageName).timeout(0).get();
-        //getAllLink(pageName, 0, getCountPages(pageName));
-        getAllLink(pageName, 0, 2);
+       // doc = Jsoup.connect(pageName).timeout(0).get();
+    	
+       //  getAllLink(pageName, 1, getCountPagesCN());
+      //  getAllLink(pageName, 0, getCountPages(pageName));
+       getAllLink(pageName, 0,1177);
         System.out.println(articles.size());
 
     }
@@ -71,6 +75,7 @@ public class Scraper {
 
     public void getAllLink(String pageName, int begin, int end) throws IOException {
 
+    	
         for (int i = begin; i <= end; i++) {
 //            if (i % 100 == 0) {
 //
@@ -81,12 +86,15 @@ public class Scraper {
 //
 //            }
             if (i == 1) {
-                getLink(pageName);
+            	getLink(pageName);
+              //  getLink(pageName);
+          
                 //System.out.println(pageName);
             } else {
-                String name = pageName.substring(0, pageName.length() - 4);//.vnp
+            	 String name = pageName.substring(0, pageName.length() - 4);//.vnp
+                //String name = pageName.substring(0, pageName.length() - 4);//.vnp
                 //System.out.println(name + "/trang" + i+".vnp");
-                getLink(name + "/trang" + i + ".vnp");
+                getLink(name + "/page" + i + ".vnp");
             }
 
         }
@@ -108,8 +116,8 @@ public class Scraper {
 
         try {
             Document doc1 = Jsoup.connect(ar.getLink()).timeout(0).get();
-            ar.setTitle(doc1.select("h1.cms-title").first().text());
-            ar.setContent(doc1.select("div.cms-body").first().text());
+            ar.setTitle(doc1.select("header.article-header >h1").first().text());
+            ar.setContent(doc1.select("div.article-body").first().text());
         } catch (Exception ex) {
             System.out.println("This link error");
             System.out.println(ar.getLink());
@@ -120,8 +128,9 @@ public class Scraper {
     public static void main(String[] args) throws IOException, Exception {
     	
         Scraper s = new Scraper();
-        s.scrapVN("http://www.vietnamplus.vn/chuyenla.vnp");
-        File file = new File(System.getProperty("user.dir") + "/VNDATA35");
+        String url = java.net.URLDecoder.decode("http://zh.vietnamplus.vn/politics.vnp","UTF-8");
+        s.scrapCN(url);
+        File file = new File(System.getProperty("user.dir") + "/VNDATA36");
         if (!file.exists()) {
             if (file.mkdir()) {
                 System.out.println("Directory is created!");
@@ -131,18 +140,23 @@ public class Scraper {
         }
 
         int i=1;
+        int j = 0;
         for (Article a : s.articles) {
+        	  if(a.getTitle()!= null && a.getContent() != null && a.getLink() != null )
+              {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA35/"+i+".txt"), "utf-8"))) {
-                writer.write(a.getLink()+"\n-----------------\n");
-                if(a.getTitle()!= null && a.getContent() != null && a.getLink() != null && a.getTitle().length() >20 && a.getContent().length() >100)
-                {
+                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA36/"+i+".txt"), "utf-8"))) {
+                
+                	writer.write(a.getLink()+"\n-----------------\n");
                 	 writer.write(a.getTitle()+"\n-----------------\n");
                      writer.write(a.getContent()+"\n-----------------\n");
-                }   
+                     j++;
+                     i++;
+                } 
             }
-           i++;
+          
         }
-        System.out.println("Successfully");
+       
+        System.out.println("Created "+j+ " files Successfully");
     }
 }
