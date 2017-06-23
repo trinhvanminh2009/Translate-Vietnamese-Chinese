@@ -44,7 +44,7 @@ public class Scraper {
     	
        //  getAllLink(pageName, 1, getCountPagesCN());
       //  getAllLink(pageName, 0, getCountPages(pageName));
-       getAllLink(pageName, 0,1177);
+       getAllLink(pageName, 0,9);
         System.out.println(articles.size());
 
     }
@@ -128,9 +128,9 @@ public class Scraper {
     public static void main(String[] args) throws IOException, Exception {
     	
         Scraper s = new Scraper();
-        String url = java.net.URLDecoder.decode("http://zh.vietnamplus.vn/politics.vnp","UTF-8");
+        String url = java.net.URLDecoder.decode("http://zh.vietnamplus.vn/topic/2017%E5%B9%B4%E8%B6%8A%E5%8D%97apec%E4%BC%9A%E8%AE%AE/136.vnp","UTF-8");
         s.scrapCN(url);
-        File file = new File(System.getProperty("user.dir") + "/VNDATA36");
+        File file = new File(System.getProperty("user.dir") + "/VNDATA48");
         if (!file.exists()) {
             if (file.mkdir()) {
                 System.out.println("Directory is created!");
@@ -145,7 +145,7 @@ public class Scraper {
         	  if(a.getTitle()!= null && a.getContent() != null && a.getLink() != null )
               {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA36/"+i+".txt"), "utf-8"))) {
+                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA48/"+i+".txt"), "utf-8"))) {
                 
                 	writer.write(a.getLink()+"\n-----------------\n");
                 	 writer.write(a.getTitle()+"\n-----------------\n");
@@ -154,7 +154,6 @@ public class Scraper {
                      i++;
                 } 
             }
-          
         }
        
         System.out.println("Created "+j+ " files Successfully");
