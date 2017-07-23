@@ -41,8 +41,9 @@ public class ConvertDate {
 			}
 		}
 		String mainContent = content.substring(listIndex.get(1), listIndex.get(2));
-		getDayMonthYearVN(mainContent);
-		getMonthYearVN(mainContent);
+	//	getDayMonthYearVN(mainContent);
+	//	getMonthYearVN(mainContent);
+		getMonthYearCN(mainContent);
 	}
 	
 	
@@ -207,15 +208,55 @@ public class ConvertDate {
 		
 	}
 	
+	public static void getMonthYearCN(String content)
+	{
+		int lastIndex = 0;
+		String subTempString;
+		String tempString;
+		ArrayList<String>listDateMonth = new ArrayList<>();
+		while(lastIndex != -1)
+		{
+			lastIndex = content.indexOf("年 ", lastIndex);
+			if(lastIndex != -1)
+			{
+				lastIndex += 2;
+				tempString = content.substring(lastIndex-7, lastIndex + 8 ).trim();
+				
+				if(Character.isDigit(tempString.charAt(0)))
+				{
+					if(tempString.contains("月") && tempString.contains(" ") && tempString.contains("日"))
+					{
+						if(tempString.substring(tempString.length()-1, tempString.length()).trim().equals("日".trim()))
+						{
+							listDateMonth.add(tempString);
+						}
+						else
+						{
+							subTempString = tempString.substring(0, tempString.indexOf("日")+1);
+							listDateMonth.add(subTempString);
+						}
+						
+					}
+				}
+				else
+				{
+					break;
+				}
+						
+			
+			}
+		}
+		for(int i = 0; i < listDateMonth.size(); i++)
+		{
+			System.out.println(listDateMonth.get(i));
+		}
+	}
 	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
+		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
 		listFilesForFolder(folder);
-		//getDayMonthYearVN("ngày 22/12/1021 trước trước qua anh gặp em đi chơi");
-
-		
 		
 	}
 
