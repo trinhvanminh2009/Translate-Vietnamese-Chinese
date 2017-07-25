@@ -43,6 +43,7 @@ public class ConvertDate {
 		String mainContent = content.substring(listIndex.get(1), listIndex.get(2));
 	//	getDayMonthYearVN(mainContent);
 	//	getMonthYearVN(mainContent);
+	//	getDateMonthYearCN(mainContent);
 		getMonthYearCN(mainContent);
 	}
 	
@@ -208,11 +209,59 @@ public class ConvertDate {
 		
 	}
 	
+	public static void getDateMonthYearCN(String content)
+	{
+		int lastIndex = 0;
+		String subTempString;
+		String tempString;
+		ArrayList<String>listDateMonth = new ArrayList<>();
+		while(lastIndex != -1)
+		{
+			//Check in substring include year
+			lastIndex = content.indexOf("年 ", lastIndex);
+			if(lastIndex != -1)
+			{
+				//Length of year and space
+				lastIndex += 2;
+				//Get substring is date month year and space
+				tempString = content.substring(lastIndex-7, lastIndex + 8 ).trim();
+				//Check first is digit to make sure it's year in Chinese
+				if(Character.isDigit(tempString.charAt(0)))
+				{
+					//Make sure substring include date
+					if(tempString.contains("月") && tempString.contains(" ") && tempString.contains("日"))
+					{
+						//Check if last character is date in Chinese add it into list. Else remove and add it later
+						if(tempString.substring(tempString.length()-1, tempString.length()).trim().equals("日".trim()))
+						{
+							listDateMonth.add(tempString);
+						}
+						else
+						{
+							subTempString = tempString.substring(0, tempString.indexOf("日")+1);
+							listDateMonth.add(subTempString);
+						}
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+		for(int i = 0; i < listDateMonth.size(); i++)
+		{
+			System.out.println(listDateMonth.get(i));
+		}
+	}
+	
+	
 	public static void getMonthYearCN(String content)
 	{
 		int lastIndex = 0;
 		String subTempString;
 		String tempString;
+		
 		ArrayList<String>listDateMonth = new ArrayList<>();
 		while(lastIndex != -1)
 		{
@@ -224,34 +273,32 @@ public class ConvertDate {
 				
 				if(Character.isDigit(tempString.charAt(0)))
 				{
-					if(tempString.contains("月") && tempString.contains(" ") && tempString.contains("日"))
+					if(tempString.contains("月") && tempString.contains(" ") && !tempString.contains("日"))
 					{
-						if(tempString.substring(tempString.length()-1, tempString.length()).trim().equals("日".trim()))
+						if(tempString.substring(tempString.length()-1, tempString.length()).trim().equals("月".trim()))
 						{
 							listDateMonth.add(tempString);
 						}
 						else
 						{
-							subTempString = tempString.substring(0, tempString.indexOf("日")+1);
+							subTempString = tempString.substring(0, tempString.indexOf("月")+1);
 							listDateMonth.add(subTempString);
 						}
-						
 					}
 				}
 				else
 				{
 					break;
 				}
-						
-			
 			}
 		}
+		
 		for(int i = 0; i < listDateMonth.size(); i++)
 		{
 			System.out.println(listDateMonth.get(i));
 		}
+		
 	}
-	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

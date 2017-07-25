@@ -13,13 +13,12 @@ public class Translate {
 	 {
 
 		Translate http = new Translate();
-	  String word = http.callUrlAndParseResult("vi", "zh-CN", "Hôm nay cưng khỏe không?");
-	  
-	  System.out.println(word);
+	  String wordToEnglish = http.callUrlAndParseResult("zh-CN", "en", "你今天好吗？");
+	  String wordEnglishToVietnamese = http.callUrlAndParseResult("en", "vi", wordToEnglish);
+	  System.out.println(wordEnglishToVietnamese);
 	 }
 	 
-	 private String callUrlAndParseResult(String langFrom, String langTo,
-	                                             String word) throws Exception 
+	 private String callUrlAndParseResult(String langFrom, String langTo,String word) throws Exception 
 	 {
 
 	  String url = "https://translate.googleapis.com/translate_a/single?"+
@@ -31,7 +30,6 @@ public class Translate {
 	  URL obj = new URL(url);
 	  HttpURLConnection con = (HttpURLConnection) obj.openConnection(); 
 	  con.setRequestProperty("User-Agent", "Mozilla/5.0");
-	  System.out.println(url);
 	  BufferedReader in = new BufferedReader(
 	    new InputStreamReader(con.getInputStream()));
 	  String inputLine;
@@ -50,7 +48,6 @@ public class Translate {
 	  JSONArray jsonArray = new JSONArray(inputJson);
 	  JSONArray jsonArray2 = (JSONArray) jsonArray.get(0);
 	  JSONArray jsonArray3 = (JSONArray) jsonArray2.get(0);
-	  
 	  return jsonArray3.get(0).toString();
 	 }
 }
