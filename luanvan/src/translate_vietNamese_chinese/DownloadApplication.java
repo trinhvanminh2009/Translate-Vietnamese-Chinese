@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
@@ -68,7 +69,6 @@ public class DownloadApplication {
 		if (imgURL != null) {
 			return new ImageIcon(imgURL, description);
 		} else {
-			System.err.println("Couldn't find file: " + path);
 			return null;
 		}
 }
@@ -83,9 +83,8 @@ public class DownloadApplication {
 		frmDownloadApplication.getContentPane().setLayout(null);
 		frmDownloadApplication.setLocationRelativeTo(null);
 		ButtonGroup groupSelectPage = new ButtonGroup();
-		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		Icon icon = createImageIcon("D:\\Dowloads\\luanvan\\images\\ic_download.png", "Icon for Monolingual");
+	
 		tabbedPane.setBounds(0, 0, 486, 385);
 		frmDownloadApplication.getContentPane().add(tabbedPane);
 		/////////////////////////////////////Monolingual handle///////////////////////////////////////////////////////////////////
@@ -141,7 +140,6 @@ public class DownloadApplication {
 		panel_Monolingual.add(list);
 		
 		//Set command for each button
-		rdbtnNgoiSaoNet.setActionCommand("http://www.vietnamplus.vn/");
 		groupSelectPage.add(rdbtnNgoiSaoNet);
 		groupSelectPage.add(rdbtnDanTri);
 		groupSelectPage.add(rdbtnNguoiLaoDong);
@@ -185,7 +183,7 @@ public class DownloadApplication {
 				//Get action comment to parse to SelectContent
 				if(groupSelectPage.getSelection() != null)
 				{
-					SelectContent selectContent = new SelectContent(groupSelectPage.getSelection().getActionCommand());
+					SelectContent selectContent = new SelectContent(groupSelectPage.getSelection().getActionCommand(),"");
 					DownloadApplication downloadApplication = new DownloadApplication();
 					downloadApplication.frmDownloadApplication.setVisible(true);
 					lbStatus_Monolingual.setVisible(false);
@@ -319,9 +317,6 @@ public class DownloadApplication {
 		ButtonGroup groupLanguages = new ButtonGroup();
 		groupLanguages.add(rdbtnVietnamese);
 		groupLanguages.add(rdbtnChinese);
-
-		tabbedPane.setIconAt(1, icon);
-		
 		btnClose_Bilingual.addActionListener(new ActionListener() {
 			
 			@Override
@@ -354,7 +349,8 @@ public class DownloadApplication {
 		
 		frmDownloadApplication.setBackground(Color.GRAY);
 		frmDownloadApplication.setTitle("Download Application");
-		frmDownloadApplication.setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\Dowloads\\luanvan\\images\\ic_download.png"));
+		URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
+		frmDownloadApplication.setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
 		frmDownloadApplication.setBounds(100, 100, 492, 424);
 		frmDownloadApplication.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
