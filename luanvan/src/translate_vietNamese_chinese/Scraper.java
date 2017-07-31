@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -31,20 +32,14 @@ public class Scraper {
 
         doc = Jsoup.connect(pageName).timeout(0).get();
         getAllLink(pageName, 1, getCountPagesVN());
-      
-
-        //getAllLink(pageName, 1, 30);
         System.out.println(articles.size());
 
     }
 
     public void scrapCN(String pageName) throws IOException {
 
-       // doc = Jsoup.connect(pageName).timeout(0).get();
-    	
-       //  getAllLink(pageName, 1, getCountPagesCN());
-      //  getAllLink(pageName, 0, getCountPages(pageName));
-       getAllLink(pageName, 0,9);
+        doc = Jsoup.connect(pageName).timeout(0).get();
+        getAllLink(pageName, 0, getCountPagesVN());
         System.out.println(articles.size());
 
     }
@@ -59,10 +54,6 @@ public class Scraper {
             for (Element i : div) {
                 Article ar = new Article();
                 ar.setLink(i.select("a[href]").first().attr("abs:href"));
-//                try {
-//                    Thread.sleep(100);
-//                } catch (InterruptedException ex) {
-//                }
                 getDetails(ar);
                 articles.add(ar);
 
@@ -77,24 +68,12 @@ public class Scraper {
 
     	
         for (int i = begin; i <= end; i++) {
-//            if (i % 100 == 0) {
-//
-//                try {
-//                    Thread.sleep(60000);
-//                } catch (InterruptedException ex) {
-//                }
-//
-//            }
+
             if (i == 1) {
             	getLink(pageName);
-              //  getLink(pageName);
-          
-                //System.out.println(pageName);
             } else {
-            	 String name = pageName.substring(0, pageName.length() - 4);//.vnp
-                //String name = pageName.substring(0, pageName.length() - 4);//.vnp
-                //System.out.println(name + "/trang" + i+".vnp");
-                getLink(name + "/page" + i + ".vnp");
+            	 String name = pageName.substring(0, pageName.length() - 4);
+                getLink(name + "/trang" + i + ".vnp");
             }
 
         }
@@ -125,37 +104,39 @@ public class Scraper {
         }
     }
 
-    public static void main(String[] args) throws IOException, Exception {
-    	
-        Scraper s = new Scraper();
-        String url = java.net.URLDecoder.decode("http://zh.vietnamplus.vn/topic/2017%E5%B9%B4%E8%B6%8A%E5%8D%97apec%E4%BC%9A%E8%AE%AE/136.vnp","UTF-8");
-        s.scrapCN(url);
-        File file = new File(System.getProperty("user.dir") + "/VNDATA48");
-        if (!file.exists()) {
-            if (file.mkdir()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
-            }
-        }
+    
+    public void downloadVietNamPlusVN(String page, String name) throws IOException
+	{
+		  Scraper s = new Scraper();
+	        String url = java.net.URLDecoder.decode(page,"UTF-8");
+	        s.scrapCN(url);
+	        File file = new File(System.getProperty("user.dir") + "/"+name);
+	        if (!file.exists()) {
+	            if (file.mkdir()) {
+	                System.out.println("Directory is created!");
+	            } else {
+	                System.out.println("Failed to create directory!");
+	            }
+	        }
 
-        int i=1;
-        int j = 0;
-        for (Article a : s.articles) {
-        	  if(a.getTitle()!= null && a.getContent() != null && a.getLink() != null )
-              {
-            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/VNDATA48/"+i+".txt"), "utf-8"))) {
-                
-                	writer.write(a.getLink()+"\n-----------------\n");
-                	 writer.write(a.getTitle()+"\n-----------------\n");
-                     writer.write(a.getContent()+"\n-----------------\n");
-                     j++;
-                     i++;
-                } 
-            }
-        }
-       
-        System.out.println("Created "+j+ " files Successfully");
-    }
+	        int i=1;
+	        int j = 0;
+	        for (Article a : s.articles) {
+	        	  if(a.getTitle()!= null && a.getContent() != null && a.getLink() != null )
+	              {
+	            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+	                    new FileOutputStream(System.getProperty("user.dir") + "/"+name+"/"+i+".txt"), "utf-8"))) {
+	                
+	                	writer.write(a.getLink()+"\n-----------------\n");
+	                	 writer.write(a.getTitle()+"\n-----------------\n");
+	                     writer.write(a.getContent()+"\n-----------------\n");
+	                     j++;
+	                     i++;
+	                } 
+	            }
+	        }
+	       
+	        System.out.println("Created "+j+ " files Successfully");
+	}
+ 
 }

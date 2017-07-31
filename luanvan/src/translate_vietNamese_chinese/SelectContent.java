@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class SelectContent extends JFrame {
 	public SelectContent(String page, String language) {
 		URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
-		
+		Scraper scraper = new Scraper();
 		setTitle("Download Application");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 294);
@@ -119,7 +120,227 @@ public class SelectContent extends JFrame {
 				// TODO Auto-generated method stub
 				URL url =  SelectContent.class.getResource("/resources/downloading.gif");
 				lblStatusDownloading.setIcon(new ImageIcon(url));
-				lblStatusDownloading.setVisible(true);
+				
+				String currentItem = cbSelectType.getSelectedItem().toString();
+				System.out.println(currentItem);
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Sports"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable seaGame = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thethao/seagames28.vnp", "vietnamplus_TheThao_sea_game_28");
+								
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					
+					Runnable quanVot = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thethao/quanvot.vnp", "vietnamplus_TheThao_QuanVot");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					
+					Runnable bongDa = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thethao/quanvot.vnp", "vietnamplus_TheThao_BongDa");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadSeaGame = new Thread(seaGame);
+					Thread threadQuanVot = new Thread(quanVot);
+					Thread threadBongDa = new Thread(bongDa);
+					threadSeaGame.start();
+					threadQuanVot.start();
+					threadBongDa.start();
+					
+					
+					if(!threadQuanVot.isAlive() && !threadSeaGame.isAlive() && !threadBongDa.isAlive())
+					{
+						lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+					}
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Economy"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable kinhTe = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/kinhte.vnp", "vietnamplus_KinhTe");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadKinhTe = new Thread(kinhTe);
+					threadKinhTe.start();
+					
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Politics"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable chinhTri = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/chinhtri.vnp", "vietnamplus_ChinhTri");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadChinhTri = new Thread(chinhTri);
+					threadChinhTri.start();
+				}
+				
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Society"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable xaHoi = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/xahoi.vnp", "vietnamplus_XaHoi");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadXaHoi = new Thread(xaHoi);
+					threadXaHoi.start();
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("World"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable Asean = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/asean.vnp", "vietnamplus_TheGioi_Asean");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Runnable chauATBD = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chaua-tbd.vnp", "vietnamplus_TheGioi_ChauA_TBD");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Runnable trungDong = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/trungdong.vnp", "vietnamplus_TheGioi_TrungDong");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Runnable chauAu = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chauau.vnp", "vietnamplus_TheGioi_ChauAu");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Runnable chauMy = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chaumy.vnp", "vietnamplus_TheGioi_ChauMy");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Runnable chauPhi = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chauphi.vnp", "vietnamplus_TheGioi_ChauPhi");
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadAsean = new Thread(Asean);
+					Thread threadChauATBD = new Thread(chauATBD);
+					Thread threadTrungDong = new Thread(trungDong);
+					Thread threadChauAu = new Thread(chauAu);
+					Thread threadChauMy = new Thread(chauMy);
+					Thread threadChauPhi = new Thread(chauPhi);
+					threadAsean.start();
+					threadChauATBD.start();
+					threadTrungDong.start();
+					threadChauAu.start();
+					threadChauMy.start();
+					threadChauPhi.start();
+				}
+				
+				
 				
 			}
 		});
@@ -134,7 +355,7 @@ public class SelectContent extends JFrame {
 		String culture = new String("Culture");
 		String sports = new String("Sports");
 		String technology = new String("Technology");
-		String society = new String("Sosiety");
+		String society = new String("Society");
 		String health = new String("Health");
 		String enviroment = new String("Enviroment");
 		String science = new String("Science");
