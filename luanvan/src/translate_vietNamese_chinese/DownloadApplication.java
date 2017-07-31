@@ -249,6 +249,7 @@ public class DownloadApplication {
 		
 		JRadioButton rdbtnNhanDan = new JRadioButton("http://www.nhandan.com.vn/");
 		rdbtnNhanDan.setBounds(239, 80, 200, 23);
+		rdbtnNhanDan.setActionCommand("http://www.nhandan.com.vn/");
 		panel.add(rdbtnNhanDan);
 		
 		JRadioButton rdbtnBaoChinhPhu = new JRadioButton("http://baochinhphu.vn/");
@@ -285,17 +286,19 @@ public class DownloadApplication {
 		JRadioButton rdbtnVietnamese = new JRadioButton("Vietnamese");
 		rdbtnVietnamese.setBounds(6, 18, 102, 23);
 		panel_languages.add(rdbtnVietnamese);
+		rdbtnVietnamese.setActionCommand("Vietnamese");
 		
 		JRadioButton rdbtnChinese = new JRadioButton("Chinese");
 		rdbtnChinese.setBounds(6, 44, 102, 23);
 		panel_languages.add(rdbtnChinese);
+		rdbtnChinese.setActionCommand("Chinese");
 		
 		JButton btnClose_Bilingual = new JButton("Close");
 		btnClose_Bilingual.setBounds(24, 347, 89, 23);
 		panel.add(btnClose_Bilingual);
 		
 		JButton btnCancel_Bilingual = new JButton("Cancel");
-		btnCancel_Bilingual.setBounds(163, 347, 89, 23);
+		btnCancel_Bilingual.setBounds(202, 342, 89, 23);
 		panel.add(btnCancel_Bilingual);
 		
 		JButton btnNext_Bilingual = new JButton("Next");
@@ -343,7 +346,20 @@ public class DownloadApplication {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				if(radioGroupBilingual.getSelection() != null && groupLanguages.getSelection()!= null)
+				{
+					SelectContent selectContent = new SelectContent(radioGroupBilingual.getSelection().getActionCommand(),
+							groupLanguages.getSelection().getActionCommand());
+					DownloadApplication downloadApplication = new DownloadApplication();
+					downloadApplication.frmDownloadApplication.setVisible(true);
+					lblStatus_Bilingual.setVisible(false);
+					selectContent.show();
+				}
+				else
+				{
+					lblStatus_Bilingual.setText("Please select a page and language you want to download ");
+					lblStatus_Bilingual.setVisible(true);
+				}
 			}
 		});
 		
