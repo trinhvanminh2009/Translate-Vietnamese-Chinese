@@ -339,7 +339,106 @@ public class SelectContent extends JFrame {
 					threadChauMy.start();
 					threadChauPhi.start();
 				}
-				
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Life"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable doiSong = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/doisong.vnp", "vietnamplus_DoiSong");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadDoiSong = new Thread(doiSong);
+					threadDoiSong.start();
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Culture"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable vanHoa = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/vanhoa.vnp", "vietnamplus_VanHoa");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadVanHoa = new Thread(vanHoa);
+					threadVanHoa.start();
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Science"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable khoaHoc = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/khoahoc.vnp", "vietnamplus_KhoaHoc");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadKhoaHoc = new Thread(khoaHoc);
+					threadKhoaHoc.start();
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Technology"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable congNghe = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/congnghe.vnp", "vietnamplus_CongNghe");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadCongNghe = new Thread(congNghe);
+					threadCongNghe.start();
+				}
+				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Strange Story"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable chuyenLa = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+							try {
+								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/chuyenla.vnp", "vietnamplus_ChuyenLa");
+								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					};
+					Thread threadChuyenLa = new Thread(chuyenLa);
+					threadChuyenLa.start();
+				}
 				
 				
 			}
@@ -361,7 +460,6 @@ public class SelectContent extends JFrame {
 		String science = new String("Science");
 		String travel = new String("Travel");
 		String strangeStory = new String("Strange Story");
-		String classifiedAdvertising = new String("Classified Advertising");
 		String backStage = new String("Backstage");
 		String thoiCuoc = new String("Thời cuộc");
 		String fashion = new String("Fashion");
@@ -758,7 +856,6 @@ public class SelectContent extends JFrame {
 			vietnamPlusVN.add(science);
 			vietnamPlusVN.add(technology);
 			vietnamPlusVN.add(strangeStory);
-			vietnamPlusVN.add(classifiedAdvertising);
 			for(int i = 0; i < vietnamPlusVN.size(); i++)
 			{
 				cbSelectType.insertItemAt(vietnamPlusVN.get(i), i+1);

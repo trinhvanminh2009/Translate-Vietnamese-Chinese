@@ -66,7 +66,7 @@ public class Scraper {
 
     public void getAllLink(String pageName, int begin, int end) throws IOException {
 
-    	
+    	System.out.println(end);
         for (int i = begin; i <= end; i++) {
 
             if (i == 1) {

@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="luanvan/src"/>
 	<classpathentry kind="lib" path="luanvan/jsoup-1.10.2.jar"/>
 	<classpathentry kind="lib" path="D:/Dowloads/json.jar"/>
+	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/json.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="luanvan/build/classes"/>
 </classpath>
