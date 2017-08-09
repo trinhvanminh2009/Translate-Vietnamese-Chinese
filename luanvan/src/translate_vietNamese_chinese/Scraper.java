@@ -27,6 +27,8 @@ public class Scraper {
     public Scraper() {
         articles = new ArrayList<>();
     }
+    //////////////////////////////////////////VietnamPlus/////////////////////////////////
+
 
     public void scrapVN(String pageName) throws IOException {
 
@@ -104,7 +106,6 @@ public class Scraper {
         }
     }
 
-    
     public void downloadVietNamPlusVN(String page, String name) throws IOException
 	{
 		  Scraper s = new Scraper();
@@ -138,5 +139,7 @@ public class Scraper {
 	       
 	        System.out.println("Created "+j+ " files Successfully");
 	}
+    
+
  
 }

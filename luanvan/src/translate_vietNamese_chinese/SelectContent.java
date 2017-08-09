@@ -52,6 +52,7 @@ public class SelectContent extends JFrame {
 		URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
 		Scraper scraper = new Scraper();
+		VNExpress vnExpress = new VNExpress();
 		setTitle("Download Application");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 294);
@@ -439,8 +440,249 @@ public class SelectContent extends JFrame {
 					Thread threadChuyenLa = new Thread(chuyenLa);
 					threadChuyenLa.start();
 				}
-				
-				
+				///////////////////////////////////////////VNEXpress////////////////////////////////
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("News"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable thoiSu = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/thoi-su", "vnExpress_Thoisu");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadThoiSu = new Thread(thoiSu);
+					threadThoiSu.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("World"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable theGioi = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/the-gioi", "vnExpress_TheGioi");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadTheGioi = new Thread(theGioi);
+					threadTheGioi.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Business"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable kinhDoanh = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://kinhdoanh.vnexpress.net/", "vnExpress_KinhDoanh");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadKinhDoanh = new Thread(kinhDoanh);
+					threadKinhDoanh.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Entertaiment"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable giaiTri = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://giaitri.vnexpress.net/", "vnExpress_GiaiTri");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadGiaiTri = new Thread(giaiTri);
+					threadGiaiTri.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Sports"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable theThao = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://thethao.vnexpress.net/", "vnExpress_TheThao");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadTheThao = new Thread(theThao);
+					threadTheThao.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Law"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable phapLuat = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/phap-luat", "vnExpress_PhapLuat");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadPhapLuat = new Thread(phapLuat);
+					threadPhapLuat.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Education"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable giaoDuc = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/giao-duc", "vnExpress_GiaoDuc");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadGiaoDuc = new Thread(giaoDuc);
+					threadGiaoDuc.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Health"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable sucKhoe = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://suckhoe.vnexpress.net/", "vnExpress_SucKhoe");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadSucKhoe = new Thread(sucKhoe);
+					threadSucKhoe.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Family"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable giaDinh = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://giadinh.vnexpress.net/", "vnExpress_GiaDinh");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadGiaDinh = new Thread(giaDinh);
+					threadGiaDinh.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Travel"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable duLich = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://dulich.vnexpress.net/", "vnExpress_DuLich");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadDuLich = new Thread(duLich);
+					threadDuLich.start();
+				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Science"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable khoaHoc = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/khoa-hoc", "vnExpress_KhoaHoc");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadKhoaHoc = new Thread(khoaHoc);
+					threadKhoaHoc.start();
+				}
 			}
 		});
 	}
@@ -461,10 +703,10 @@ public class SelectContent extends JFrame {
 		String travel = new String("Travel");
 		String strangeStory = new String("Strange Story");
 		String backStage = new String("Backstage");
-		String thoiCuoc = new String("Thời cuộc");
+		String thoiCuoc = new String("Thá»�i cuá»™c");
 		String fashion = new String("Fashion");
 		String beautify = new String("Beautify");
-		String benLe = new String("Bên lề");
+		String benLe = new String("BÃªn lá»�");
 		String family = new String("Family");
 		String eatAndPlay = new String("Eat and play");
 		String blogger= new String("Blogger");
@@ -475,7 +717,6 @@ public class SelectContent extends JFrame {
 		String news = new String("News");
 		String entertaiment = new String("Entertaiment");
 		String law = new String("Law");
-		String viewAngle = new String("View Angle");
 		String education = new String("Education");
 		String vehicle = new String("Vehicle");
 		String community = new String("Community");
@@ -619,7 +860,6 @@ public class SelectContent extends JFrame {
 		if(url.equals("http://vnexpress.net/") && language.equals(""))
 		{
 			vnExpress.add(news);
-			vnExpress.add(viewAngle);
 			vnExpress.add(world);
 			vnExpress.add(business);
 			vnExpress.add(entertaiment);
