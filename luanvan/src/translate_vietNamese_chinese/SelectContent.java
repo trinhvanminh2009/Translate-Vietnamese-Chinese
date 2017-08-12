@@ -683,6 +683,28 @@ public class SelectContent extends JFrame {
 					Thread threadKhoaHoc = new Thread(khoaHoc);
 					threadKhoaHoc.start();
 				}
+				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Digitialization"))
+				{
+					lblStatusDownloading.setVisible(true);
+					Runnable soHoa = new Runnable() {
+						
+						@Override
+						public void run() {
+							// TODO Auto-generated method stub
+						
+								try {
+									vnExpress.downloadVNExpress("http://sohoa.vnexpress.net/", "vnExpress_SoHoa");
+									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+						}
+					};
+					Thread threadSoHoa = new Thread(soHoa);
+					threadSoHoa.start();
+				}
 			}
 		});
 	}
