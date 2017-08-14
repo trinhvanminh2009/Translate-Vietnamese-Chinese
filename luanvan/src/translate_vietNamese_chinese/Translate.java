@@ -20,7 +20,22 @@ import org.json.JSONArray;
 public class Translate {
 	public static void main(String[] args) throws Exception 
 	 {
-
+		runTranslate();
+	 }
+		
+	public Translate(){}
+	
+	public String translateDateMonth(String input) throws Exception
+	{
+		Translate http = new Translate();
+		  String wordToEnglish = http.callUrlAndParseResult("zh-CN", "en", input);
+		  String wordEnglishToVietnamese = http.callUrlAndParseResult("en", "vi", wordToEnglish);
+		  return  wordEnglishToVietnamese;
+		 
+	}
+	public static void runTranslate()
+	{
+		//Run translate from Chinese, each folder is an thread
 		Runnable culture = new Runnable() {
 			
 			@Override
@@ -202,11 +217,11 @@ public class Translate {
 		threadAsean.start();
 		threadBienDoiKhiHau.start();
 		threadBienDong.start();
-	 }
-	
+	}
 	
 	public static void listFilesForFolder(final File folder,String folderName) throws Exception
 	{
+		//This function call another function to read all file from folder
 		for(final File file : folder.listFiles())
 		{
 			if(file.isDirectory())
@@ -227,11 +242,12 @@ public class Translate {
 			File file = new File(filePath);
 			bufferedReader = new BufferedReader(new FileReader(file));
 			bufferedReader.ready();
+		
 			
 			StringBuilder stringBuilder = new StringBuilder();
 			String line = bufferedReader.readLine();
 			
-			while(line != null)
+			while(line != null)//Read each line in folder 
 			{
 				stringBuilder.append(line);
 				stringBuilder.append(System.lineSeparator());
@@ -239,7 +255,7 @@ public class Translate {
 				
 			}
 			String everything = stringBuilder.toString();
-			String key = "-----------------";
+			String key = "-----------------";//Key to know what going on in file
 			handleFileString(everything, key, file.getName(),folderName);
 			bufferedReader.close();
 		}
