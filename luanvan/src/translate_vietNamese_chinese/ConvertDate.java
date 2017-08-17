@@ -39,8 +39,8 @@ public class ConvertDate {
 
 	public static void listFilesForFolder(final File folderVN,final File folderCN ) throws Exception
 	{
-		 ArrayList<String>resultVN = new ArrayList<>();
-		 ArrayList<String>resultCN = new ArrayList<>();
+		 ArrayList<ConvertDate>resultVN = new ArrayList<>();
+		 ArrayList<ConvertDate>resultCN = new ArrayList<>();
 		for(final File file : folderVN.listFiles())
 		{
 			if(file.isDirectory())
@@ -65,9 +65,9 @@ public class ConvertDate {
 		handleArrayListDate(resultVN, resultCN);
 	}
 	
-	public static ArrayList<String> readFileFromPath(String filePath) throws Exception 
+	public static ArrayList<ConvertDate> readFileFromPath(String filePath) throws Exception 
 	{
-		ArrayList<String> result = new ArrayList<>();
+		ArrayList<ConvertDate> result = new ArrayList<>();
 		final BufferedReader bufferedReader;
 		try {
 			File file = new File(filePath);
@@ -95,11 +95,11 @@ public class ConvertDate {
 		return result;
 	}
 	
-	private static ArrayList<String> handleFileString(String content, String key, String filePath) throws Exception
+	private static ArrayList<ConvertDate> handleFileString(String content, String key, String filePath) throws Exception
 	{
 		//Check file and remove key to get main contain
 		int lastIndex = 0;
-		ArrayList<String>resultList = new ArrayList<>();
+		ArrayList<ConvertDate>resultList = new ArrayList<>();
 		ArrayList<Integer> listIndex = new ArrayList<>();
 		while(lastIndex != -1)
 		{
@@ -129,9 +129,9 @@ public class ConvertDate {
 	}
 	
 	
-	private static ArrayList<String> getMonthYearVN(String content, String filePath)
+	private static ArrayList<ConvertDate> getMonthYearVN(String content, String filePath)
 	{
-		ArrayList<String>listMonthYear = new ArrayList<>();
+		ArrayList<ConvertDate>listMonthYear = new ArrayList<>();
 		int lastIndex = 0;
 		String tempString;
 		ArrayList<String>listSpecicalChar = new ArrayList<>();
@@ -182,7 +182,8 @@ public class ConvertDate {
 							break;
 						}
 					}
-					listMonthYear.add(tempString.trim());
+					ConvertDate convertDate = new ConvertDate(tempString.trim(), filePath);
+					listMonthYear.add(convertDate);
 				}
 			}
 			tempString = "";
@@ -190,9 +191,9 @@ public class ConvertDate {
 		return listMonthYear;
 	}
 	
-	private static ArrayList<String> getDayMonthYearVN(String content, String filePath)
+	private static ArrayList<ConvertDate> getDayMonthYearVN(String content, String filePath)
 	{
-		ArrayList<String>listDateMonthYear = new ArrayList<>();
+		ArrayList<ConvertDate>listDateMonthYear = new ArrayList<>();
 		int lastIndex = 0;
 		String tempString;
 		ArrayList<String>listSpecicalChar = new ArrayList<>();
@@ -243,7 +244,8 @@ public class ConvertDate {
 							break;
 						}
 					}
-					listDateMonthYear.add(tempString.trim());
+					ConvertDate convertDate = new ConvertDate(tempString.trim(),filePath);
+					listDateMonthYear.add(convertDate);
 				}
 			}
 			tempString = "";
@@ -255,12 +257,12 @@ public class ConvertDate {
 	
 
 	
-	public static ArrayList<String> getDateMonthYearCN(String content, String filePath) throws Exception
+	public static ArrayList<ConvertDate> getDateMonthYearCN(String content, String filePath) throws Exception
 	{
 		int lastIndex = 0;
 		String subTempString;
 		String tempString;
-		ArrayList<String>listDateMonth = new ArrayList<>();
+		ArrayList<ConvertDate>listDateMonth = new ArrayList<>();
 		while(lastIndex != -1)
 		{
 			//Check in substring include year
@@ -280,12 +282,14 @@ public class ConvertDate {
 						//Check if last character is date in Chinese add it into list. Else remove and add it later
 						if(tempString.substring(tempString.length()-1, tempString.length()).trim().equals("日".trim()))
 						{
-							listDateMonth.add(tempString);
+							ConvertDate convertDate = new ConvertDate(tempString, filePath);
+							listDateMonth.add(convertDate);
 						}
 						else
 						{
 							subTempString = tempString.substring(0, tempString.indexOf("日")+1);
-							listDateMonth.add(subTempString);
+							ConvertDate convertDate = new ConvertDate(subTempString, filePath);
+							listDateMonth.add(convertDate);
 						}
 					}
 				}
@@ -295,23 +299,18 @@ public class ConvertDate {
 				}
 			}
 		}
-		/*
-		for(int i = 0; i < listDateMonth.size(); i++)
-		{
-			Translate translate = new Translate();
-			 convertFormatAfterTranslated(translate.translateDateMonth(listDateMonth.get(i)), filePath);
-		}*/
 		return listDateMonth;
 	}
 	
 	
-	public static ArrayList<String> getMonthYearCN(String content, String filePath) throws Exception
+	public static ArrayList<ConvertDate> getMonthYearCN(String content, String filePath) throws Exception
 	{
 		int lastIndex = 0;
 		String subTempString;
 		String tempString;
 		
-		ArrayList<String>listDateMonth = new ArrayList<>();
+		ArrayList<ConvertDate>listDateMonth = new ArrayList<>();
+		
 		while(lastIndex != -1)
 		{
 			lastIndex = content.indexOf("年 ", lastIndex);
@@ -326,12 +325,14 @@ public class ConvertDate {
 					{
 						if(tempString.substring(tempString.length()-1, tempString.length()).trim().equals("月".trim()))
 						{
-							listDateMonth.add(tempString);
+							ConvertDate convertDate = new ConvertDate(tempString, filePath);
+							listDateMonth.add(convertDate);
 						}
 						else
 						{
 							subTempString = tempString.substring(0, tempString.indexOf("月")+1);
-							listDateMonth.add(subTempString);
+							ConvertDate convertDate = new ConvertDate(subTempString, filePath);
+							listDateMonth.add(convertDate);
 						}
 					}
 				}
@@ -341,15 +342,8 @@ public class ConvertDate {
 				}
 			}
 		}
-		/*for(int i = 0; i < listDateMonth.size(); i++)
-		{
-			//System.out.println(listDateMonth.get(i));
-			Translate translate = new Translate();
-			translate.translateDateMonth(listDateMonth.get(i));
-		}*/
+	
 		return listDateMonth;
-		
-		
 	}
 	
 	public static String convertFormatAfterTranslated(String input)
@@ -377,24 +371,25 @@ public class ConvertDate {
 		return input;
 	}
 	
-	public static void handleArrayListDate(ArrayList<String>listVN, ArrayList<String>listCN) throws Exception
+	public static void handleArrayListDate(ArrayList<ConvertDate>listVN, ArrayList<ConvertDate>listCN) throws Exception
 	{
-		ArrayList<String>listCNTranslated = new ArrayList<>();
+		ArrayList<ConvertDate>listCNTranslated = new ArrayList<>();
 		Translate translate = new Translate();
+		//Translate date time and then convert format to easy to compare with Vietnamese
 		for(int i = 0 ; i < listCN.size(); i++)
 		{
-			listCNTranslated.add(convertFormatAfterTranslated(translate.translateDateMonth(listCN.get(i))));
+			ConvertDate convertDate = new ConvertDate(convertFormatAfterTranslated
+					(translate.translateDateMonth(listCN.get(i).getContent())), listCN.get(i).getFilePath());
+			listCNTranslated.add(convertDate);
 		}
 	
-		//CompareTitle.printSimilarity("222", "222");
 		for(int i = 0 ; i < listCNTranslated.size(); i++)
 		{
 			
 			for(int j = 0 ; j < listVN.size(); j++)
 			{
-				
-				//System.out.println(listVN.get(j));
-				CompareTitle.printSimilarity(listCNTranslated.get(i), listVN.get(j));
+				//Check similarity of content and show located of each content
+				CompareTitle.printSimilarityDate(listCNTranslated.get(i), listVN.get(j));
 				
 			}
 		}
