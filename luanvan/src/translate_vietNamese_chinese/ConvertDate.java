@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+
+import com.sun.prism.paint.Color;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 
 public class ConvertDate {
@@ -62,7 +66,8 @@ public class ConvertDate {
 			}
 		}
 		
-		handleArrayListDate(resultVN, resultCN);
+		//handleArrayListDate(resultVN, resultCN);
+		similarityFile(resultVN, resultCN);
 	}
 	
 	public static ArrayList<ConvertDate> readFileFromPath(String filePath) throws Exception 
@@ -394,6 +399,65 @@ public class ConvertDate {
 			}
 		}
 		
+		
+	}
+	
+	public static void similarityFile(ArrayList<ConvertDate>listVN, ArrayList<ConvertDate>listCN) throws Exception
+	{
+		String tempPath = "";
+		String tempPathVN = "";
+		int count = 0;
+		int countVN = 0;
+		ArrayList<ConvertDate>listCNTranslated = new ArrayList<>();
+		Translate translate = new Translate();
+		//Translate date time and then convert format to easy to compare with Vietnamese
+		for(int i = 0 ; i < listCN.size(); i++)
+		{
+			ConvertDate convertDate = new ConvertDate(convertFormatAfterTranslated
+					(translate.translateDateMonth(listCN.get(i).getContent())), listCN.get(i).getFilePath());
+			listCNTranslated.add(convertDate);
+		}
+		
+		for(int i = 0; i < listCNTranslated.size(); i++)//This loop to get fist element in array list
+		{
+			tempPath = listCN.get(i).getFilePath();
+			for(int j = 0; j < listCNTranslated.size(); j++)//This loop to compare all elements with first selected element.
+			{
+				if(listCNTranslated.get(j).getFilePath().equals(tempPath))
+				{
+					for(int k = 0 ; k < listVN.size(); k++)
+					{
+						if(k > 0)
+						{
+							tempPathVN = listVN.get(k-1).getFilePath();
+						}
+						
+						//Check similarity of content and show located of each content
+						if(CompareTitle.printSimilarityDate(listCNTranslated.get(j), listVN.get(k)) == true)
+						{
+							count++;
+							if(listVN.get(k).getFilePath().equals(tempPathVN))
+							{
+								countVN ++;
+							}
+							
+							
+						}
+					}
+					if(count >0)
+					{
+						//System.out.println("Found " + count + " similarity with path "+ listCNTranslated.get(j).getFilePath());
+					}
+					if(countVN > 0)
+					{
+						System.out.println("Found " + countVN + " file similarity");
+					}
+					count = 0;
+					countVN = 0;
+				}
+			}
+		
+		}
 		
 	}
 	public static void main(String[] args) throws Exception {
