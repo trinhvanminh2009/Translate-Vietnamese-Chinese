@@ -63,17 +63,19 @@ public class CompareTitle {
 			  
 		  }
 		  
-		  public static boolean printSimilarityDate(ConvertDate convertDateCN, ConvertDate convertDateVN)
+		  public static SimilarityDate printSimilarityDate(ConvertDate convertDateCN, ConvertDate convertDateVN)
 		  {
-			 
+			  SimilarityDate similarityDate = null;
 			  if((int)(similarity(convertDateCN.getContent(), convertDateVN.getContent()) *100) >92)
 			  {
-				  System.out.println((int)(similarity(convertDateCN.getContent(), convertDateVN.getContent()) *100) +
+				 /*System.out.println((int)(similarity(convertDateCN.getContent(), convertDateVN.getContent()) *100) +
 						  "% is the similarity between "+ convertDateCN.getContent() + "\n with link "+convertDateCN.getFilePath() 
-						  +"\n and "+  convertDateVN.getContent() + " with link "+ convertDateVN.getFilePath());
-				  return true;
+						  +"\n and "+  convertDateVN.getContent() + " with link "+ convertDateVN.getFilePath());*/
+				   similarityDate = new SimilarityDate(convertDateVN.getContent(), convertDateCN.getContent(), convertDateVN.getFilePath(), 
+						  convertDateCN.getFilePath(), (int)(similarity(convertDateCN.getContent(), convertDateVN.getContent()) *100));
+				   return similarityDate;
 			  }
-			  return false;
+			  return similarityDate;
 		  }
 		  
 		  

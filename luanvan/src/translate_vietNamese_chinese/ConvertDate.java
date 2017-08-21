@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import com.sun.prism.paint.Color;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
@@ -402,13 +403,12 @@ public class ConvertDate {
 		
 	}
 	
-	public static void similarityFile(ArrayList<ConvertDate>listVN, ArrayList<ConvertDate>listCN) throws Exception
+	public static ArrayList<SimilarityDate> similarityFile(ArrayList<ConvertDate>listVN, ArrayList<ConvertDate>listCN) throws Exception
 	{
 		String tempPath = "";
-		String tempPathVN = "";
-		int count = 0;
-		int countVN = 0;
+		SimilarityDate similarityDate = null;
 		ArrayList<ConvertDate>listCNTranslated = new ArrayList<>();
+		ArrayList<SimilarityDate>listSimilarityDate = new ArrayList<>();
 		Translate translate = new Translate();
 		//Translate date time and then convert format to easy to compare with Vietnamese
 		for(int i = 0 ; i < listCN.size(); i++)
@@ -427,39 +427,50 @@ public class ConvertDate {
 				{
 					for(int k = 0 ; k < listVN.size(); k++)
 					{
-						if(k > 0)
-						{
-							tempPathVN = listVN.get(k-1).getFilePath();
-						}
-						
 						//Check similarity of content and show located of each content
-						if(CompareTitle.printSimilarityDate(listCNTranslated.get(j), listVN.get(k)) == true)
+						similarityDate = CompareTitle.printSimilarityDate(listCNTranslated.get(j), listVN.get(k));
+						if(similarityDate != null)
 						{
-							count++;
-							if(listVN.get(k).getFilePath().equals(tempPathVN))
-							{
-								countVN ++;
-							}
-							
-							
+							listSimilarityDate.add(similarityDate);
 						}
 					}
-					if(count >0)
-					{
-						//System.out.println("Found " + count + " similarity with path "+ listCNTranslated.get(j).getFilePath());
-					}
-					if(countVN > 0)
-					{
-						System.out.println("Found " + countVN + " file similarity");
-					}
-					count = 0;
-					countVN = 0;
 				}
 			}
 		
 		}
-		
+		printSimilarity(listSimilarityDate);
+		return listSimilarityDate;
 	}
+	
+	public static void printSimilarity(ArrayList<SimilarityDate>listSimilarityDate)
+	{
+		String tempStringVN = "";
+		String tempStringCN = "";
+		int count = 0;
+		for(int i = 0; i < listSimilarityDate.size(); i++)
+		{
+			tempStringVN = listSimilarityDate.get(i).getFilePathVN();
+			tempStringCN = listSimilarityDate.get(i).getFilePathCN();
+			for(int j = 0; j < listSimilarityDate.size(); j++)
+			{
+				if(listSimilarityDate.get(j).getFilePathVN().equals(tempStringVN) && 
+						listSimilarityDate.get(j).getFilePathCN().equals(tempStringCN) && i!= j)
+				{
+					System.out.println(tempStringVN  + " "+ listSimilarityDate.get(i).getDateVN()+ " with " +
+							tempStringCN + " "+listSimilarityDate.get(i).getDateCN());
+					count++;
+					if(count ==1)
+					{
+						break;
+					}
+				}
+			}
+			
+			
+			count = 0;
+		}
+	}
+	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
