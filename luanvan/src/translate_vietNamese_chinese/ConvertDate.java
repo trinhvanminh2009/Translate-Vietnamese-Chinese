@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import com.sun.org.apache.bcel.internal.generic.LUSHR;
 import com.sun.prism.paint.Color;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
@@ -355,7 +356,6 @@ public class ConvertDate {
 	public static String convertFormatAfterTranslated(String input)
 	{
 		input = input.toLowerCase();
-		String subString  = "";
 		if(input.contains("ngày"))
 		{
 			input = input.toLowerCase();
@@ -438,37 +438,89 @@ public class ConvertDate {
 			}
 		
 		}
-		printSimilarity(listSimilarityDate);
+		printSimilarity(listSimilarityDate, listVN, listCNTranslated);
+		
 		return listSimilarityDate;
 	}
 	
-	public static void printSimilarity(ArrayList<SimilarityDate>listSimilarityDate)
+	//This function to get which date or month in VN similarity with CN, and show how many % similarity between files
+	public static void printSimilarity(ArrayList<SimilarityDate>listSimilarityDate,ArrayList<ConvertDate>listVN, ArrayList<ConvertDate>listCN)
 	{
-		String tempStringVN = "";
-		String tempStringCN = "";
-		int count = 0;
-		for(int i = 0; i < listSimilarityDate.size(); i++)
+		
+		ArrayList<FilePathAndItems> listFilePathAndItemsVN = new ArrayList<>();
+		ArrayList<FilePathAndItems> listFilePathAndItemsCN = new ArrayList<>();
+		ArrayList<String>filePathAdded = new ArrayList<>();
+		ArrayList<String>listDate = new ArrayList<>();
+		int tempCount = 0;
+		/////////////////////Start Loop for VN//////////////////////////
+		for(int i = 0 ; i < listVN.size(); i++)
 		{
-			tempStringVN = listSimilarityDate.get(i).getFilePathVN();
-			tempStringCN = listSimilarityDate.get(i).getFilePathCN();
-			for(int j = 0; j < listSimilarityDate.size(); j++)
+			for(int j = 0; j < listVN.size(); j++)
 			{
-				if(listSimilarityDate.get(j).getFilePathVN().equals(tempStringVN) && 
-						listSimilarityDate.get(j).getFilePathCN().equals(tempStringCN) && i!= j)
+				//Get items same path and not include that item in loop 2
+				if(listVN.get(j).getFilePath().equals(listVN.get(i).getFilePath()) && !filePathAdded.contains(listVN.get(j).getFilePath()))
 				{
-					System.out.println(tempStringVN  + " "+ listSimilarityDate.get(i).getDateVN()+ " with " +
-							tempStringCN + " "+listSimilarityDate.get(i).getDateCN());
-					count++;
-					if(count ==1)
-					{
-						break;
-					}
+					listDate.add(listVN.get(j).getContent());
+					tempCount++;
 				}
 			}
 			
+			if(tempCount > 0)
+			{
+				FilePathAndItems filePathAndItems = new FilePathAndItems(listVN.get(i).getFilePath(), listDate);
+				listFilePathAndItemsVN.add(filePathAndItems);
+				listDate = new ArrayList<>();
+				
+			}
+			tempCount = 0;
 			
-			count = 0;
 		}
+		//End loop
+		/////////////////////Start Loop for CN//////////////////////////
+
+		for(int i = 0 ; i < listCN.size(); i++)
+		{
+			for(int j = 0; j < listCN.size(); j++)
+			{
+				//Get items same path and not include that item in loop 2
+				if(listCN.get(j).getFilePath().equals(listCN.get(i).getFilePath()) && !filePathAdded.contains(listCN.get(j).getFilePath()))
+				{
+					listDate.add(listCN.get(j).getContent());
+					tempCount++;
+				}
+			}
+			
+			if(tempCount > 0)
+			{
+				FilePathAndItems filePathAndItems = new FilePathAndItems(listCN.get(i).getFilePath(), listDate);
+				listFilePathAndItemsCN.add(filePathAndItems);
+				listDate = new ArrayList<>();
+				
+			}
+			tempCount = 0;
+			
+		}
+		//End loop
+		for(int i = 0 ; i < listFilePathAndItemsVN.size(); i++)
+		{
+			System.out.println(listFilePathAndItemsVN.get(i).getFilePath());
+			for(int j = 0; j < listFilePathAndItemsVN.get(i).getListDate().size() ; j++)
+			{
+				System.out.println(listFilePathAndItemsVN.get(i).getListDate().get(j));
+			}
+		}
+		
+		for(int i = 0 ; i < listFilePathAndItemsCN.size(); i++)
+		{
+			System.out.println(listFilePathAndItemsCN.get(i).getFilePath());
+			for(int j = 0; j < listFilePathAndItemsCN.get(i).getListDate().size() ; j++)
+			{
+				System.out.println(listFilePathAndItemsCN.get(i).getListDate().get(j));
+			}
+		}
+		System.out.println("CN" + listFilePathAndItemsCN.size());
+		System.out.println("VN" + listFilePathAndItemsVN.size());
+	
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -476,7 +528,5 @@ public class ConvertDate {
 		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
 		final File folder2 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
 		listFilesForFolder(folder,folder2);
-		
 	}
-
 }
