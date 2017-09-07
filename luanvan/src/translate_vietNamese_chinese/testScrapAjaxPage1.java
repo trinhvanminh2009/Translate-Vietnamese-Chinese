@@ -12,10 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- *
- * @author quang
- */
+
 public class testScrapAjaxPage1 {
 
    private final String USER_AGENT = "Mozilla/5.0";

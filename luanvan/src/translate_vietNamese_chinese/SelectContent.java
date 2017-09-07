@@ -1,1329 +1,458 @@
 package translate_vietNamese_chinese;
 
-import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
-
-import javax.swing.JTextField;
+import java.util.concurrent.CountDownLatch;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.border.TitledBorder;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListSelectionModel;
+import javax.swing.border.EmptyBorder;
 
 public class SelectContent extends JFrame {
 
-	private JPanel contentPane;
-	private JLabel lblStatus;
-	private JComboBox cbSelectType;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SelectContent frame = new SelectContent("","");
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	
-	/**
-	 * Create the frame.
-	 */
-	public SelectContent(String page, String language) {
-		URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
-		Scraper scraper = new Scraper();
-		VNExpress vnExpress = new VNExpress();
-		setTitle("Download Application");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 550, 294);
-		contentPane = new JPanel();
-		contentPane.setForeground(Color.CYAN);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		lblStatus = new JLabel("Status");
-		lblStatus.setForeground(Color.MAGENTA);
-		lblStatus.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lblStatus.setBounds(15, 5, 509, 22);
-		contentPane.add(lblStatus);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Download", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(132, 59, 266, 171);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		cbSelectType = new JComboBox();
-		cbSelectType.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		cbSelectType.setModel(new DefaultComboBoxModel(new String[] {"Select one item"}));
-		cbSelectType.setBounds(20, 25, 215, 30);
-		panel.add(cbSelectType);
-		
-		
-		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(20, 73, 89, 23);
-		panel.add(btnCancel);
-		
-		JButton btnDownload = new JButton("Download");
-		btnDownload.setBounds(139, 73, 103, 23);
-		panel.add(btnDownload);
-		
-		JLabel lblStatusDownloading = new JLabel("");
-		lblStatusDownloading.setBounds(79, 107, 100, 52);
-		panel.add(lblStatusDownloading);
-		lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/downloading.gif")));
-		
-		JLabel lblStatusLanguage = new JLabel("Status");
-		lblStatusLanguage.setForeground(Color.MAGENTA);
-		lblStatusLanguage.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
-		lblStatusLanguage.setBounds(15, 38, 464, 14);
-		contentPane.add(lblStatusLanguage);
-		lblStatusDownloading.setVisible(false);
-		
-		
-		if(language.equals(""))
-		{
-			lblStatus.setText("Current page prepare download: "+ page);
-		}
-		else
-		{
-			lblStatus.setText("Current page prepare download: "+ page);
-			lblStatusLanguage.setText("Current language is: "+language);
-		}
-		
-		classifyTheGroups(page, language);
-		
-		btnDownload.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				URL url =  SelectContent.class.getResource("/resources/downloading.gif");
-				lblStatusDownloading.setIcon(new ImageIcon(url));
-				
-				String currentItem = cbSelectType.getSelectedItem().toString();
-				System.out.println(currentItem);
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Sports"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable seaGame = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thethao/seagames28.vnp", "vietnamplus_TheThao_sea_game_28");
-								
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					
-					Runnable quanVot = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thethao/quanvot.vnp", "vietnamplus_TheThao_QuanVot");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					
-					Runnable bongDa = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thethao/quanvot.vnp", "vietnamplus_TheThao_BongDa");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadSeaGame = new Thread(seaGame);
-					Thread threadQuanVot = new Thread(quanVot);
-					Thread threadBongDa = new Thread(bongDa);
-					threadSeaGame.start();
-					threadQuanVot.start();
-					threadBongDa.start();
-					
-					
-					if(!threadQuanVot.isAlive() && !threadSeaGame.isAlive() && !threadBongDa.isAlive())
-					{
-						lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+    private JPanel contentPane;
+    private JLabel lblStatus;
+    private ArrayList<ScrapingThread> threadList = new ArrayList<>();
+    public static boolean resume = false;
+    public static boolean stopped = true;
+    public static final String DOWNLOAD_LOG = System.getProperty("user.dir") + "/download_log.txt";
+    public static final String PACKAGE = "downloadapplication";
+    private JList<CheckboxListItem> list;
+    private CheckboxListItem[] arr = null;
+    private ArrayList<String[]> arraySubject;
+    private JProgressBar jpb;
 
-					}
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Economy"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable kinhTe = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/kinhte.vnp", "vietnamplus_KinhTe");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadKinhTe = new Thread(kinhTe);
-					threadKinhTe.start();
-					
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Politics"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable chinhTri = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/chinhtri.vnp", "vietnamplus_ChinhTri");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadChinhTri = new Thread(chinhTri);
-					threadChinhTri.start();
-				}
-				
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Society"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable xaHoi = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/xahoi.vnp", "vietnamplus_XaHoi");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadXaHoi = new Thread(xaHoi);
-					threadXaHoi.start();
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("World"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable Asean = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/asean.vnp", "vietnamplus_TheGioi_Asean");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Runnable chauATBD = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chaua-tbd.vnp", "vietnamplus_TheGioi_ChauA_TBD");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Runnable trungDong = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/trungdong.vnp", "vietnamplus_TheGioi_TrungDong");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Runnable chauAu = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chauau.vnp", "vietnamplus_TheGioi_ChauAu");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Runnable chauMy = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chaumy.vnp", "vietnamplus_TheGioi_ChauMy");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Runnable chauPhi = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/thegioi/chauphi.vnp", "vietnamplus_TheGioi_ChauPhi");
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadAsean = new Thread(Asean);
-					Thread threadChauATBD = new Thread(chauATBD);
-					Thread threadTrungDong = new Thread(trungDong);
-					Thread threadChauAu = new Thread(chauAu);
-					Thread threadChauMy = new Thread(chauMy);
-					Thread threadChauPhi = new Thread(chauPhi);
-					threadAsean.start();
-					threadChauATBD.start();
-					threadTrungDong.start();
-					threadChauAu.start();
-					threadChauMy.start();
-					threadChauPhi.start();
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Life"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable doiSong = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/doisong.vnp", "vietnamplus_DoiSong");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadDoiSong = new Thread(doiSong);
-					threadDoiSong.start();
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Culture"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable vanHoa = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/vanhoa.vnp", "vietnamplus_VanHoa");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadVanHoa = new Thread(vanHoa);
-					threadVanHoa.start();
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Science"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable khoaHoc = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/khoahoc.vnp", "vietnamplus_KhoaHoc");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadKhoaHoc = new Thread(khoaHoc);
-					threadKhoaHoc.start();
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Technology"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable congNghe = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/congnghe.vnp", "vietnamplus_CongNghe");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadCongNghe = new Thread(congNghe);
-					threadCongNghe.start();
-				}
-				if(page.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese") && currentItem.equals("Strange Story"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable chuyenLa = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-							try {
-								scraper.downloadVietNamPlusVN("http://www.vietnamplus.vn/chuyenla.vnp", "vietnamplus_ChuyenLa");
-								lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}
-					};
-					Thread threadChuyenLa = new Thread(chuyenLa);
-					threadChuyenLa.start();
-				}
-				///////////////////////////////////////////VNEXpress////////////////////////////////
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("News"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable thoiSu = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/thoi-su", "vnExpress_Thoisu");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    SelectContent frame = new SelectContent("", "", false);
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadThoiSu = new Thread(thoiSu);
-					threadThoiSu.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("World"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable theGioi = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/the-gioi", "vnExpress_TheGioi");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+    /**
+     * Create the frame.
+     */
+    public SelectContent(String page, String language, boolean res) {
+        URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
+        setTitle("Download Application");
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setBounds(100, 100, 600, 400);
+        contentPane = new JPanel();
+        contentPane.setForeground(Color.CYAN);
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        //Remove any existing WindowListeners
+        for (WindowListener wl : this.getWindowListeners()) {
+            this.removeWindowListener(wl);
+        }
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (stopped == false) {
+                    JOptionPane.showMessageDialog(null, "You cannot close this window");
+                } else {
+                    System.exit(0);
+                }
+            }
+        });
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadTheGioi = new Thread(theGioi);
-					threadTheGioi.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Business"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable kinhDoanh = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://kinhdoanh.vnexpress.net/", "vnExpress_KinhDoanh");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        lblStatus = new JLabel("Status");
+        lblStatus.setForeground(Color.MAGENTA);
+        lblStatus.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+        lblStatus.setBounds(15, 5, 509, 22);
+        contentPane.add(lblStatus);
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadKinhDoanh = new Thread(kinhDoanh);
-					threadKinhDoanh.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Entertaiment"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable giaiTri = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://giaitri.vnexpress.net/", "vnExpress_GiaiTri");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        JLabel lblStatusLanguage = new JLabel("Status");
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadGiaiTri = new Thread(giaiTri);
-					threadGiaiTri.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Sports"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable theThao = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://thethao.vnexpress.net/", "vnExpress_TheThao");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        lblStatusLanguage.setForeground(Color.MAGENTA);
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadTheThao = new Thread(theThao);
-					threadTheThao.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Law"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable phapLuat = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/phap-luat", "vnExpress_PhapLuat");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        lblStatusLanguage.setFont(
+                new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
+        lblStatusLanguage.setBounds(
+                15, 38, 464, 14);
+        contentPane.add(lblStatusLanguage);
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadPhapLuat = new Thread(phapLuat);
-					threadPhapLuat.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Education"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable giaoDuc = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/giao-duc", "vnExpress_GiaoDuc");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        if (language.equals(
+                "")) {
+            lblStatus.setText("Current page prepare download: " + page);
+        } else {
+            lblStatus.setText("Current page prepare download: " + page);
+            lblStatusLanguage.setText("Current language is: " + language);
+        }
+        ////////////////////////////////////
+        jpb=new JProgressBar(0, 100);
+        jpb.setBounds(50, 330, 400, 15);
+        jpb.setStringPainted(true);
+        contentPane.add(jpb);
+        setProgressBarValue(70);
+        
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadGiaoDuc = new Thread(giaoDuc);
-					threadGiaoDuc.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Health"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable sucKhoe = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://suckhoe.vnexpress.net/", "vnExpress_SucKhoe");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        Button btnDownload = new Button("Download");
+        Button btnPause = new Button("Pause");
+        btnPause.setBackground(Color.LIGHT_GRAY);
+        btnPause.setForeground(Color.BLACK);
+        btnPause.setBounds(410, 360, 100, 30);
+        btnPause.setEnabled(false);
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadSucKhoe = new Thread(sucKhoe);
-					threadSucKhoe.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Family"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable giaDinh = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://giadinh.vnexpress.net/", "vnExpress_GiaDinh");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        if (res == true) {
+            lblStatus.setText("Resume download ....");
+            lblStatusLanguage.setText("");
+            resume = true;
+            btnPause.setEnabled(true);           
+            resumeDownload();  
+            arr = new CheckboxListItem[threadList.size()];
+            for (int i = 0; i < threadList.size(); i++) {
+                arr[i] = new CheckboxListItem(threadList.get(i).getPageName(), threadList.get(i).getPageName());
+                arr[i].setSelected(true);
+            }
+            btnPause.setLabel("Pause");
+            resume = false;
+            stopped = false;
+            btnDownload.setEnabled(false);
+        } else {
+            arraySubject = getListSubject(page);
+            arr = new CheckboxListItem[arraySubject.size()];
+            String[] tmp;
+            for (int i = 0; i < arraySubject.size(); i++) {
+                tmp = arraySubject.get(i);
+                arr[i] = new CheckboxListItem(tmp[0], tmp[1]);
+            }
+        }
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadGiaDinh = new Thread(giaDinh);
-					threadGiaDinh.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Travel"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable duLich = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://dulich.vnexpress.net/", "vnExpress_DuLich");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+        list = new JList<CheckboxListItem>(arr);
+        list.setCellRenderer(new CheckboxListRenderer());
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent event) {
+                JList<CheckboxListItem> list
+                        = (JList<CheckboxListItem>) event.getSource();
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadDuLich = new Thread(duLich);
-					threadDuLich.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Science"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable khoaHoc = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://vnexpress.net/tin-tuc/khoa-hoc", "vnExpress_KhoaHoc");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+                // Get index of item clicked
+                int index = list.locationToIndex(event.getPoint());
+                CheckboxListItem item = (CheckboxListItem) list.getModel()
+                        .getElementAt(index);
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadKhoaHoc = new Thread(khoaHoc);
-					threadKhoaHoc.start();
-				}
-				if(page.equals("http://vnexpress.net/") && language.equals("") && currentItem.equals("Digitialization"))
-				{
-					lblStatusDownloading.setVisible(true);
-					Runnable soHoa = new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
-						
-								try {
-									vnExpress.downloadVNExpress("http://sohoa.vnexpress.net/", "vnExpress_SoHoa");
-									lblStatusDownloading.setIcon(new ImageIcon(SelectContent.class.getResource("/resources/done.png")));
+                // Toggle selected state
+                item.setSelected(!item.isSelected());
 
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-						}
-					};
-					Thread threadSoHoa = new Thread(soHoa);
-					threadSoHoa.start();
-				}
-			}
-		});
-	}
-	
-	private void classifyTheGroups(String url, String language)
-	{
-		//Define each item by English. If I define by 2 languages, each item have to define two times
-		String politics = new String("Politics");
-		String world = new String("World");
-		String business = new String("Business");
-		String culture = new String("Culture");
-		String sports = new String("Sports");
-		String technology = new String("Technology");
-		String society = new String("Society");
-		String health = new String("Health");
-		String enviroment = new String("Enviroment");
-		String science = new String("Science");
-		String travel = new String("Travel");
-		String strangeStory = new String("Strange Story");
-		String backStage = new String("Backstage");
-		String thoiCuoc = new String("Thá»�i cuá»™c");
-		String fashion = new String("Fashion");
-		String beautify = new String("Beautify");
-		String benLe = new String("BÃªn lá»�");
-		String family = new String("Family");
-		String eatAndPlay = new String("Eat and play");
-		String blogger= new String("Blogger");
-		String dissipated = new String("Dissipated");
-		String multipleChoice = new String("Multiple-Choice");
-		String wedding = new String("Weeding");
-		String player = new String("Player");
-		String news = new String("News");
-		String entertaiment = new String("Entertaiment");
-		String law = new String("Law");
-		String education = new String("Education");
-		String vehicle = new String("Vehicle");
-		String community = new String("Community");
-		String talk = new String("Talk");
-		String smile = new String("Smile");
-		String digitalization = new String("Digitialization");
-		String economy = new String("Economy");
-		String liveHealthy = new String("Live healthy");
-		String admissions = new String("Admissions");
-		String lifestyleYoung = new String("Lifestyle young");
-		String digitalLifestyle = new String("Digital lifestyle");
-		String youRead = new String("You read");
-		String needToKnow = new String("Need to know");
-		String domestic = new String("Domestic");
-		String internaltional = new String("International");
-		String union = new String("Union");
-		String art = new String("Art");
-		String women = new String("Women");
-		String local = new String("Local");
-		String seaTravel = new String("Sea travel");
-		String event = new String("Event");
-		String kindness = new String("Kindness");
-		String strengthDigital = new String("Strength digital");
-		String vehiclePlusPlus = new String("Vehicle plus plus");
-		String love = new String("Love");
-		String stars = new String("Stars");
-		String filmMusic = new String("Film music");
-		String men = new String("Men");
-		String house = new String("House");
-		String photo = new String("Photo");
-		String destination = new String("Destination");
-		String teen = new String("Teen");
-		String shortNews = new String("Short news");
-		String passion = new String("Passion");
-		String europaLeague = new String("EUROPA LEAGUE");
-		String caricatured = new String("Caricatured");
-		String identified = new String("Identified");
-		String life = new String("Life");
-		String analysis = new String("Analysis");
-		String medical = new String("Medical");
-		String relax = new String("Relax");
-		String vietnamAndTheWorld = new String("VietNam and the world");
-		String seaIlands = new String("Sea-ilands");
-		String policy = new String("Policy");
-		String realEstate = new String("Real estate");
-		String haNoi = new String("Ha Noi");
-		String hoChiMinhCity = new String("Ho Chi Minh city");
-		String leader = new String("Leader");
-		String friendshipBridge = new String("Friendship-Bridge");
-		String documentation = new String("Documentation");
-		String asian = new String("Asian");
-		String vietnamWindow = new String("VietNam window");
-		String theNationOfVietNam = new String("The nation of VietNam");
-		String readers = new String("Readers");
-		String charity = new String("Charity");
-		String integration = new String("Integration");
-		String partyActivities = new String ("Party activities");
-		String primeMinister = new String("Prime Minister");
-		String government = new String("Government");
-		String command = new String("Command");
-		String newsMinistry = new String("News Ministry");
-		String newsLocal = new String("News local");
-		String vietNam = new String("Viet Nam");
-		String china = new String("China");
-		String defense = new String("Defense");
-		String security = new String("Security");
-		String military = new String("Military");
-		String fightingForPeace = new String("Fighting for peace");
-		String diplomacy = new String("Diplomacy");
-		String partyBuilding = new String("Party Building");
-		String research = new String("Research");
-		String exchange = new String("Exchange");
-		String comment = new String("Comment");
-		String theoretical = new String("Theoretical");
-		String issue = new String("Issue");
-		String foreignAffairs = new String("Foreign Affairs");
-		String activityOfThought = new String("Activity of thought");
-		String information = new String("Information");
-		String friendsFiveContinents = new String("Friends five continents");
-		String friends = new String("Friends");
-		String trafficSafety = new String("Traffic safety");
-		String loveMotherLands = new String("Love motherlands");
-		String friendsEverywhere = new String("Friends everywhere");
-		String country = new String("Country");
-		String thaiNguyenPeople = new String("Thai Nguyen people");
-		String homeLand = new String("Homeland");
-		String departments = new String("Departments");
-		String breakingNews = new String("Breaking news");
-		String tanakaUnit = new String("Tanaka unit");
-		
-		//Define list for each website, include 2 languages for some website
-		ArrayList<String>ngoisaoNet = new ArrayList<>();
-		ArrayList<String>vnExpress = new ArrayList<>();
-		ArrayList<String>tuoiTre = new ArrayList<>();
-		ArrayList<String>nguoiLaoDong = new ArrayList<>();
-		ArrayList<String>danTri = new ArrayList<>();
-		ArrayList<String>ngoiSaoVN = new ArrayList<>();
-		ArrayList<String>bongDaPlus = new ArrayList<>();
-		ArrayList<String>vietnamPlusVN = new ArrayList<>();
-		ArrayList<String>vietnamPlusCN = new ArrayList<>();
-		ArrayList<String>baoBinhDuongVN = new ArrayList<>();
-		ArrayList<String>baoBinhDuongCN = new ArrayList<>();
-		ArrayList<String>nhanDanVN = new ArrayList<>();
-		ArrayList<String>nhanDanCN = new ArrayList<>();
-		ArrayList<String>saiGonGiaiPhongVN = new ArrayList<>();
-		ArrayList<String>saiGonGiaiPhongCN = new ArrayList<>();
-		ArrayList<String>baoChinhPhuVN = new ArrayList<>();
-		ArrayList<String>baoChinhPhuCN = new ArrayList<>();
-		ArrayList<String>quanDoiNhanDanVN = new ArrayList<>();
-		ArrayList<String>quanDoiNhanDanCN = new ArrayList<>();
-		ArrayList<String>tapChiCongSanVN = new ArrayList<>();
-		ArrayList<String>tapChiCongSanCN = new ArrayList<>();
-		ArrayList<String>thoiDaiVN = new ArrayList<>();
-		ArrayList<String>thoiDaiCN = new ArrayList<>();
-		ArrayList<String>baoThaiNguyenVN = new ArrayList<>();		
-		ArrayList<String>baoThaiNguyenCN = new ArrayList<>();
-		ArrayList<String>dongNaiVN = new ArrayList<>();
-		ArrayList<String>dongNaiCN = new ArrayList<>();
-		
+                // Repaint cell
+                list.repaint(list.getCellBounds(index, index));
+            }
+        });
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(list);
+        scrollPane.setBounds(50, 70, 400, 250);
 
-		//Add items for each website with name website and language selected
-		if(url.equals("http://ngoisao.net/") && language.equals(""))
-		{
-			ngoisaoNet.add(backStage);
-			ngoisaoNet.add(thoiCuoc);
-			ngoisaoNet.add(fashion);
-			ngoisaoNet.add(benLe);
-			ngoisaoNet.add(family);
-			ngoisaoNet.add(blogger);
-			ngoisaoNet.add(player);
-			ngoisaoNet.add(multipleChoice);
-			ngoisaoNet.add(wedding);
-			ngoisaoNet.add(eatAndPlay);
-			
-			for(int i = 0; i < ngoisaoNet.size(); i++)
-			{
-				cbSelectType.insertItemAt(ngoisaoNet.get(i), i+1);
-			}
-			
-		}
-		if(url.equals("http://vnexpress.net/") && language.equals(""))
-		{
-			vnExpress.add(news);
-			vnExpress.add(world);
-			vnExpress.add(business);
-			vnExpress.add(entertaiment);
-			vnExpress.add(sports);
-			vnExpress.add(law);
-			vnExpress.add(education);
-			vnExpress.add(health);
-			vnExpress.add(family);
-			vnExpress.add(travel);
-			vnExpress.add(science);
-			vnExpress.add(digitalization);
-			vnExpress.add(vehicle);
-			vnExpress.add(community);
-			vnExpress.add(talk);
-			vnExpress.add(smile);
-			for(int i =0; i< vnExpress.size(); i++)
-			{
-				cbSelectType.insertItemAt(vnExpress.get(i), i+1);
-			}
-		}
-		if(url.equals("http://tuoitre.vn/") && language.equals(""))
-		{
-			tuoiTre.add(politics +"-"+society);
-			tuoiTre.add(world);
-			tuoiTre.add(law);
-			tuoiTre.add(economy);
-			tuoiTre.add(liveHealthy);
-			tuoiTre.add(education);
-			tuoiTre.add(admissions);
-			tuoiTre.add(sports);
-			tuoiTre.add(culture + "-"+ entertaiment);
-			tuoiTre.add(lifestyleYoung);
-			tuoiTre.add(digitalLifestyle);
-			tuoiTre.add(youRead);
-			tuoiTre.add(travel);
-			tuoiTre.add(needToKnow);
-			for(int i = 0; i < tuoiTre.size(); i++)
-			{
-				cbSelectType.insertItemAt(tuoiTre.get(i), i+1);
-			}
-		}
-		if(url.equals("http://nld.com.vn/") && language.equals(""))
-		{
-			nguoiLaoDong.add(domestic);
-			nguoiLaoDong.add(internaltional);
-			nguoiLaoDong.add(economy);
-			nguoiLaoDong.add(education);
-			nguoiLaoDong.add(union);
-			nguoiLaoDong.add(culture + "-"+ art);
-			nguoiLaoDong.add(sports);
-			nguoiLaoDong.add(health);
-			nguoiLaoDong.add(women);
-			nguoiLaoDong.add(youRead);
-			nguoiLaoDong.add(law);
-			nguoiLaoDong.add(local);
-			nguoiLaoDong.add(seaTravel);
-			for(int i = 0; i < nguoiLaoDong.size(); i++)
-			{
-				cbSelectType.insertItemAt(nguoiLaoDong.get(i), i+1);
-			}
-		}
-		if(url.equals("http://dantri.com.vn/") && language.equals(""))
-		{
-			danTri.add(event);
-			danTri.add(world);
-			danTri.add(sports);
-			danTri.add(education);
-			danTri.add(kindness);
-			danTri.add(business);
-			danTri.add(culture);
-			danTri.add(entertaiment);
-			danTri.add(travel);
-			danTri.add(law);
-			danTri.add(lifestyleYoung);
-			danTri.add(health);
-			danTri.add(strengthDigital);
-			danTri.add(vehiclePlusPlus);
-			danTri.add(love);
-			danTri.add(strangeStory);
-			for(int i = 0; i < danTri.size(); i++)
-			{
-				cbSelectType.insertItemAt(danTri.get(i), i+1);
-			}
-		}
-		if(url.equals("https://ngoisao.vn/") && language.equals(""))
-		{
-			ngoiSaoVN.add(stars);
-			ngoiSaoVN.add(fashion);
-			ngoiSaoVN.add(filmMusic);
-			ngoiSaoVN.add(men);
-			ngoiSaoVN.add(women);
-			ngoiSaoVN.add(health);
-			ngoiSaoVN.add(house);
-			ngoiSaoVN.add(photo);
-			ngoiSaoVN.add(destination);
-			ngoiSaoVN.add(teen);
-			ngoiSaoVN.add(strangeStory);
-			ngoiSaoVN.add(technology);
-			ngoiSaoVN.add(news);
-			for(int i = 0; i < ngoiSaoVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(ngoiSaoVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://bongdaplus.vn/") && language.equals(""))
-		{
-			bongDaPlus.add(news);
-			bongDaPlus.add(shortNews);
-			bongDaPlus.add(stars);
-			bongDaPlus.add(passion);
-			bongDaPlus.add(europaLeague);
-			bongDaPlus.add(caricatured);
-			bongDaPlus.add(youRead);
-			bongDaPlus.add(identified);
-			
-			for(int i = 0; i < bongDaPlus.size(); i++)
-			{
-				cbSelectType.insertItemAt(bongDaPlus.get(i), i+1);
-			}
-		}
-		if(url.equals("https://www.dongnai.gov.vn/") && language.equals("Vietnamese"))
-		{
-			dongNaiVN.add(news +","+departments);
-			dongNaiVN.add(local +" "+news);
-			dongNaiVN.add(society +"-"+economy);
-			dongNaiVN.add(security +" and "+defense); 
-			
-			for(int i = 0; i < dongNaiVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(dongNaiVN.get(i), i+1);
-			}
-		}
-		if(url.equals("https://www.dongnai.gov.vn/") && language.equals("Chinese"))
-		{
-			dongNaiCN.add(breakingNews);
-			dongNaiCN.add(news +","+departments);
-			dongNaiCN.add(newsLocal);
-			dongNaiCN.add(tanakaUnit);
-			for(int i = 0; i < dongNaiCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(dongNaiCN.get(i), i+1);
-			}
-		}
+        btnPause.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (resume == false) {
+                    btnPause.setLabel("Pause...");
+                    btnPause.setEnabled(false);
+                    pauseDownload();
+                    stopped = true;
+                    resume = true;
+                    btnPause.setEnabled(true);
+                    btnPause.setLabel("Resume");
+                    list.setEnabled(true);
+                } else {
+                    resumeDownload();
+                    list.setEnabled(true);
+                    for (int i = 0; i < list.getModel().getSize(); i++) {
+                        list.getModel().getElementAt(i).setSelected(false);
+                    }
+                    for (int i = 0; i < list.getModel().getSize(); i++) {
+                        for (ScrapingThread scrapingThread : threadList) {
+                            if (list.getModel().getElementAt(i).getPageName().equals(scrapingThread.getPageName())) {
+                                list.getModel().getElementAt(i).setSelected(true);
+                                break;
+                            }
+                        }
 
-		if(url.equals("http://www.nhandan.com.vn/") && language.equals("Vietnamese"))
-		{
-			nhanDanVN.add(politics);
-			nhanDanVN.add(economy);
-			nhanDanVN.add(culture);
-			nhanDanVN.add(society);
-			nhanDanVN.add(world);
-			nhanDanVN.add(technology);
-			nhanDanVN.add(science);
-			nhanDanVN.add(education);
-			nhanDanVN.add(health);
-			nhanDanVN.add(law);
-			nhanDanVN.add(sports);
-			nhanDanVN.add(youRead);
-			nhanDanVN.add(haNoi);
-			nhanDanVN.add(hoChiMinhCity);
-			for(int i = 0; i < nhanDanVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(nhanDanVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.nhandan.com.vn/") && language.equals("Chinese"))
-		{
-			nhanDanCN.add(leader);
-			nhanDanCN.add(politics);
-			nhanDanCN.add(internaltional);
-			nhanDanCN.add(economy);
-			nhanDanCN.add(society);
-			nhanDanCN.add(culture);
-			nhanDanCN.add(sports);
-			nhanDanCN.add(travel);
-			nhanDanCN.add(friendshipBridge);
-			nhanDanCN.add(documentation);
-			nhanDanCN.add(local);
-			nhanDanCN.add(asian);
-			nhanDanCN.add(vietnamWindow);
-			nhanDanCN.add(theNationOfVietNam);
-			for(int i = 0; i < nhanDanCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(nhanDanCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://baobinhduong.vn/") && language.equals("Vietnamese"))
-		{
-			baoBinhDuongVN.add(politics);
-			baoBinhDuongVN.add(economy);
-			baoBinhDuongVN.add(world);
-			baoBinhDuongVN.add(society);
-			baoBinhDuongVN.add(sports);
-			baoBinhDuongVN.add(analysis);
-			baoBinhDuongVN.add(youRead);
-			baoBinhDuongVN.add(law);
-			baoBinhDuongVN.add(medical);
-			baoBinhDuongVN.add(culture + "-"+ art);
-			baoBinhDuongVN.add(relax);
-			for(int i = 0; i < baoBinhDuongVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(baoBinhDuongVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://baobinhduong.vn/") && language.equals("Chinese"))
-		{
-			baoBinhDuongCN.add(vietnamAndTheWorld);
-			baoBinhDuongCN.add(seaIlands);
-			baoBinhDuongCN.add(politics);
-			baoBinhDuongCN.add(economy);
-			baoBinhDuongCN.add(internaltional);
-			baoBinhDuongCN.add(society);
-			baoBinhDuongCN.add(health);
-			baoBinhDuongCN.add(culture);
-			baoBinhDuongCN.add(policy);
-			baoBinhDuongCN.add(travel);
-			baoBinhDuongCN.add(technology);
-			baoBinhDuongCN.add(enviroment);
-			baoBinhDuongCN.add(realEstate);
-			for(int i = 0; i < baoBinhDuongCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(baoBinhDuongCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.vietnamplus.vn/") && language.equals("Vietnamese"))
-		{
-			vietnamPlusVN.add(economy);
-			vietnamPlusVN.add(politics);
-			vietnamPlusVN.add(society);
-			vietnamPlusVN.add(world);
-			vietnamPlusVN.add(life);
-			vietnamPlusVN.add(culture);
-			vietnamPlusVN.add(sports);
-			vietnamPlusVN.add(science);
-			vietnamPlusVN.add(technology);
-			vietnamPlusVN.add(strangeStory);
-			for(int i = 0; i < vietnamPlusVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(vietnamPlusVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.vietnamplus.vn/") && language.equals("Chinese"))
-		{
-			vietnamPlusCN.add(politics);
-			vietnamPlusCN.add(world);
-			vietnamPlusCN.add(economy);
-			vietnamPlusCN.add(society);
-			vietnamPlusCN.add(culture);
-			vietnamPlusCN.add(sports);
-			vietnamPlusCN.add(technology);
-			for(int i = 0; i < vietnamPlusCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(vietnamPlusCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.sggp.org.vn/") && language.equals("Vietnamese"))
-		{
-			saiGonGiaiPhongVN.add(politics);
-			saiGonGiaiPhongVN.add(society);
-			saiGonGiaiPhongVN.add(law);
-			saiGonGiaiPhongVN.add(economy);
-			saiGonGiaiPhongVN.add(life+" "+ technology);
-			saiGonGiaiPhongVN.add(education);
-			saiGonGiaiPhongVN.add(science + " "+ technology);
-			saiGonGiaiPhongVN.add(medical +"-"+health);
-			saiGonGiaiPhongVN.add(culture + "-"+entertaiment);
-			saiGonGiaiPhongVN.add(youRead);
-			for(int i = 0; i < saiGonGiaiPhongVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(saiGonGiaiPhongVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.sggp.org.vn/") && language.equals("Chinese"))
-		{
-			saiGonGiaiPhongCN.add(politics);
-			saiGonGiaiPhongCN.add(law);
-			saiGonGiaiPhongCN.add(economy);
-			saiGonGiaiPhongCN.add(internaltional);
-			saiGonGiaiPhongCN.add(education);
-			saiGonGiaiPhongCN.add(sports);
-			saiGonGiaiPhongCN.add(science + " and " + technology);
-			saiGonGiaiPhongCN.add(health);
-			saiGonGiaiPhongCN.add(entertaiment);
-			saiGonGiaiPhongCN.add(readers + "-"+charity);
-			saiGonGiaiPhongCN.add(travel);
-			for(int i = 0; i < saiGonGiaiPhongCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(saiGonGiaiPhongCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://baochinhphu.vn/") && language.equals("Vietnamese"))
-		{
-			baoChinhPhuVN.add(politics);
-			baoChinhPhuVN.add(economy);
-			baoChinhPhuVN.add(culture);
-			baoChinhPhuVN.add(society);
-			baoChinhPhuVN.add(education);
-			baoChinhPhuVN.add(world);
-			baoChinhPhuVN.add(integration);
-			for(int i = 0; i < baoChinhPhuVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(baoChinhPhuVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://baochinhphu.vn/") && language.equals("Chinese"))
-		{
-			baoChinhPhuCN.add(partyActivities+"-"+government);
-			baoChinhPhuCN.add(primeMinister + "-"+government);
-			baoChinhPhuCN.add(command+" " + primeMinister+"-"+government);
-			baoChinhPhuCN.add(newsMinistry);
-			baoChinhPhuCN.add(newsLocal);
-			baoChinhPhuCN.add(economy + "-"+society);
-			baoChinhPhuCN.add(science+"-"+technology);
-			baoChinhPhuCN.add(culture + "-"+travel);
-			baoChinhPhuCN.add(world+"-"+vietNam);
-			for(int i = 0; i < baoChinhPhuCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(baoChinhPhuCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.qdnd.vn/") && language.equals("Vietnamese"))
-		{
-			quanDoiNhanDanVN.add(politics);
-			quanDoiNhanDanVN.add(defense + " "+ security);
-			quanDoiNhanDanVN.add(fightingForPeace);
-			quanDoiNhanDanVN.add(world + " "+ military);
-			quanDoiNhanDanVN.add(law);
-			quanDoiNhanDanVN.add(economy);
-			quanDoiNhanDanVN.add(society);
-			quanDoiNhanDanVN.add(integration);
-			quanDoiNhanDanVN.add(culture);
-			quanDoiNhanDanVN.add(sports);
-			for(int i = 0; i < quanDoiNhanDanVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(quanDoiNhanDanVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.qdnd.vn/") && language.equals("Chinese"))
-		{
-			quanDoiNhanDanCN.add(politics + "-"+diplomacy);
-			quanDoiNhanDanCN.add(defense+ "-"+security);
-			quanDoiNhanDanCN.add(internaltional);
-			quanDoiNhanDanCN.add(friendshipBridge);
-			quanDoiNhanDanCN.add(economy);
-			for(int i = 0; i < quanDoiNhanDanCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(quanDoiNhanDanCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://baothainguyen.org.vn/") && language.equals("Vietnamese"))
-		{
-			baoThaiNguyenVN.add(news);
-			baoThaiNguyenVN.add(politics);
-			baoThaiNguyenVN.add(economy);
-			baoThaiNguyenVN.add(society);
-			baoThaiNguyenVN.add(internaltional);
-			baoThaiNguyenVN.add(culture);
-			baoThaiNguyenVN.add(education);
-			baoThaiNguyenVN.add(sports);
-			baoThaiNguyenVN.add(science +"-"+ technology);
-			baoThaiNguyenVN.add(vehicle);
-			baoThaiNguyenVN.add(law);
-			baoThaiNguyenVN.add(policy);
-			baoThaiNguyenVN.add(trafficSafety);
-			baoThaiNguyenVN.add(country +" and "+thaiNguyenPeople);
-			baoThaiNguyenVN.add(homeLand +"-"+country);
-			for(int i = 0; i < baoThaiNguyenVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(baoThaiNguyenVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://baothainguyen.org.vn/") && language.equals("Chinese"))
-		{
-			baoThaiNguyenCN.add(news);
-			for(int i = 0; i < baoThaiNguyenCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(baoThaiNguyenCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://thoidai.com.vn/") && language.equals("Vietnamese"))
-		{
-			thoiDaiVN.add(news);
-			thoiDaiVN.add(economy);
-			thoiDaiVN.add(education);
-			thoiDaiVN.add(health);
-			thoiDaiVN.add(friendsFiveContinents);
-			thoiDaiVN.add(kindness +" of "+ friends);
-			thoiDaiVN.add(culture + "-"+travel);
-			thoiDaiVN.add(world);
-			thoiDaiVN.add(trafficSafety);
-			thoiDaiVN.add(youRead);
-			for(int i = 0; i < thoiDaiVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(thoiDaiVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://thoidai.com.vn/") && language.equals("Chinese"))
-		{
-			thoiDaiCN.add(politics);
-			thoiDaiCN.add(economy);
-			thoiDaiCN.add(culture +" and "+ sports);
-			thoiDaiCN.add(vietNam +"-"+china);
-			thoiDaiCN.add(society);
-			thoiDaiCN.add(loveMotherLands);
-			thoiDaiCN.add(vietNam + "-"+ china);
-			thoiDaiCN.add(friendsEverywhere);
-			thoiDaiCN.add(internaltional);
-			for(int i = 0; i < thoiDaiCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(thoiDaiCN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.tapchicongsan.org.vn/") && language.equals("Vietnamese"))
-		{
-			tapChiCongSanVN.add(politics +"-"+partyBuilding);
-			tapChiCongSanVN.add(research +"-"+exchange);
-			tapChiCongSanVN.add(comment);
-			tapChiCongSanVN.add(theoretical +" "+ information);
-			tapChiCongSanVN.add(world +": "+issue +"-"+event);
-			tapChiCongSanVN.add(economy);
-			tapChiCongSanVN.add(culture +"-"+society);
-			tapChiCongSanVN.add(security +" and "+defense);
-			tapChiCongSanVN.add(foreignAffairs +" and "+internaltional);
-			tapChiCongSanVN.add(activityOfThought);
-			for(int i = 0; i < tapChiCongSanVN.size(); i++)
-			{
-				cbSelectType.insertItemAt(tapChiCongSanVN.get(i), i+1);
-			}
-		}
-		if(url.equals("http://www.tapchicongsan.org.vn/") && language.equals("Chinese"))
-		{
-			tapChiCongSanCN.add(news);
-			tapChiCongSanCN.add(politics + "-"+partyBuilding);
-			tapChiCongSanCN.add(economy);
-			tapChiCongSanCN.add(culture +"-"+society);
-			tapChiCongSanCN.add(diplomacy);
-			tapChiCongSanCN.add(world +": "+issue +"-"+event);
-			for(int i = 0; i < tapChiCongSanCN.size(); i++)
-			{
-				cbSelectType.insertItemAt(tapChiCongSanCN.get(i), i+1);
-			}
-		}
-		
-	}
+                    }
+                    list.repaint();
+                    list.setEnabled(false);
+                    btnPause.setLabel("Pause");
+                    resume = false;
+                    stopped = false;
+                }
+            }
+        });
+        contentPane.add(btnPause);
+
+        btnDownload.setBackground(Color.LIGHT_GRAY);
+        btnDownload.setForeground(Color.BLACK);
+        btnDownload.setBounds(50, 360, 100, 30);
+        btnDownload.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (stopped == true) {
+                    ScrapingThread st;
+                    stopped = false;
+                    for (int i = 0; i < list.getModel().getSize(); i++) {
+                        CheckboxListItem checkbox = (CheckboxListItem) list.getModel().getElementAt(i);
+                        if (checkbox.isSelected()) {
+                            st = new ScrapingThread(PACKAGE + "." + getClassName(page), checkbox.getPageName());
+                            st.start();
+                            threadList.add(st);
+                        }
+                    }
+                    btnDownload.setEnabled(false);
+                    btnPause.setEnabled(true);
+                    btnPause.setLabel("Pause");
+                    resume = false;
+                }
+            }
+        });
+        contentPane.add(btnDownload);
+        Button btnSelectAll = new Button("Select All");
+        btnSelectAll.setBackground(Color.LIGHT_GRAY);
+        btnSelectAll.setForeground(Color.BLACK);
+        btnSelectAll.setBounds(170, 360, 100, 30);
+        btnSelectAll.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                for (int i = 0; i < list.getModel().getSize(); i++) {
+                    CheckboxListItem checkbox = (CheckboxListItem) list.getModel().getElementAt(i);
+                    if (!checkbox.isSelected()) {
+                        checkbox.setSelected(true);
+                    }
+                }
+                list.repaint();
+            }
+        });
+        contentPane.add(btnSelectAll);
+        Button btnDeselectAll = new Button("Deselect All");
+        btnDeselectAll.setBackground(Color.LIGHT_GRAY);
+        btnDeselectAll.setForeground(Color.BLACK);
+        btnDeselectAll.setBounds(290, 360, 100, 30);
+        btnDeselectAll.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                for (int i = 0; i < list.getModel().getSize(); i++) {
+                    CheckboxListItem checkbox = (CheckboxListItem) list.getModel().getElementAt(i);
+                    if (checkbox.isSelected()) {
+                        checkbox.setSelected(false);
+                    }
+                }
+                list.repaint();
+            }
+        });
+        contentPane.add(btnDeselectAll);
+
+        contentPane.add(scrollPane);
+    }
+
+    public static boolean checkResumeable() {
+        File f = new File(DOWNLOAD_LOG);
+        if (!f.exists()) {
+            return false;
+        } else {
+            try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG))) {
+                String line = br.readLine();
+                String result = "";
+                while (line != null) {
+                    line = br.readLine();
+                    result += line;
+                }
+                if (result.equals("")) {
+                    return false;
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return true;
+    }
+
+    public void setProgressBarValue(int value) {
+            jpb.setValue(value);
+    }
+    
+    public void resumeDownload() {
+        if (resume == true) {
+            System.out.println("Resume---------------------");
+            ScrapingThread st;
+            try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG))) {
+                String line = br.readLine();
+
+                while (line != null) {
+                    System.out.println(line);
+                    String[] arr = line.split(" ");
+                    st = new ScrapingThread(arr[0], arr[1], Integer.parseInt(arr[2]) + 1, Integer.parseInt(arr[3]));
+                    st.start();
+                    threadList.add(st);
+                    line = br.readLine();
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+
+
+    public void pauseDownload() {
+        System.out.println("Stopping---------------------");
+        CountDownLatch latch = new CountDownLatch(threadList.size());
+        for (int i = 0; i < threadList.size(); i++) {
+            new RequestStopThread(threadList.get(i), latch).start();
+        }
+
+        try {
+            latch.await();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (ScrapingThread scrapingThread : threadList) {
+            if (scrapingThread.getStateDownload() == true) {
+                System.out.println("DONE " + scrapingThread.getName());
+            }
+            System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " " + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize());
+        }
+
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(DOWNLOAD_LOG), "utf-8"))) {
+
+            for (ScrapingThread scrapingThread : threadList) {
+                if (scrapingThread.getStateDownload() == false) {
+                    writer.write(scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " " + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize() + "\n");
+                }
+            }
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        threadList.clear();
+    }
+
+    public static String getClassName(String webName) {
+        String result = null;
+        switch (webName) {
+            case "http://vnexpress.net":
+                result = "VNExpress";
+                break;
+        }
+        return result;
+    }
+
+    public static ArrayList getListSubject(String webName) {
+        ArrayList<String[]> arr = new ArrayList<>();
+        switch (webName) {
+            case "http://vnexpress.net":
+                arr.add(new String[]{"Thời sự", "http://vnexpress.net/tin-tuc/thoi-su"});
+                arr.add(new String[]{"Góc nhìn", "http://vnexpress.net/tin-tuc/goc-nhin"});
+                arr.add(new String[]{"Thế giới", "http://vnexpress.net/tin-tuc/the-gioi"});
+                arr.add(new String[]{"Kinh doanh", "http://kinhdoanh.vnexpress.net"});
+                arr.add(new String[]{"Giải trí", "http://giaitri.vnexpress.net"});
+                arr.add(new String[]{"Thể thao", "http://thethao.vnexpress.net"});
+                arr.add(new String[]{"Pháp luật", "http://vnexpress.net/tin-tuc/phap-luat"});
+                arr.add(new String[]{"Giáo dục", "http://vnexpress.net/tin-tuc/giao-duc"});
+                arr.add(new String[]{"Sức khỏe", "http://suckhoe.vnexpress.net/tin-tuc/suc-khoe"});
+                arr.add(new String[]{"Gia đình", "http://giadinh.vnexpress.net"});
+                arr.add(new String[]{"Du lịch", "http://dulich.vnexpress.net"});
+                arr.add(new String[]{"Khoa học", "http://vnexpress.net/tin-tuc/khoa-hoc"});
+                arr.add(new String[]{"Số hóa", "http://sohoa.vnexpress.net"});
+                arr.add(new String[]{"Xe", "http://vnexpress.net/tin-tuc/oto-xe-may"});
+                arr.add(new String[]{"Cộng đồng", "http://vnexpress.net/tin-tuc/cong-dong"});
+                arr.add(new String[]{"Tâm sự", "http://vnexpress.net/tin-tuc/tam-su"});
+                arr.add(new String[]{"Cười", "http://vnexpress.net/tin-tuc/cuoi"});
+                break;
+        }
+        return arr;
+    }
+
+}
+
+class CheckboxListItem {
+
+    private String label;
+    private String pageName;
+    private boolean isSelected = false;
+
+    public CheckboxListItem(String label, String pageName) {
+        this.label = label;
+        this.pageName = pageName;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public String getPageName() {
+        return pageName;
+    }
+}
+
+// Handles rendering cells in the list using a check box
+class CheckboxListRenderer extends JCheckBox implements
+        ListCellRenderer<CheckboxListItem> {
+
+    @Override
+    public Component getListCellRendererComponent(
+            JList<? extends CheckboxListItem> list, CheckboxListItem value,
+            int index, boolean isSelected, boolean cellHasFocus) {
+        setEnabled(list.isEnabled());
+        setSelected(value.isSelected());
+        setFont(list.getFont());
+        setBackground(list.getBackground());
+        setForeground(list.getForeground());
+        setText(value.getLabel());
+        return this;
+    }
 }

@@ -1,41 +1,22 @@
 package translate_vietNamese_chinese;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.Toolkit;
 import java.awt.Color;
-import java.awt.Window.Type;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.net.URL;
-
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.JRadioButton;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JList;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-import com.sun.org.apache.bcel.internal.generic.Select;
-
-import java.awt.Component;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.GroupLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
+import javax.swing.border.TitledBorder;
 
 public class DownloadApplication {
 
@@ -85,7 +66,7 @@ public class DownloadApplication {
 		ButtonGroup groupSelectPage = new ButtonGroup();
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 	
-		tabbedPane.setBounds(0, 0, 486, 385);
+		tabbedPane.setBounds(0, 0, 632, 424);
 		frmDownloadApplication.getContentPane().add(tabbedPane);
 		/////////////////////////////////////Monolingual handle///////////////////////////////////////////////////////////////////
 		JPanel panel_Monolingual = new JPanel();
@@ -93,16 +74,16 @@ public class DownloadApplication {
 		panel_Monolingual.setForeground(Color.GREEN);
 		panel_Monolingual.setBorder(new TitledBorder(null, "Select page", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		JRadioButton rdbtnVnExpress = new JRadioButton("http://vnexpress.net/");
-		rdbtnVnExpress.setBounds(6, 73, 160, 23);
-		rdbtnVnExpress.setActionCommand("http://vnexpress.net/");
+		JRadioButton rdbtnVnExpress = new JRadioButton("http://vnexpress.net");
+		rdbtnVnExpress.setBounds(6, 73, 191, 23);
+		rdbtnVnExpress.setActionCommand("http://vnexpress.net");
 		
 		JRadioButton rdbtnNguoiLaoDong = new JRadioButton("http://nld.com.vn/");
-		rdbtnNguoiLaoDong.setBounds(6, 160, 141, 23);
+		rdbtnNguoiLaoDong.setBounds(6, 160, 177, 23);
 		rdbtnNguoiLaoDong.setActionCommand("http://nld.com.vn/");
 		
 		JRadioButton rdbtnDanTri = new JRadioButton("http://dantri.com.vn/");
-		rdbtnDanTri.setBounds(224, 35, 140, 23);
+		rdbtnDanTri.setBounds(224, 35, 177, 23);
 		rdbtnDanTri.setActionCommand("http://dantri.com.vn/");
 		
 		JRadioButton rdbtnNgoiSaoNet = new JRadioButton("http://ngoisao.net/");
@@ -110,15 +91,15 @@ public class DownloadApplication {
 		rdbtnNgoiSaoNet.setActionCommand("http://ngoisao.net/");
 		
 		JRadioButton rdbtnNgoiSaoVN = new JRadioButton("https://ngoisao.vn/");
-		rdbtnNgoiSaoVN.setBounds(224, 73, 134, 23);
+		rdbtnNgoiSaoVN.setBounds(224, 73, 177, 23);
 		rdbtnNgoiSaoVN.setActionCommand("https://ngoisao.vn/");
 		
 		JRadioButton rdbtnTuoitre = new JRadioButton("http://tuoitre.vn/");
-		rdbtnTuoitre.setBounds(6, 117, 141, 23);
+		rdbtnTuoitre.setBounds(6, 117, 177, 23);
 		rdbtnTuoitre.setActionCommand("http://tuoitre.vn/");
 		
 		JRadioButton rdbtnBongDaPlus = new JRadioButton("http://bongdaplus.vn/");
-		rdbtnBongDaPlus.setBounds(224, 117, 167, 23);
+		rdbtnBongDaPlus.setBounds(224, 117, 191, 23);
 		rdbtnBongDaPlus.setActionCommand("http://bongdaplus.vn/");
 		
 		JButton btnNext_Monoligual = new JButton("Next");
@@ -148,7 +129,7 @@ public class DownloadApplication {
 		groupSelectPage.add(rdbtnNgoiSaoVN);
 		groupSelectPage.add(rdbtnBongDaPlus);
 		JButton btnCancel_Monolingual = new JButton("Cancel");
-		btnCancel_Monolingual.setBounds(190, 209, 73, 23);
+		btnCancel_Monolingual.setBounds(190, 209, 89, 23);
 		panel_Monolingual.add(btnCancel_Monolingual);
 		
 		
@@ -158,9 +139,9 @@ public class DownloadApplication {
 		lbStatus_Monolingual.setBounds(27, 11, 374, 23);
 		panel_Monolingual.add(lbStatus_Monolingual);
 		
-		JButton btnClose_Monilingual = new JButton("Close");
-		btnClose_Monilingual.setBounds(10, 209, 89, 23);
-		panel_Monolingual.add(btnClose_Monilingual);
+		JButton btnResume = new JButton("Resume");
+		btnResume.setBounds(10, 209, 110, 23);
+		panel_Monolingual.add(btnResume);
 		
 	
 		
@@ -183,9 +164,7 @@ public class DownloadApplication {
 				//Get action comment to parse to SelectContent
 				if(groupSelectPage.getSelection() != null)
 				{
-					SelectContent selectContent = new SelectContent(groupSelectPage.getSelection().getActionCommand(),"");
-					DownloadApplication downloadApplication = new DownloadApplication();
-					downloadApplication.frmDownloadApplication.setVisible(true);
+					SelectContent selectContent = new SelectContent(groupSelectPage.getSelection().getActionCommand(),"",false);
 					lbStatus_Monolingual.setVisible(false);
 					selectContent.show();
 				}
@@ -197,13 +176,19 @@ public class DownloadApplication {
 				
 			}
 		});
-		
-		btnClose_Monilingual.addActionListener(new ActionListener() {
+
+		if(SelectContent.checkResumeable()){
+                    btnResume.setEnabled(true);
+                }
+                else{
+                    btnResume.setEnabled(false);
+                }
+		btnResume.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.exit(0);
+				SelectContent selectContent = new SelectContent("","",true);
+                                selectContent.show();
 			}
 		});
 		
@@ -214,7 +199,7 @@ public class DownloadApplication {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Select page and language", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(0, -23, 461, 393);
+		panel.setBounds(0, -23, 627, 420);
 		panel_Bilingual.add(panel);
 		panel.setLayout(null);
 		
@@ -227,33 +212,33 @@ public class DownloadApplication {
 		
 		
 		JRadioButton rdbtnVietnamPlus = new JRadioButton("http://www.vietnamplus.vn/");
-		rdbtnVietnamPlus.setBounds(20, 44, 217, 23);
+		rdbtnVietnamPlus.setBounds(20, 44, 242, 23);
 		rdbtnVietnamPlus.setActionCommand("http://www.vietnamplus.vn/");
 		panel.add(rdbtnVietnamPlus);
 		
 		
 		JRadioButton rdbtnDongNaiGov = new JRadioButton("https://www.dongnai.gov.vn/");
-		rdbtnDongNaiGov.setBounds(20, 80, 187, 23);
+		rdbtnDongNaiGov.setBounds(20, 80, 230, 23);
 		rdbtnDongNaiGov.setActionCommand("https://www.dongnai.gov.vn/");
 		panel.add(rdbtnDongNaiGov);
 		
 		JRadioButton rdbtnSaiGonGiaiPhong = new JRadioButton("http://www.sggp.org.vn/");
-		rdbtnSaiGonGiaiPhong.setBounds(20, 121, 187, 23);
+		rdbtnSaiGonGiaiPhong.setBounds(20, 121, 217, 23);
 		rdbtnSaiGonGiaiPhong.setActionCommand("http://www.sggp.org.vn/");
 		panel.add(rdbtnSaiGonGiaiPhong);
 		
 		JRadioButton rdbtnBaoDinhDuong = new JRadioButton("http://baobinhduong.vn/");
-		rdbtnBaoDinhDuong.setBounds(239, 44, 174, 23);
+		rdbtnBaoDinhDuong.setBounds(266, 44, 200, 23);
 		rdbtnBaoDinhDuong.setActionCommand("http://baobinhduong.vn/");
 		panel.add(rdbtnBaoDinhDuong);
 		
 		JRadioButton rdbtnNhanDan = new JRadioButton("http://www.nhandan.com.vn/");
-		rdbtnNhanDan.setBounds(239, 80, 200, 23);
+		rdbtnNhanDan.setBounds(266, 80, 240, 23);
 		rdbtnNhanDan.setActionCommand("http://www.nhandan.com.vn/");
 		panel.add(rdbtnNhanDan);
 		
 		JRadioButton rdbtnBaoChinhPhu = new JRadioButton("http://baochinhphu.vn/");
-		rdbtnBaoChinhPhu.setBounds(239, 121, 174, 23);
+		rdbtnBaoChinhPhu.setBounds(266, 121, 200, 23);
 		rdbtnBaoChinhPhu.setActionCommand("http://baochinhphu.vn/");
 		panel.add(rdbtnBaoChinhPhu);
 		
@@ -263,33 +248,33 @@ public class DownloadApplication {
 		panel.add(rdbtnQuanDoiNhanDan);
 		
 		JRadioButton rdbtnTapChiCongSan = new JRadioButton("http://www.tapchicongsan.org.vn/");
-		rdbtnTapChiCongSan.setBounds(239, 168, 217, 23);
+		rdbtnTapChiCongSan.setBounds(266, 168, 267, 23);
 		rdbtnTapChiCongSan.setActionCommand("http://www.tapchicongsan.org.vn/");
 		panel.add(rdbtnTapChiCongSan);
 		
 		JRadioButton rdbtnThoiDai = new JRadioButton("http://thoidai.com.vn/");
-		rdbtnThoiDai.setBounds(20, 210, 154, 23);
+		rdbtnThoiDai.setBounds(20, 210, 187, 23);
 		rdbtnThoiDai.setActionCommand("http://thoidai.com.vn/");
 		panel.add(rdbtnThoiDai);
 		
 		JRadioButton rdbtnBaoThaiNguyen = new JRadioButton("http://baothainguyen.org.vn/");
-		rdbtnBaoThaiNguyen.setBounds(239, 210, 194, 23);
+		rdbtnBaoThaiNguyen.setBounds(266, 210, 240, 23);
 		rdbtnBaoThaiNguyen.setActionCommand("http://baothainguyen.org.vn/");
 		panel.add(rdbtnBaoThaiNguyen);
 		
 		JPanel panel_languages = new JPanel();
 		panel_languages.setBorder(new TitledBorder(null, "Select language", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_languages.setBounds(273, 253, 135, 78);
+		panel_languages.setBounds(300, 253, 135, 78);
 		panel.add(panel_languages);
 		panel_languages.setLayout(null);
 		
 		JRadioButton rdbtnVietnamese = new JRadioButton("Vietnamese");
-		rdbtnVietnamese.setBounds(6, 18, 102, 23);
+		rdbtnVietnamese.setBounds(6, 18, 121, 23);
 		panel_languages.add(rdbtnVietnamese);
 		rdbtnVietnamese.setActionCommand("Vietnamese");
 		
 		JRadioButton rdbtnChinese = new JRadioButton("Chinese");
-		rdbtnChinese.setBounds(6, 44, 102, 23);
+		rdbtnChinese.setBounds(6, 44, 121, 23);
 		panel_languages.add(rdbtnChinese);
 		rdbtnChinese.setActionCommand("Chinese");
 		
@@ -298,11 +283,11 @@ public class DownloadApplication {
 		panel.add(btnClose_Bilingual);
 		
 		JButton btnCancel_Bilingual = new JButton("Cancel");
-		btnCancel_Bilingual.setBounds(202, 342, 89, 23);
+		btnCancel_Bilingual.setBounds(201, 347, 89, 23);
 		panel.add(btnCancel_Bilingual);
 		
 		JButton btnNext_Bilingual = new JButton("Next");
-		btnNext_Bilingual.setBounds(348, 347, 89, 23);
+		btnNext_Bilingual.setBounds(346, 347, 89, 23);
 		panel.add(btnNext_Bilingual);
 		//Add all radio button into one group to make sure only select one radio button in group in one time
 		ButtonGroup radioGroupBilingual = new ButtonGroup();
@@ -336,8 +321,7 @@ public class DownloadApplication {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				radioGroupBilingual.clearSelection();
-				groupLanguages.clearSelection();
-				
+				groupLanguages.clearSelection();				
 			}
 		});
 	
@@ -349,9 +333,7 @@ public class DownloadApplication {
 				if(radioGroupBilingual.getSelection() != null && groupLanguages.getSelection()!= null)
 				{
 					SelectContent selectContent = new SelectContent(radioGroupBilingual.getSelection().getActionCommand(),
-							groupLanguages.getSelection().getActionCommand());
-					DownloadApplication downloadApplication = new DownloadApplication();
-					downloadApplication.frmDownloadApplication.setVisible(true);
+							groupLanguages.getSelection().getActionCommand(),false);		
 					lblStatus_Bilingual.setVisible(false);
 					selectContent.show();
 				}
@@ -367,7 +349,7 @@ public class DownloadApplication {
 		frmDownloadApplication.setTitle("Download Application");
 		URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
 		frmDownloadApplication.setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
-		frmDownloadApplication.setBounds(100, 100, 492, 424);
+		frmDownloadApplication.setBounds(100, 100, 644, 424);
 		frmDownloadApplication.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
