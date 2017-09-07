@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package translate_vietNamese_chinese;
+package translate_vietNamese_chinese.download_application;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -85,7 +85,7 @@ public class ScrapingThread extends Thread {
     public void run() {
         try {
             // java create class instance from string
-
+        	
             Class<?> c = Class.forName(className);
             Constructor<?> ctor = c.getConstructor();
             Object object = ctor.newInstance();
@@ -117,8 +117,8 @@ public class ScrapingThread extends Thread {
                 }
             }
             latch.countDown();
-        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            //Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 

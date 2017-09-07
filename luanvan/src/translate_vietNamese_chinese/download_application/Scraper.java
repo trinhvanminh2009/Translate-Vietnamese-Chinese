@@ -1,4 +1,4 @@
-package translate_vietNamese_chinese;
+package translate_vietNamese_chinese.download_application;
 
 import java.io.BufferedWriter;
 import java.io.File;

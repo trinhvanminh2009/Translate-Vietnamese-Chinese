@@ -1,7 +1,10 @@
-package translate_vietNamese_chinese;
+package translate_vietNamese_chinese.download_application;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import translate_vietNamese_chinese.ModelQuickMathematics;
+import translate_vietNamese_chinese.QuickMathematics;
 
 public class Test {
 

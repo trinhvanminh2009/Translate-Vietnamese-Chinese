@@ -1,4 +1,4 @@
-package translate_vietNamese_chinese;
+package translate_vietNamese_chinese.download_application;
 
 import java.awt.Button;
 import java.awt.Color;
