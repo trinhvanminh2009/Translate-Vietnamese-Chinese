@@ -5,12 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
-import com.sun.org.apache.bcel.internal.generic.LUSHR;
-import com.sun.prism.paint.Color;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 
 public class ConvertDate {
@@ -500,28 +494,34 @@ public class ConvertDate {
 			tempCount = 0;
 			
 		}
-		//End loop
+	
 		for(int i = 0 ; i < listFilePathAndItemsVN.size(); i++)
 		{
-			System.out.println(listFilePathAndItemsVN.get(i).getFilePath());
 			for(int j = 0; j < listFilePathAndItemsVN.get(i).getListDate().size() ; j++)
 			{
-				System.out.println(listFilePathAndItemsVN.get(i).getListDate().get(j));
+				for(int k = 0; k < listFilePathAndItemsCN.size(); k++)
+				{
+				
+					for(int h = 0; h < listFilePathAndItemsCN.get(k).getListDate().size(); h++)
+					{
+						if(CompareTitle.printSimilarity1(listFilePathAndItemsCN.get(k).getListDate().get(h)
+								, listFilePathAndItemsVN.get(i).getListDate().get(j)))
+						{
+							System.out.println(listFilePathAndItemsCN.get(k).getFilePath() + " with "+
+									listFilePathAndItemsCN.get(k).getListDate().get(h) + " similarity"+
+									 listFilePathAndItemsVN.get(i).getFilePath() + " with "+
+									 listFilePathAndItemsVN.get(i).getListDate().get(j));
+						}
+						
+					}
+				}
 			}
 		}
 		
-		for(int i = 0 ; i < listFilePathAndItemsCN.size(); i++)
-		{
-			System.out.println(listFilePathAndItemsCN.get(i).getFilePath());
-			for(int j = 0; j < listFilePathAndItemsCN.get(i).getListDate().size() ; j++)
-			{
-				System.out.println(listFilePathAndItemsCN.get(i).getListDate().get(j));
-			}
-		}
-		System.out.println("CN" + listFilePathAndItemsCN.size());
-		System.out.println("VN" + listFilePathAndItemsVN.size());
 	
 	}
+	
+	
 	
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub

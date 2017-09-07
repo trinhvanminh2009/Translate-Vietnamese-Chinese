@@ -63,6 +63,16 @@ public class CompareTitle {
 			  
 		  }
 		  
+		  public static  boolean printSimilarity1(String s, String t) {
+			  if((int)(similarity(s, t) *100) >92)
+			  {
+				  //System.out.println((int)(similarity(s, t) *100) +"% is the similarity between "+ s +" and "+ t);
+				  return true;
+			  }
+			  return false;
+			  
+		  }
+		  
 		  public static SimilarityDate printSimilarityDate(ConvertDate convertDateCN, ConvertDate convertDateVN)
 		  {
 			  SimilarityDate similarityDate = null;
@@ -91,8 +101,7 @@ public class CompareTitle {
 						
 						for(final File file2 : folder2.listFiles())
 						{
-						 printSimilarity(file.getPath() + " "+ 
-						readFileFromPath(file.getPath()), file2.getPath() + "\n " + readFileFromPath2(file2.getPath()));
+						 printSimilarity(readFileFromPath(file.getPath()), readFileFromPath2(file2.getPath()));
 						}
 					}
 				}
