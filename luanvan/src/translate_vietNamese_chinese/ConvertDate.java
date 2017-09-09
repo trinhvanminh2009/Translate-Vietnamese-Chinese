@@ -62,7 +62,6 @@ public class ConvertDate {
 			}
 		}
 		
-		//handleArrayListDate(resultVN, resultCN);
 		similarityFile(resultVN, resultCN);
 	}
 	

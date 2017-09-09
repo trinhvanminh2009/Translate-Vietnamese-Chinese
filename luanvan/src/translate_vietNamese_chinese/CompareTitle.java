@@ -56,10 +56,9 @@ public class CompareTitle {
 		  }
 
 		  public static  void printSimilarity(String s, String t) {
-			  if((int)(similarity(s, t) *100) >92)
-			  {
-				  System.out.println((int)(similarity(s, t) *100) +"% is the similarity between "+ s +" and "+ t);
-			  }
+			
+			  	System.out.println((int)(similarity(s, t) *100) +"% is the similarity between "+ s +" and "+ t);
+			  
 			  
 		  }
 		  

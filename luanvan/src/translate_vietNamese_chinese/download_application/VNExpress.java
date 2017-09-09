@@ -42,57 +42,57 @@ public class VNExpress {
     public static String getCurrentDirectory(String pageName) {
         String directory = "";
         switch (pageName) {
-            case "http://vnexpress.net/tin-tuc/thoi-su":
+            case "https://vnexpress.net/tin-tuc/thoi-su":
                 directory = "vnexpress_tintuc_thoisu";
                 break;
-            case "http://giaitri.vnexpress.net":
+            case "https://giaitri.vnexpress.net":
                 directory = "vnexpress_giaitri";
                 break;
-            case "http://vnexpress.net/tin-tuc/phap-luat":
+            case "https://vnexpress.net/tin-tuc/phap-luat":
                 directory = "vnexpress_tintuc_phapluat";
                 break;
-            case "http://vnexpress.net/tin-tuc/giao-duc":
+            case "https://vnexpress.net/tin-tuc/giao-duc":
                 directory = "vnexpress_tintuc_giaoduc";
                 break;
-            case "http://vnexpress.net/tin-tuc/oto-xe-may":
+            case "https://vnexpress.net/tin-tuc/oto-xe-may":
                 directory = "vnexpress_tintuc_otoxemay";
                 break;
-            case "http://vnexpress.net/tin-tuc/cong-dong":
+            case "https://vnexpress.net/tin-tuc/cong-dong":
                 directory = "vnexpress_tintuc_congdong";
                 break;
-            case "http://vnexpress.net/tin-tuc/tam-su":
+            case "https://vnexpress.net/tin-tuc/tam-su":
                 directory = "vnexpress_tintuc_tamsu";
                 break;
-            case "http://vnexpress.net/tin-tuc/the-gioi":
+            case "https://vnexpress.net/tin-tuc/the-gioi":
                 directory = "vnexpress_tintuc_the-gioi";
                 break;
-            case "http://kinhdoanh.vnexpress.net":
+            case "https://kinhdoanh.vnexpress.net":
                 directory = "vnexpress_kinhdoanh";
                 break;
-            case "http://thethao.vnexpress.net":
+            case "https://thethao.vnexpress.net":
                 directory = "vnexpress_thethao";
                 break;
-            case "http://suckhoe.vnexpress.net/tin-tuc/suc-khoe":
+            case "https://suckhoe.vnexpress.net/tin-tuc/suc-khoe":
                 directory = "vnexpress_suckhoe";
                 break;
-            case "http://giadinh.vnexpress.net":
+            case "https://giadinh.vnexpress.net":
                 directory = "vnexpress_giadinh";
                 break;
-            case "http://dulich.vnexpress.net":
+            case "https://dulich.vnexpress.net":
                 directory = "vnexpress_dulich";
                 break;
-            case "http://vnexpress.net/tin-tuc/khoa-hoc":
+            case "https://vnexpress.net/tin-tuc/khoa-hoc":
                 directory = "vnexpress_tintuc_khoahoc";
                 break;
-            case "http://sohoa.vnexpress.net":
+            case "https://sohoa.vnexpress.net":
                 directory = "vnexpress_sohoa";
                 break;
-            case "http://vnexpress.net/tin-tuc/goc-nhin":
+            case "https://vnexpress.net/tin-tuc/goc-nhin":
                 directory = "vnexpress_gocnhin";
                 break;
-            case "http://vnexpress.net/tin-tuc/cuoi":
+            case "https://vnexpress.net/tin-tuc/cuoi":
                 directory = "vnexpress_tintuc_cuoi";
-                break;
+                break;      
         }
         return directory;
     }
@@ -114,7 +114,7 @@ public class VNExpress {
 
     public boolean scrapAjaxPage(int pageNumber) {
         try {
-            String url = "http://vnexpress.net/tin-tuc/goc-nhin?category_id=1003450&page=" + pageNumber + "&exclude=3&rule=2";
+            String url = "https://vnexpress.net/tin-tuc/goc-nhin?category_id=1003450&page=" + pageNumber + "&exclude=3&rule=2";
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             // optional default is GET
@@ -132,9 +132,10 @@ public class VNExpress {
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
-                //   System.out.println(inputLine);
+                   System.out.println(inputLine);
             }
             in.close();
+            System.out.println(response.toString());
             JSONObject jsonObject = new JSONObject(response.toString());
             if (!jsonObject.get("error").equals(1)) {
                 return false;
@@ -189,7 +190,8 @@ public class VNExpress {
     }
 
     public boolean scrap(int pageNumber) throws JSONException {
-        if (pageName.equals("http://vnexpress.net/tin-tuc/goc-nhin")) {
+        System.out.println(pageName+" "+pageNumber);
+        if (pageName.equals("https://vnexpress.net/tin-tuc/goc-nhin")) {
             if (!scrapAjaxPage(pageNumber)) {
                 return false;
             }
@@ -203,14 +205,13 @@ public class VNExpress {
             }
         }
 
-        //currentPage = pageNumber;
         return true;
     }
 
     public boolean checkValidLink(int pageNumber) {
-        if (pageName.equals("http://vnexpress.net/tin-tuc/goc-nhin")) {
+        if (pageName.equals("https://vnexpress.net/tin-tuc/goc-nhin")) {
             try {
-                String url = "http://vnexpress.net/tin-tuc/goc-nhin?category_id=1003450&page=" + pageNumber + "&exclude=3&rule=2";
+                String url = "https://vnexpress.net/tin-tuc/goc-nhin?category_id=1003450&page=" + pageNumber + "&exclude=3&rule=2";
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
                 // optional default is GET
@@ -268,48 +269,48 @@ public class VNExpress {
         return true;
     }
 
-    public int getMaxPageNumber() {
-        int result = 1;
-        int f = 1000;
-        boolean pre = true;
-        boolean reachInvalidLink = false;
-        while (true) {
-            if (checkValidLink(result)) {
-                if (reachInvalidLink == true) {
-                    f = f / 2;
-                    result += f;
-                } else {
-                    result += f;
-                }
-                pre = true;
-            } else {
-                f = f / 2;
-                result -= f;
-
-                pre = false;
-                reachInvalidLink = true;
-            }
-            System.out.println(result + " " + checkValidLink(result) + " " + f);
-            if (f <= 5) {
-                break;
-            }
-        }
-        if (pre == true) {
-            for (int i = result; i <= result + 5; i++) {
-                if (!checkValidLink(i)) {
-                    return i - 1;
-                }
-            }
-        } else {
-            for (int i = result; i >= result - 5; i--) {
-                if (checkValidLink(i)) {
-                    return i;
-                }
-            }
-        }
-
-        return -1;
-    }
+//    public int getMaxPageNumber() {
+//        int result = 1;
+//        int f = 1000;
+//        boolean pre = true;
+//        boolean reachInvalidLink = false;
+//        while (true) {
+//            if (checkValidLink(result)) {
+//                if (reachInvalidLink == true) {
+//                    f = f / 2;
+//                    result += f;
+//                } else {
+//                    result += f;
+//                }
+//                pre = true;
+//            } else {
+//                f = f / 2;
+//                result -= f;
+//
+//                pre = false;
+//                reachInvalidLink = true;
+//            }
+//            System.out.println(result + " " + checkValidLink(result) + " " + f);
+//            if (f <= 5) {
+//                break;
+//            }
+//        }
+//        if (pre == true) {
+//            for (int i = result; i <= result + 5; i++) {
+//                if (!checkValidLink(i)) {
+//                    return i - 1;
+//                }
+//            }
+//        } else {
+//            for (int i = result; i >= result - 5; i--) {
+//                if (checkValidLink(i)) {
+//                    return i;
+//                }
+//            }
+//        }
+//
+//        return -1;
+//    }
 
     public int getArticleSize() {
         return articleSize;
@@ -332,8 +333,9 @@ public class VNExpress {
         try {
             Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
-            Elements div = doc1.select("div#container ul#news_home>li");
+            Elements div = doc1.select("section.container section.sidebar_1 > article.list_news");
             if (div.isEmpty() || !originalUrl.equals(page)) {
+                System.out.println(div.isEmpty()+" "+!originalUrl.equals(page));
                 return false;
             }
 
@@ -341,8 +343,8 @@ public class VNExpress {
             System.out.println(div.size());
             for (Element i : div) {
                 Article ar = new Article();
-                ar.setLink(i.select(".title_news a[href]").first().attr("abs:href"));
-                System.out.println(i.select(".title_news a[href]").first().attr("abs:href"));
+                ar.setLink(i.select("h3 a[href]").first().attr("abs:href"));
+                System.out.println(i.select("h3 a[href]").first().attr("abs:href"));
                 // System.exit(0);
                 if (getDetails(ar)) {
                     articleSize++;
@@ -364,17 +366,17 @@ public class VNExpress {
         try {
             Document doc1 = Jsoup.connect(ar.getLink()).userAgent("Mozilla").timeout(0).get();
             //kiem tra neu k co element thi no qua
-            if (doc1.select("div#container div.title_news h1").isEmpty()) {
+            if (doc1.select("section.container section.sidebar_1 > h1").isEmpty()) {
                 return false;
             }
-            ar.setTitle(doc1.select("div#container div.title_news h1").first().text());
-//            System.out.println(doc1.select("div#container div.title_news h1").first().text());
+            ar.setTitle(doc1.select("section.container section.sidebar_1 > h1").first().text());
+//            System.out.println(doc1.select("section.container section.sidebar_1 > h1").first().text());
 //                System.exit(0);
-            if (doc1.select("div#container div#left_calculator div.fck_detail.width_common.block_ads_connect").isEmpty()) {
+            if (doc1.select("section.container section.sidebar_1 > article").isEmpty()) {
                 return false;
             }
-            ar.setContent(doc1.select("div#container div#left_calculator div.fck_detail.width_common.block_ads_connect").first().text());
-//            System.out.println(doc1.select("div#container div#left_calculator div.fck_detail.width_common.block_ads_connect").first().text());
+            ar.setContent(doc1.select("section.container section.sidebar_1 > article").first().text());
+//            System.out.println(doc1.select("section.container section.sidebar_1 > article").first().text());
 //            System.exit(0);
             return true;
 
@@ -416,20 +418,20 @@ public class VNExpress {
     }
 
     public static void main(String[] args) throws Exception {
-//        VNExpress v = new VNExpress();
-//        v.init("http://vnexpress.net/tin-tuc/goc-nhin");
-//        for (int i = 40;; i++) {
-//            if (!v.scrap(i)) {
-//                break;
-//            }
-//        }
-//        System.out.println(v.articleSize);
-//        //System.out.println(v.currentPage);
-//        System.out.println("Done");
-
         VNExpress v = new VNExpress();
-        v.init("http://vnexpress.net/tin-tuc/goc-nhin");
-        System.out.println(v.getMaxPageNumber());
+        v.init("https://vnexpress.net/tin-tuc/thoi-su");
+        for (int i = 1;; i++) {
+            if (!v.scrap(i)) {
+                break;
+            }
+        }
+        System.out.println(v.articleSize);
+        //System.out.println(v.currentPage);
+        System.out.println("Done");
+
+//        VNExpress v = new VNExpress();
+//        v.init("https://vnexpress.net/tin-tuc/goc-nhin");
+//        //System.out.println(v.getMaxPageNumber());
     }
 
 }
