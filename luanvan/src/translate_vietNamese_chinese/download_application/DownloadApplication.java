@@ -74,9 +74,9 @@ public class DownloadApplication {
 		panel_Monolingual.setForeground(Color.GREEN);
 		panel_Monolingual.setBorder(new TitledBorder(null, "Select page", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		JRadioButton rdbtnVnExpress = new JRadioButton("http://vnexpress.net");
+		JRadioButton rdbtnVnExpress = new JRadioButton("https://vnexpress.net");
 		rdbtnVnExpress.setBounds(6, 73, 191, 23);
-		rdbtnVnExpress.setActionCommand("http://vnexpress.net");
+		rdbtnVnExpress.setActionCommand("https://vnexpress.net");
 		
 		JRadioButton rdbtnNguoiLaoDong = new JRadioButton("http://nld.com.vn/");
 		rdbtnNguoiLaoDong.setBounds(6, 160, 177, 23);

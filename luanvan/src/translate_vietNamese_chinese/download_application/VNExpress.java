@@ -257,7 +257,7 @@ public class VNExpress {
             try {
                 Document doc1 = Jsoup.connect(link).userAgent("Mozilla").timeout(0).get();
 
-                Elements div = doc1.select("div#container ul#news_home>li");
+                Elements div = doc1.select("section.container section.sidebar_1 > article.list_news");
                 if (div.isEmpty() || !originalUrl.equals(link)) {
                     return false;
                 }
@@ -269,48 +269,48 @@ public class VNExpress {
         return true;
     }
 
-//    public int getMaxPageNumber() {
-//        int result = 1;
-//        int f = 1000;
-//        boolean pre = true;
-//        boolean reachInvalidLink = false;
-//        while (true) {
-//            if (checkValidLink(result)) {
-//                if (reachInvalidLink == true) {
-//                    f = f / 2;
-//                    result += f;
-//                } else {
-//                    result += f;
-//                }
-//                pre = true;
-//            } else {
-//                f = f / 2;
-//                result -= f;
-//
-//                pre = false;
-//                reachInvalidLink = true;
-//            }
-//            System.out.println(result + " " + checkValidLink(result) + " " + f);
-//            if (f <= 5) {
-//                break;
-//            }
-//        }
-//        if (pre == true) {
-//            for (int i = result; i <= result + 5; i++) {
-//                if (!checkValidLink(i)) {
-//                    return i - 1;
-//                }
-//            }
-//        } else {
-//            for (int i = result; i >= result - 5; i--) {
-//                if (checkValidLink(i)) {
-//                    return i;
-//                }
-//            }
-//        }
-//
-//        return -1;
-//    }
+    public int getMaxPageNumber() {
+        int result = 1;
+        int f = 1000;
+        boolean pre = true;
+        boolean reachInvalidLink = false;
+        while (true) {
+            if (checkValidLink(result)) {
+                if (reachInvalidLink == true) {
+                    f = f / 2;
+                    result += f;
+                } else {
+                    result += f;
+                }
+                pre = true;
+            } else {
+                f = f / 2;
+                result -= f;
+
+                pre = false;
+                reachInvalidLink = true;
+            }
+            System.out.println(result + " " + checkValidLink(result) + " " + f);
+            if (f <= 5) {
+                break;
+            }
+        }
+        if (pre == true) {
+            for (int i = result; i <= result + 5; i++) {
+                if (!checkValidLink(i)) {
+                    return i - 1;
+                }
+            }
+        } else {
+            for (int i = result; i >= result - 5; i--) {
+                if (checkValidLink(i)) {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
 
     public int getArticleSize() {
         return articleSize;
@@ -344,7 +344,7 @@ public class VNExpress {
             for (Element i : div) {
                 Article ar = new Article();
                 ar.setLink(i.select("h3 a[href]").first().attr("abs:href"));
-                System.out.println(i.select("h3 a[href]").first().attr("abs:href"));
+                //System.out.println(i.select("h3 a[href]").first().attr("abs:href"));
                 // System.exit(0);
                 if (getDetails(ar)) {
                     articleSize++;
@@ -418,20 +418,20 @@ public class VNExpress {
     }
 
     public static void main(String[] args) throws Exception {
+//        VNExpress v = new VNExpress();
+//        v.init("https://vnexpress.net/tin-tuc/thoi-su");
+//        for (int i = 1;; i++) {
+//            if (!v.scrap(i)) {
+//                break;
+//            }
+//        }
+//        System.out.println(v.articleSize);
+//        //System.out.println(v.currentPage);
+//        System.out.println("Done");
+
         VNExpress v = new VNExpress();
         v.init("https://vnexpress.net/tin-tuc/thoi-su");
-        for (int i = 1;; i++) {
-            if (!v.scrap(i)) {
-                break;
-            }
-        }
-        System.out.println(v.articleSize);
-        //System.out.println(v.currentPage);
-        System.out.println("Done");
-
-//        VNExpress v = new VNExpress();
-//        v.init("https://vnexpress.net/tin-tuc/goc-nhin");
-//        //System.out.println(v.getMaxPageNumber());
+        System.out.println(v.getMaxPageNumber());
     }
 
 }

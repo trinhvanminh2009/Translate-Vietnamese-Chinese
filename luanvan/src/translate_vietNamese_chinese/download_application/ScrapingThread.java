@@ -12,18 +12,20 @@ import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author quang
+ */
 public class ScrapingThread extends Thread {
 
     private String className;
-    private volatile String pageName;
-    private volatile int downloadPercent;
+    private String pageName;
     private int maxPageNumber;
     private int currentPage;
     private int articleSize;
     private volatile boolean stop;
     private CountDownLatch latch;
     private boolean downloadDone;
-
 
     public ScrapingThread(String className, String pageName) {
         this.className = className;
@@ -32,9 +34,8 @@ public class ScrapingThread extends Thread {
         this.pageName = pageName;
         this.stop = false;
         this.latch = new CountDownLatch(1);
-        this.downloadDone=false;
-        this.downloadPercent=0;
-        this.maxPageNumber=0;
+        this.downloadDone = false;
+        this.maxPageNumber = 0;
     }
 
     public ScrapingThread(String className, String pageName, int currentPage, int articleSize) {
@@ -44,14 +45,14 @@ public class ScrapingThread extends Thread {
         this.pageName = pageName;
         this.stop = false;
         this.latch = new CountDownLatch(1);
-        this.downloadDone=false;
-        this.downloadPercent=0;
-        this.maxPageNumber=0;
+        this.downloadDone = false;
+        this.maxPageNumber = 0;
     }
 
     public int getCurrentPage() {
         return this.currentPage;
     }
+
     public boolean getStateDownload() {
         return this.downloadDone;
     }
@@ -63,11 +64,13 @@ public class ScrapingThread extends Thread {
     public String getPageName() {
         return this.pageName;
     }
+
     public String getClassName() {
         return this.className;
     }
+
     public int getDownloadPercent() {
-        return this.currentPage/this.maxPageNumber*100;
+        return this.currentPage / this.maxPageNumber * 100;
     }
 
     public void requestStop() {
@@ -85,14 +88,14 @@ public class ScrapingThread extends Thread {
     public void run() {
         try {
             // java create class instance from string
-        	
+
             Class<?> c = Class.forName(className);
             Constructor<?> ctor = c.getConstructor();
             Object object = ctor.newInstance();
             Method scrap = c.getDeclaredMethod("scrap", int.class);
             Method getArticleSize = c.getDeclaredMethod("getArticleSize");
-            Method getMaxPageNumber = c.getDeclaredMethod("getMaxPageNumber");
-            maxPageNumber=(int) getMaxPageNumber.invoke(object);
+            //Method getMaxPageNumber = c.getDeclaredMethod("getMaxPageNumber");
+
             if (articleSize == 0) {
                 Method init = c.getDeclaredMethod("init", String.class);
                 init.invoke(object, pageName);
@@ -100,14 +103,14 @@ public class ScrapingThread extends Thread {
                 Method init = c.getDeclaredMethod("init", String.class, int.class);
                 init.invoke(object, pageName, articleSize);
             }
-
+           // maxPageNumber = (int) getMaxPageNumber.invoke(object);
             for (int i = currentPage;; i++) {
                 Object value = scrap.invoke(object, i);
                 currentPage = i;
                 if ((boolean) value == false) {
                     currentPage--;
                     articleSize = (int) getArticleSize.invoke(object);
-                    downloadDone=true;
+                    downloadDone = true;
                     System.out.println("Stop at " + currentPage + " " + articleSize);
                     break;
                 } else if (stop == true) {
@@ -117,8 +120,8 @@ public class ScrapingThread extends Thread {
                 }
             }
             latch.countDown();
-        } catch (Exception e) {
-            //Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, e);
+        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -7,7 +7,10 @@ package translate_vietNamese_chinese.download_application;
 
 import java.util.concurrent.CountDownLatch;
 
-
+/**
+ *
+ * @author quang
+ */
 public class RequestStopThread extends Thread{
 
     private ScrapingThread th;

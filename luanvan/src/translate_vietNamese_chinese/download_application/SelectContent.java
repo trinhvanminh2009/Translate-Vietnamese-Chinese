@@ -46,7 +46,7 @@ public class SelectContent extends JFrame {
     public static boolean resume = false;
     public static boolean stopped = true;
     public static final String DOWNLOAD_LOG = System.getProperty("user.dir") + "/download_log.txt";
-    public static final String PACKAGE = "downloadapplication";
+    public static final String PACKAGE = "translate_vietNamese_chinese.download_application";
     private JList<CheckboxListItem> list;
     private CheckboxListItem[] arr = null;
     private ArrayList<String[]> arraySubject;
@@ -125,7 +125,7 @@ public class SelectContent extends JFrame {
         jpb.setBounds(50, 330, 400, 15);
         jpb.setStringPainted(true);
         contentPane.add(jpb);
-        setProgressBarValue(70);
+//        setProgressBarValue(70);
         
 
         Button btnDownload = new Button("Download");
@@ -236,6 +236,7 @@ public class SelectContent extends JFrame {
                             st = new ScrapingThread(PACKAGE + "." + getClassName(page), checkbox.getPageName());
                             st.start();
                             threadList.add(st);
+                            System.out.println(PACKAGE + "." + getClassName(page)+"  " +checkbox.getPageName());
                         }
                     }
                     btnDownload.setEnabled(false);
@@ -376,7 +377,7 @@ public class SelectContent extends JFrame {
     public static String getClassName(String webName) {
         String result = null;
         switch (webName) {
-            case "http://vnexpress.net":
+            case "https://vnexpress.net":
                 result = "VNExpress";
                 break;
         }
@@ -386,24 +387,24 @@ public class SelectContent extends JFrame {
     public static ArrayList getListSubject(String webName) {
         ArrayList<String[]> arr = new ArrayList<>();
         switch (webName) {
-            case "http://vnexpress.net":
-                arr.add(new String[]{"Thời sự", "http://vnexpress.net/tin-tuc/thoi-su"});
-                arr.add(new String[]{"Góc nhìn", "http://vnexpress.net/tin-tuc/goc-nhin"});
-                arr.add(new String[]{"Thế giới", "http://vnexpress.net/tin-tuc/the-gioi"});
-                arr.add(new String[]{"Kinh doanh", "http://kinhdoanh.vnexpress.net"});
-                arr.add(new String[]{"Giải trí", "http://giaitri.vnexpress.net"});
-                arr.add(new String[]{"Thể thao", "http://thethao.vnexpress.net"});
-                arr.add(new String[]{"Pháp luật", "http://vnexpress.net/tin-tuc/phap-luat"});
-                arr.add(new String[]{"Giáo dục", "http://vnexpress.net/tin-tuc/giao-duc"});
-                arr.add(new String[]{"Sức khỏe", "http://suckhoe.vnexpress.net/tin-tuc/suc-khoe"});
-                arr.add(new String[]{"Gia đình", "http://giadinh.vnexpress.net"});
-                arr.add(new String[]{"Du lịch", "http://dulich.vnexpress.net"});
-                arr.add(new String[]{"Khoa học", "http://vnexpress.net/tin-tuc/khoa-hoc"});
-                arr.add(new String[]{"Số hóa", "http://sohoa.vnexpress.net"});
-                arr.add(new String[]{"Xe", "http://vnexpress.net/tin-tuc/oto-xe-may"});
-                arr.add(new String[]{"Cộng đồng", "http://vnexpress.net/tin-tuc/cong-dong"});
-                arr.add(new String[]{"Tâm sự", "http://vnexpress.net/tin-tuc/tam-su"});
-                arr.add(new String[]{"Cười", "http://vnexpress.net/tin-tuc/cuoi"});
+            case "https://vnexpress.net":
+                arr.add(new String[]{"Thời sự", "https://vnexpress.net/tin-tuc/thoi-su"});
+                arr.add(new String[]{"Góc nhìn", "https://vnexpress.net/tin-tuc/goc-nhin"});
+                arr.add(new String[]{"Thế giới", "https://vnexpress.net/tin-tuc/the-gioi"});
+                arr.add(new String[]{"Kinh doanh", "https://kinhdoanh.vnexpress.net"});
+                arr.add(new String[]{"Giải trí", "https://giaitri.vnexpress.net"});
+                arr.add(new String[]{"Thể thao", "https://thethao.vnexpress.net"});
+                arr.add(new String[]{"Pháp luật", "https://vnexpress.net/tin-tuc/phap-luat"});
+                arr.add(new String[]{"Giáo dục", "https://vnexpress.net/tin-tuc/giao-duc"});
+                arr.add(new String[]{"Sức khỏe", "https://suckhoe.vnexpress.net/tin-tuc/suc-khoe"});
+                arr.add(new String[]{"Gia đình", "https://giadinh.vnexpress.net"});
+                arr.add(new String[]{"Du lịch", "https://dulich.vnexpress.net"});
+                arr.add(new String[]{"Khoa học", "https://vnexpress.net/tin-tuc/khoa-hoc"});
+                arr.add(new String[]{"Số hóa", "https://sohoa.vnexpress.net"});
+                arr.add(new String[]{"Xe", "https://vnexpress.net/tin-tuc/oto-xe-may"});
+                arr.add(new String[]{"Cộng đồng", "https://vnexpress.net/tin-tuc/cong-dong"});
+                arr.add(new String[]{"Tâm sự", "https://vnexpress.net/tin-tuc/tam-su"});
+                arr.add(new String[]{"Cười", "https://vnexpress.net/tin-tuc/cuoi"});
                 break;
         }
         return arr;

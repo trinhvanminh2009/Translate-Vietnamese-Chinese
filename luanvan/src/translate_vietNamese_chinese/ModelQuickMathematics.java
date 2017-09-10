@@ -1,3 +1,4 @@
+
 package translate_vietNamese_chinese;
 
 
