@@ -61,6 +61,7 @@ public class SelectContent extends JFrame {
                 try {
                     SelectContent frame = new SelectContent("", "", false);
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -76,7 +77,7 @@ public class SelectContent extends JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
         setTitle("Download Application");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setBounds(100, 100, 600, 400);
+        setBounds(100, 100, 632, 500);
         contentPane = new JPanel();
         contentPane.setForeground(Color.CYAN);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
