@@ -299,7 +299,7 @@ public class DownloadApplication {
 		panel.setLayout(null);
 
 		JLabel lblStatus_Bilingual = new JLabel("Status");
-		lblStatus_Bilingual.setBounds(20, 25, 398, 16);
+		lblStatus_Bilingual.setBounds(20, 11, 398, 16);
 		panel.add(lblStatus_Bilingual);
 		lblStatus_Bilingual.setForeground(Color.RED);
 		lblStatus_Bilingual.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -307,7 +307,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnVietnamPlus = new JRadioButton("http://www.vietnamplus.vn/");
 		rdbtnVietnamPlus.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnVietnamPlus.setBounds(20, 48, 242, 41);
+		rdbtnVietnamPlus.setBounds(30, 29, 242, 41);
 		rdbtnVietnamPlus.setActionCommand("http://www.vietnamplus.vn/");
 		panel.add(rdbtnVietnamPlus);
 		try {
@@ -321,7 +321,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnDongNaiGov = new JRadioButton("https://www.dongnai.gov.vn/");
 		rdbtnDongNaiGov.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnDongNaiGov.setBounds(20, 111, 230, 41);
+		rdbtnDongNaiGov.setBounds(30, 92, 230, 41);
 		rdbtnDongNaiGov.setActionCommand("https://www.dongnai.gov.vn/");
 		panel.add(rdbtnDongNaiGov);
 		try {
@@ -335,7 +335,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnSaiGonGiaiPhong = new JRadioButton("http://www.sggp.org.vn/");
 		rdbtnSaiGonGiaiPhong.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnSaiGonGiaiPhong.setBounds(20, 171, 217, 41);
+		rdbtnSaiGonGiaiPhong.setBounds(30, 152, 217, 41);
 		rdbtnSaiGonGiaiPhong.setActionCommand("http://www.sggp.org.vn/");
 		panel.add(rdbtnSaiGonGiaiPhong);
 		try {
@@ -349,7 +349,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnBaoDinhDuong = new JRadioButton("http://baobinhduong.vn/");
 		rdbtnBaoDinhDuong.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnBaoDinhDuong.setBounds(266, 44, 200, 41);
+		rdbtnBaoDinhDuong.setBounds(276, 25, 187, 41);
 		rdbtnBaoDinhDuong.setActionCommand("http://baobinhduong.vn/");
 		panel.add(rdbtnBaoDinhDuong);
 		try {
@@ -363,7 +363,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnNhanDan = new JRadioButton("http://www.nhandan.com.vn/");
 		rdbtnNhanDan.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnNhanDan.setBounds(266, 111, 215, 41);
+		rdbtnNhanDan.setBounds(276, 152, 215, 41);
 		rdbtnNhanDan.setActionCommand("http://www.nhandan.com.vn/");
 		panel.add(rdbtnNhanDan);
 		try {
@@ -377,7 +377,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnBaoChinhPhu = new JRadioButton("http://baochinhphu.vn/");
 		rdbtnBaoChinhPhu.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnBaoChinhPhu.setBounds(266, 171, 200, 41);
+		rdbtnBaoChinhPhu.setBounds(276, 92, 187, 41);
 		rdbtnBaoChinhPhu.setActionCommand("http://baochinhphu.vn/");
 		panel.add(rdbtnBaoChinhPhu);
 		try {
@@ -391,7 +391,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnQuanDoiNhanDan = new JRadioButton("http://www.qdnd.vn/");
 		rdbtnQuanDoiNhanDan.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnQuanDoiNhanDan.setBounds(20, 229, 174, 41);
+		rdbtnQuanDoiNhanDan.setBounds(30, 210, 174, 41);
 		rdbtnQuanDoiNhanDan.setActionCommand("http://www.qdnd.vn/");
 		panel.add(rdbtnQuanDoiNhanDan);
 		try {
@@ -405,7 +405,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnTapChiCongSan = new JRadioButton("http://www.tapchicongsan.org.vn/");
 		rdbtnTapChiCongSan.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnTapChiCongSan.setBounds(266, 229, 267, 41);
+		rdbtnTapChiCongSan.setBounds(276, 210, 267, 41);
 		rdbtnTapChiCongSan.setActionCommand("http://www.tapchicongsan.org.vn/");
 		panel.add(rdbtnTapChiCongSan);
 		try {
@@ -419,7 +419,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnThoiDai = new JRadioButton("http://thoidai.com.vn/");
 		rdbtnThoiDai.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnThoiDai.setBounds(20, 293, 187, 41);
+		rdbtnThoiDai.setBounds(30, 274, 187, 41);
 		rdbtnThoiDai.setActionCommand("http://thoidai.com.vn/");
 		panel.add(rdbtnThoiDai);
 		try {
@@ -433,7 +433,7 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnBaoThaiNguyen = new JRadioButton("http://baothainguyen.org.vn/");
 		rdbtnBaoThaiNguyen.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnBaoThaiNguyen.setBounds(266, 293, 240, 41);
+		rdbtnBaoThaiNguyen.setBounds(276, 274, 240, 41);
 		rdbtnBaoThaiNguyen.setActionCommand("http://baothainguyen.org.vn/");
 		panel.add(rdbtnBaoThaiNguyen);
 		try {
@@ -448,7 +448,7 @@ public class DownloadApplication {
 		JPanel panel_languages = new JPanel();
 		panel_languages.setBorder(
 				new TitledBorder(null, "Select language", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_languages.setBounds(482, 48, 135, 78);
+		panel_languages.setBounds(469, 39, 148, 90);
 		panel.add(panel_languages);
 		panel_languages.setLayout(null);
 
@@ -466,13 +466,13 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnVietnamese = new JRadioButton("Vietnamese");
 		rdbtnVietnamese.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnVietnamese.setBounds(6, 18, 121, 23);
+		rdbtnVietnamese.setBounds(6, 17, 136, 30);
 		panel_languages.add(rdbtnVietnamese);
 		rdbtnVietnamese.setActionCommand("Vietnamese");
 		try {
 			rdbtnVietnamese.setIcon(
-					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected_small.png"))));
-			rdbtnVietnamese.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected_small.png"))));
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnVietnamese.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -480,13 +480,13 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnChinese = new JRadioButton("Chinese");
 		rdbtnChinese.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnChinese.setBounds(6, 44, 121, 23);
+		rdbtnChinese.setBounds(6, 50, 97, 36);
 		panel_languages.add(rdbtnChinese);
 		rdbtnChinese.setActionCommand("Chinese");
 		try {
 			rdbtnChinese.setIcon(
-					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected_small.png"))));
-			rdbtnChinese.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected_small.png"))));
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnChinese.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -500,7 +500,7 @@ public class DownloadApplication {
 		try {
 			btnCloseImage = ImageIO.read(this.getClass().getResource("/resources/button_close.png"));
 			JButton btnClose_Bilingual = new JButton(new ImageIcon(btnCloseImage));
-			btnClose_Bilingual.setBounds(20, 342, 119, 55);
+			btnClose_Bilingual.setBounds(30, 323, 119, 55);
 			btnClose_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnClose_Bilingual.setContentAreaFilled(false);
 			panel.add(btnClose_Bilingual);
@@ -521,7 +521,7 @@ public class DownloadApplication {
 		try {
 			btnCancelImage = ImageIO.read(this.getClass().getResource("/resources/button_cancel.png"));
 			JButton btnCancel_Bilingual = new JButton(new ImageIcon(btnCancelImage));
-			btnCancel_Bilingual.setBounds(222, 342, 119, 50);
+			btnCancel_Bilingual.setBounds(232, 323, 119, 50);
 			btnCancel_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnCancel_Bilingual.setContentAreaFilled(false);
 			panel.add(btnCancel_Bilingual);
@@ -542,7 +542,7 @@ public class DownloadApplication {
 		try {
 			btnNextImage = ImageIO.read(this.getClass().getResource("/resources/button_next.png"));
 			JButton btnNext_Bilingual = new JButton(new ImageIcon(btnNextImage));
-			btnNext_Bilingual.setBounds(414, 342, 119, 50);
+			btnNext_Bilingual.setBounds(424, 323, 119, 50);
 			btnNext_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnNext_Bilingual.setContentAreaFilled(false);
 			panel.add(btnNext_Bilingual);
