@@ -134,41 +134,7 @@ public class VietNamPlus {
 	}
 
 	public boolean checkValidLink(int pageNumber) {
-		if (pageName.equals("https://vnexpress.net/tin-tuc/goc-nhin")) {
-			try {
-				String url = "https://vnexpress.net/tin-tuc/goc-nhin?category_id=1003450&page=" + pageNumber
-						+ "&exclude=3&rule=2";
-				URL obj = new URL(url);
-				HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-				// optional default is GET
-				con.setRequestMethod("GET");
-				// add request header
-				con.setRequestProperty("User-Agent", USER_AGENT);
-				int responseCode = con.getResponseCode();
-				System.out.println("\nSending 'GET' request to URL : " + url);
-				System.out.println("Response Code : " + responseCode);
-
-				BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-				String inputLine;
-				StringBuffer response = new StringBuffer();
-
-				while ((inputLine = in.readLine()) != null) {
-					response.append(inputLine);
-					// System.out.println(inputLine);
-				}
-				in.close();
-				JSONObject jsonObject = new JSONObject(response.toString());
-				if (!jsonObject.get("error").equals(1)) {
-					return false;
-				}
-			} catch (MalformedURLException ex) {
-				Logger.getLogger(VietNamPlus.class.getName()).log(Level.SEVERE, null, ex);
-			} catch (IOException ex) {
-				Logger.getLogger(VietNamPlus.class.getName()).log(Level.SEVERE, null, ex);
-			} catch (JSONException ex) {
-				Logger.getLogger(VietNamPlus.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		} else {
+		
 			String link = pageName + "/page/" + pageNumber + ".html";
 			String originalUrl = null;
 			try {
@@ -190,7 +156,7 @@ public class VietNamPlus {
 
 			} catch (Exception ex) {
 			}
-		}
+		
 
 		return true;
 	}
@@ -241,29 +207,15 @@ public class VietNamPlus {
 	public int getArticleSize() {
 		return articleSize;
 	}
-	// public int getCurrentPage() {
-	// return currentPage;
-	// }
+
 
 	public boolean getLink(String page) {
-		String originalUrl = null;
-		try {
-			originalUrl = Jsoup.connect(page).userAgent("Mozilla").followRedirects(true) // to
-																							// follow
-																							// redirects
-					.execute().url().toExternalForm();
-		} catch (IOException ex) {
-			Logger.getLogger(VietNamPlus.class.getName()).log(Level.SEVERE, null, ex);
-		}
 
-		// System.out.println(originalUrl);
 		try {
-			Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(10000).get();
+			Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
 			Elements div = doc1.select("section.container section.sidebar_1 > article.list_news");
-			if (div.isEmpty() || !originalUrl.equals(page)) {
-				// System.out.println(div.isEmpty()+"
-				// "+!originalUrl.equals(page));
+			if (div.isEmpty()) {
 				return false;
 			}
 

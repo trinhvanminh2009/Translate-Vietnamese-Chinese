@@ -132,10 +132,10 @@ public class VNExpress {
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
-                   System.out.println(inputLine);
+                  // System.out.println(inputLine);
             }
             in.close();
-            System.out.println(response.toString());
+            //System.out.println(response.toString());
             JSONObject jsonObject = new JSONObject(response.toString());
             if (!jsonObject.get("error").equals(1)) {
                 return false;
@@ -319,26 +319,12 @@ public class VNExpress {
 //        return currentPage;
 //    }
 
-    public boolean getLink(String page) {
-        String originalUrl = null;
-        try {
-            originalUrl = Jsoup.connect(page).userAgent("Mozilla")
-                    .followRedirects(true) //to follow redirects
-                    .execute().url().toExternalForm();
-        } catch (IOException ex) {
-            Logger.getLogger(VNExpress.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    public boolean getLink(String page) {    
         //System.out.println(originalUrl);
         try {
             Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
             Elements div = doc1.select("section.container section.sidebar_1 > article.list_news");
-            if (div.isEmpty() || !originalUrl.equals(page)) {
-                //System.out.println(div.isEmpty()+" "+!originalUrl.equals(page));
-                return false;
-            }
-
             System.out.println(page);
             System.out.println(div.size());
             for (Element i : div) {
