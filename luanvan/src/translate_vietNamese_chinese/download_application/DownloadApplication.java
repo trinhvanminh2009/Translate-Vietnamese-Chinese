@@ -1,19 +1,16 @@
 package translate_vietNamese_chinese.download_application;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.SystemColor;
 import java.awt.Toolkit;
-import java.awt.Window;
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -26,11 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
-
-import translate_vietNamese_chinese.download_application.designer.Designer;
-
-import java.awt.Window.Type;
-import java.awt.SystemColor;
 
 public class DownloadApplication {
 
@@ -96,38 +88,94 @@ public class DownloadApplication {
 
 		JRadioButton rdbtnVnExpress = new JRadioButton("https://vnexpress.net");
 		rdbtnVnExpress.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnVnExpress.setBounds(6, 73, 191, 23);
+		rdbtnVnExpress.setBounds(6, 92, 191, 41);
 		rdbtnVnExpress.setActionCommand("https://vnexpress.net");
+		try {
+			rdbtnVnExpress.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnVnExpress.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnNguoiLaoDong = new JRadioButton("http://nld.com.vn/");
 		rdbtnNguoiLaoDong.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnNguoiLaoDong.setBounds(6, 160, 177, 23);
+		rdbtnNguoiLaoDong.setBounds(6, 218, 177, 41);
 		rdbtnNguoiLaoDong.setActionCommand("http://nld.com.vn/");
+		try {
+			rdbtnNguoiLaoDong.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnNguoiLaoDong.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnDanTri = new JRadioButton("http://dantri.com.vn/");
 		rdbtnDanTri.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnDanTri.setBounds(224, 35, 177, 23);
+		rdbtnDanTri.setBounds(288, 35, 177, 41);
 		rdbtnDanTri.setActionCommand("http://dantri.com.vn/");
+		try {
+			rdbtnDanTri.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnDanTri.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnNgoiSaoNet = new JRadioButton("http://ngoisao.net/");
 		rdbtnNgoiSaoNet.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnNgoiSaoNet.setBounds(6, 35, 191, 23);
+		rdbtnNgoiSaoNet.setBounds(6, 35, 191, 41);
 		rdbtnNgoiSaoNet.setActionCommand("http://ngoisao.net/");
+		try {
+			rdbtnNgoiSaoNet.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnNgoiSaoNet.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnNgoiSaoVN = new JRadioButton("https://ngoisao.vn/");
 		rdbtnNgoiSaoVN.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnNgoiSaoVN.setBounds(224, 73, 177, 23);
+		rdbtnNgoiSaoVN.setBounds(288, 92, 177, 41);
 		rdbtnNgoiSaoVN.setActionCommand("https://ngoisao.vn/");
+		try {
+			rdbtnNgoiSaoVN.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnNgoiSaoVN.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnTuoitre = new JRadioButton("http://tuoitre.vn/");
 		rdbtnTuoitre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnTuoitre.setBounds(6, 117, 177, 23);
+		rdbtnTuoitre.setBounds(6, 155, 177, 41);
 		rdbtnTuoitre.setActionCommand("http://tuoitre.vn/");
+		try {
+			rdbtnTuoitre.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnTuoitre.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnBongDaPlus = new JRadioButton("http://bongdaplus.vn/");
 		rdbtnBongDaPlus.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		rdbtnBongDaPlus.setBounds(224, 117, 191, 23);
+		rdbtnBongDaPlus.setBounds(288, 155, 191, 41);
 		rdbtnBongDaPlus.setActionCommand("http://bongdaplus.vn/");
+		try {
+			rdbtnBongDaPlus.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnBongDaPlus.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JList list = new JList();
 		list.setBounds(-10008, -10031, 0, 0);
@@ -154,7 +202,7 @@ public class DownloadApplication {
 		try {
 			btnCancelImage = ImageIO.read(this.getClass().getResource("/resources/button_cancel.png"));
 			JButton btnCancel_Monolingual = new JButton(new ImageIcon(btnCancelImage));
-			btnCancel_Monolingual.setBounds(190, 209, 135, 50);
+			btnCancel_Monolingual.setBounds(6, 277, 135, 50);
 			panel_Monolingual.add(btnCancel_Monolingual);
 			btnCancel_Monolingual.setBorder(BorderFactory.createEmptyBorder());
 			btnCancel_Monolingual.setContentAreaFilled(false);
@@ -183,7 +231,7 @@ public class DownloadApplication {
 			BufferedImage btnResumeImage = ImageIO.read(this.getClass().getResource("/resources/button_resume.png"));
 			JButton btnResume_Monolingual = new JButton(new ImageIcon(btnResumeImage));
 			btnResume_Monolingual.setBorder(BorderFactory.createEmptyBorder());
-			btnResume_Monolingual.setBounds(10, 209, 135, 50);
+			btnResume_Monolingual.setBounds(213, 277, 135, 50);
 			btnResume_Monolingual.setContentAreaFilled(false);
 			panel_Monolingual.add(btnResume_Monolingual);
 			lbStatus_Monolingual.setVisible(false);
@@ -207,10 +255,10 @@ public class DownloadApplication {
 		}
 		BufferedImage btnNextImage;
 		try {
-			btnNextImage = ImageIO.read(this.getClass().getResource("/resources/button_resume.png"));
+			btnNextImage = ImageIO.read(this.getClass().getResource("/resources/button_next.png"));
 			JButton btnNext_Monoligual = new JButton(new ImageIcon(btnNextImage));
 			panel_Monolingual.add(btnNext_Monoligual);
-			btnNext_Monoligual.setBounds(369, 209, 120, 50);
+			btnNext_Monoligual.setBounds(408, 277, 120, 50);
 			btnNext_Monoligual.setBorder(BorderFactory.createEmptyBorder());
 			btnNext_Monoligual.setContentAreaFilled(false);
 			btnNext_Monoligual.addActionListener(new ActionListener() {
@@ -246,7 +294,7 @@ public class DownloadApplication {
 		JPanel panel = new JPanel();
 		panel.setBorder(
 				new TitledBorder(null, "Select page and language", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(0, -23, 627, 420);
+		panel.setBounds(0, 0, 627, 396);
 		panel_Bilingual.add(panel);
 		panel.setLayout(null);
 
@@ -258,59 +306,149 @@ public class DownloadApplication {
 		lblStatus_Bilingual.setVisible(false);
 
 		JRadioButton rdbtnVietnamPlus = new JRadioButton("http://www.vietnamplus.vn/");
-		rdbtnVietnamPlus.setBounds(20, 44, 242, 23);
+		rdbtnVietnamPlus.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnVietnamPlus.setBounds(20, 48, 242, 41);
 		rdbtnVietnamPlus.setActionCommand("http://www.vietnamplus.vn/");
 		panel.add(rdbtnVietnamPlus);
+		try {
+			rdbtnVietnamPlus.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnVietnamPlus.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnDongNaiGov = new JRadioButton("https://www.dongnai.gov.vn/");
-		rdbtnDongNaiGov.setBounds(20, 80, 230, 23);
+		rdbtnDongNaiGov.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnDongNaiGov.setBounds(20, 111, 230, 41);
 		rdbtnDongNaiGov.setActionCommand("https://www.dongnai.gov.vn/");
 		panel.add(rdbtnDongNaiGov);
+		try {
+			rdbtnDongNaiGov.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnDongNaiGov.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnSaiGonGiaiPhong = new JRadioButton("http://www.sggp.org.vn/");
-		rdbtnSaiGonGiaiPhong.setBounds(20, 121, 217, 23);
+		rdbtnSaiGonGiaiPhong.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnSaiGonGiaiPhong.setBounds(20, 171, 217, 41);
 		rdbtnSaiGonGiaiPhong.setActionCommand("http://www.sggp.org.vn/");
 		panel.add(rdbtnSaiGonGiaiPhong);
+		try {
+			rdbtnSaiGonGiaiPhong.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnSaiGonGiaiPhong.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnBaoDinhDuong = new JRadioButton("http://baobinhduong.vn/");
-		rdbtnBaoDinhDuong.setBounds(266, 44, 200, 23);
+		rdbtnBaoDinhDuong.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnBaoDinhDuong.setBounds(266, 44, 200, 41);
 		rdbtnBaoDinhDuong.setActionCommand("http://baobinhduong.vn/");
 		panel.add(rdbtnBaoDinhDuong);
+		try {
+			rdbtnBaoDinhDuong.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnBaoDinhDuong.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnNhanDan = new JRadioButton("http://www.nhandan.com.vn/");
-		rdbtnNhanDan.setBounds(266, 80, 187, 23);
+		rdbtnNhanDan.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnNhanDan.setBounds(266, 111, 215, 41);
 		rdbtnNhanDan.setActionCommand("http://www.nhandan.com.vn/");
 		panel.add(rdbtnNhanDan);
+		try {
+			rdbtnNhanDan.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnNhanDan.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnBaoChinhPhu = new JRadioButton("http://baochinhphu.vn/");
-		rdbtnBaoChinhPhu.setBounds(266, 121, 200, 23);
+		rdbtnBaoChinhPhu.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnBaoChinhPhu.setBounds(266, 171, 200, 41);
 		rdbtnBaoChinhPhu.setActionCommand("http://baochinhphu.vn/");
 		panel.add(rdbtnBaoChinhPhu);
+		try {
+			rdbtnBaoChinhPhu.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnBaoChinhPhu.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnQuanDoiNhanDan = new JRadioButton("http://www.qdnd.vn/");
-		rdbtnQuanDoiNhanDan.setBounds(20, 168, 174, 23);
+		rdbtnQuanDoiNhanDan.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnQuanDoiNhanDan.setBounds(20, 229, 174, 41);
 		rdbtnQuanDoiNhanDan.setActionCommand("http://www.qdnd.vn/");
 		panel.add(rdbtnQuanDoiNhanDan);
+		try {
+			rdbtnQuanDoiNhanDan.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnQuanDoiNhanDan.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnTapChiCongSan = new JRadioButton("http://www.tapchicongsan.org.vn/");
-		rdbtnTapChiCongSan.setBounds(266, 168, 267, 23);
+		rdbtnTapChiCongSan.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnTapChiCongSan.setBounds(266, 229, 267, 41);
 		rdbtnTapChiCongSan.setActionCommand("http://www.tapchicongsan.org.vn/");
 		panel.add(rdbtnTapChiCongSan);
+		try {
+			rdbtnTapChiCongSan.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnTapChiCongSan.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnThoiDai = new JRadioButton("http://thoidai.com.vn/");
-		rdbtnThoiDai.setBounds(20, 210, 187, 23);
+		rdbtnThoiDai.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnThoiDai.setBounds(20, 293, 187, 41);
 		rdbtnThoiDai.setActionCommand("http://thoidai.com.vn/");
 		panel.add(rdbtnThoiDai);
+		try {
+			rdbtnThoiDai.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnThoiDai.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnBaoThaiNguyen = new JRadioButton("http://baothainguyen.org.vn/");
-		rdbtnBaoThaiNguyen.setBounds(266, 210, 240, 23);
+		rdbtnBaoThaiNguyen.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		rdbtnBaoThaiNguyen.setBounds(266, 293, 240, 41);
 		rdbtnBaoThaiNguyen.setActionCommand("http://baothainguyen.org.vn/");
 		panel.add(rdbtnBaoThaiNguyen);
+		try {
+			rdbtnBaoThaiNguyen.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
+			rdbtnBaoThaiNguyen.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JPanel panel_languages = new JPanel();
 		panel_languages.setBorder(
 				new TitledBorder(null, "Select language", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_languages.setBounds(472, 48, 135, 78);
+		panel_languages.setBounds(482, 48, 135, 78);
 		panel.add(panel_languages);
 		panel_languages.setLayout(null);
 
@@ -327,14 +465,33 @@ public class DownloadApplication {
 		radioGroupBilingual.add(rdbtnQuanDoiNhanDan);
 
 		JRadioButton rdbtnVietnamese = new JRadioButton("Vietnamese");
+		rdbtnVietnamese.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnVietnamese.setBounds(6, 18, 121, 23);
 		panel_languages.add(rdbtnVietnamese);
 		rdbtnVietnamese.setActionCommand("Vietnamese");
+		try {
+			rdbtnVietnamese.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected_small.png"))));
+			rdbtnVietnamese.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected_small.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 
 		JRadioButton rdbtnChinese = new JRadioButton("Chinese");
+		rdbtnChinese.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		rdbtnChinese.setBounds(6, 44, 121, 23);
 		panel_languages.add(rdbtnChinese);
 		rdbtnChinese.setActionCommand("Chinese");
+		try {
+			rdbtnChinese.setIcon(
+					new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected_small.png"))));
+			rdbtnChinese.setSelectedIcon(new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_selected_small.png"))));
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		ButtonGroup groupLanguages = new ButtonGroup();
 		groupLanguages.add(rdbtnVietnamese);
 		groupLanguages.add(rdbtnChinese);
@@ -343,7 +500,7 @@ public class DownloadApplication {
 		try {
 			btnCloseImage = ImageIO.read(this.getClass().getResource("/resources/button_close.png"));
 			JButton btnClose_Bilingual = new JButton(new ImageIcon(btnCloseImage));
-			btnClose_Bilingual.setBounds(20, 288, 119, 55);
+			btnClose_Bilingual.setBounds(20, 342, 119, 55);
 			btnClose_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnClose_Bilingual.setContentAreaFilled(false);
 			panel.add(btnClose_Bilingual);
@@ -364,7 +521,7 @@ public class DownloadApplication {
 		try {
 			btnCancelImage = ImageIO.read(this.getClass().getResource("/resources/button_cancel.png"));
 			JButton btnCancel_Bilingual = new JButton(new ImageIcon(btnCancelImage));
-			btnCancel_Bilingual.setBounds(194, 288, 119, 50);
+			btnCancel_Bilingual.setBounds(222, 342, 119, 50);
 			btnCancel_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnCancel_Bilingual.setContentAreaFilled(false);
 			panel.add(btnCancel_Bilingual);
@@ -381,11 +538,11 @@ public class DownloadApplication {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		try {
 			btnNextImage = ImageIO.read(this.getClass().getResource("/resources/button_next.png"));
 			JButton btnNext_Bilingual = new JButton(new ImageIcon(btnNextImage));
-			btnNext_Bilingual.setBounds(417, 288, 100, 50);
+			btnNext_Bilingual.setBounds(414, 342, 119, 50);
 			btnNext_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnNext_Bilingual.setContentAreaFilled(false);
 			panel.add(btnNext_Bilingual);
@@ -412,17 +569,15 @@ public class DownloadApplication {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		// Add all radio button into one group to make sure only select one
 		// radio button in group in one time
-
-		
 
 		frmDownloadApplication.setBackground(SystemColor.textHighlight);
 		frmDownloadApplication.setTitle("Download Application");
 		URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
 		frmDownloadApplication.setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
-		frmDownloadApplication.setBounds(100, 100, 644, 424);
+		frmDownloadApplication.setBounds(100, 100, 644, 456);
 		frmDownloadApplication.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 }
