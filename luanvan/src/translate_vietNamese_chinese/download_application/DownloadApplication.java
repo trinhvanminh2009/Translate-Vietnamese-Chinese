@@ -211,9 +211,9 @@ public class DownloadApplication {
 		lblStatus_Bilingual.setVisible(false);
 		
 		
-		JRadioButton rdbtnVietnamPlus = new JRadioButton("http://www.vietnamplus.vn/");
+		JRadioButton rdbtnVietnamPlus = new JRadioButton("http://www.vietnamplus.vn");
 		rdbtnVietnamPlus.setBounds(20, 44, 242, 23);
-		rdbtnVietnamPlus.setActionCommand("http://www.vietnamplus.vn/");
+		rdbtnVietnamPlus.setActionCommand("http://www.vietnamplus.vn");
 		panel.add(rdbtnVietnamPlus);
 		
 		

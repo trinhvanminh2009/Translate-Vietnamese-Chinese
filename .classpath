@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="luanvan/src"/>
-	<classpathentry kind="lib" path="luanvan/jsoup-1.10.2.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/json.jar"/>
+	<classpathentry exported="true" kind="lib" path="luanvan/jsoup-1.10.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc4.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/jdbc-local-1.0.0.final-sources.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc41.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc42.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/jdbc-local-1.0.0.final-sources.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/json.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/sqljdbc.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/sqljdbc41.jar"/>
+	<classpathentry kind="lib" path="G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/sqljdbc42.jar"/>
 	<classpathentry kind="output" path="luanvan/build/classes"/>
 </classpath>
