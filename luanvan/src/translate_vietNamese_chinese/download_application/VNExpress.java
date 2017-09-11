@@ -335,7 +335,7 @@ public class VNExpress {
 
             Elements div = doc1.select("section.container section.sidebar_1 > article.list_news");
             if (div.isEmpty() || !originalUrl.equals(page)) {
-                System.out.println(div.isEmpty()+" "+!originalUrl.equals(page));
+                //System.out.println(div.isEmpty()+" "+!originalUrl.equals(page));
                 return false;
             }
 
@@ -431,7 +431,8 @@ public class VNExpress {
 
         VNExpress v = new VNExpress();
         v.init("https://vnexpress.net/tin-tuc/thoi-su");
-        System.out.println(v.getMaxPageNumber());
+        //System.out.println(v.getMaxPageNumber());
+        System.out.println(v.checkValidLink(3213));
     }
 
 }

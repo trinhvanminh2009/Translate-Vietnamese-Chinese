@@ -13,6 +13,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -25,6 +26,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
+
+import translate_vietNamese_chinese.download_application.designer.Designer;
+
 import java.awt.Window.Type;
 import java.awt.SystemColor;
 
@@ -201,7 +205,6 @@ public class DownloadApplication {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//For many times use
 		BufferedImage btnNextImage;
 		try {
 			btnNextImage = ImageIO.read(this.getClass().getResource("/resources/button_resume.png"));
@@ -382,7 +385,7 @@ public class DownloadApplication {
 		try {
 			btnNextImage = ImageIO.read(this.getClass().getResource("/resources/button_next.png"));
 			JButton btnNext_Bilingual = new JButton(new ImageIcon(btnNextImage));
-			btnNext_Bilingual.setBounds(417, 288, 110, 50);
+			btnNext_Bilingual.setBounds(417, 288, 100, 50);
 			btnNext_Bilingual.setBorder(BorderFactory.createEmptyBorder());
 			btnNext_Bilingual.setContentAreaFilled(false);
 			panel.add(btnNext_Bilingual);
