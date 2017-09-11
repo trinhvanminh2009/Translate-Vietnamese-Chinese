@@ -3,12 +3,12 @@
 	<classpathentry kind="src" path="luanvan/src"/>
 	<classpathentry exported="true" kind="lib" path="luanvan/jsoup-1.10.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/jdbc-local-1.0.0.final-sources.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/json.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/jxl-2.6.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc4.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc41.jar"/>
-	<classpathentry kind="lib" path="D:/Dowloads/luanvan/luanvan/sqljdbc42.jar"/>
+	<classpathentry kind="lib" path="luanvan/jdbc-local-1.0.0.final-sources.jar"/>
+	<classpathentry kind="lib" path="luanvan/json.jar"/>
+	<classpathentry kind="lib" path="luanvan/jxl-2.6.jar"/>
+	<classpathentry kind="lib" path="luanvan/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="luanvan/sqljdbc.jar"/>
+	<classpathentry kind="lib" path="luanvan/sqljdbc41.jar"/>
+	<classpathentry kind="lib" path="luanvan/sqljdbc42.jar"/>
 	<classpathentry kind="output" path="luanvan/build/classes"/>
 </classpath>
