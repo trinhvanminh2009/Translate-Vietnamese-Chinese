@@ -51,6 +51,7 @@ public class SelectContent extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblStatus;
+	private JLabel lblStatusLanguage;
 	private ArrayList<ScrapingThread> threadList = new ArrayList<>();
 	public static boolean resume = false;
 	public static boolean stopped = true;
@@ -84,7 +85,7 @@ public class SelectContent extends JFrame {
 	private void showDialogPause() {
 		URL urlImageIcon = SelectContent.class.getResource("/resources/downloading.gif");
 		ImageIcon icon = new ImageIcon(urlImageIcon);
-		JOptionPane jOptionPane = new JOptionPane();
+		
 	
 		Runnable runnableStopDownload = new Runnable() {
 
@@ -95,16 +96,21 @@ public class SelectContent extends JFrame {
 			}
 		};
 		Thread threadStopDownload = new Thread(runnableStopDownload);
-
-		threadStopDownload.start();
-		if (threadStopDownload.isAlive()) {
-			jOptionPane.showMessageDialog(null,
-					"Threads are stopping, please wait! \n " + "Please waiting for this dialog auto close. \n"
-							+ "Do not stop program anyway, Data may be lost.",
-					"Stopping", JOptionPane.WARNING_MESSAGE, icon);
-	
-		} else {
+		if(stopped == true)
+		{
+			lblStatusLanguage.setVisible(false);
 		}
+		else{
+			
+			threadStopDownload.start();
+		}
+		/*JOptionPane.showMessageDialog(null,
+				"Threads are stopping, please wait! \n " + "Please waiting for this dialog auto close. \n"
+						+ "Do not stop program anyway, Data may be lost.",
+				"Stopping", JOptionPane.WARNING_MESSAGE, icon);
+		JOptionPane pane = new JOptionPane("Threads are stopping, please wait! \n " + "Please waiting for this dialog auto close. \n"
+				+ "Do not stop program anyway, Data may be lost.");*/
+		
 	}
 
 	/**
@@ -144,9 +150,9 @@ public class SelectContent extends JFrame {
 		lblStatus.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		lblStatus.setBounds(15, 5, 509, 22);
 		contentPane.add(lblStatus);
-
-		JLabel lblStatusLanguage = new JLabel("Status");
-
+		
+		lblStatusLanguage = new JLabel("All threads downloading are stopping. Please wait until this status auto disappear!");
+		lblStatusLanguage.setVisible(false);
 		lblStatusLanguage.setForeground(Color.MAGENTA);
 		lblStatusLanguage.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
 		lblStatusLanguage.setBounds(15, 38, 464, 14);
@@ -244,21 +250,30 @@ public class SelectContent extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (resume == false) {
-					showDialogPause();
-
+					URL urlImageIcon = SelectContent.class.getResource("/resources/downloading.gif");
+					ImageIcon icon = new ImageIcon(urlImageIcon);
+					lblStatusLanguage.setIcon(icon);
+					lblStatusLanguage.setVisible(true);
+					pauseDownload();
 					stopped = true;
 					resume = true;
 					btnPause.setLabel("Resume");
+					//lblStatusLanguage.setVisible(false);
 					Image iconPause;
 					try {
 						iconPause = ImageIO.read(this.getClass().getResource("/resources/ic_resume.png"));
 						btnPause.setIcon(new ImageIcon(iconPause));
+						
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					list.setEnabled(true);
 				} else {
+					URL urlImageIcon = SelectContent.class.getResource("/resources/downloading.gif");
+					ImageIcon icon = new ImageIcon(urlImageIcon);
+					lblStatusLanguage.setIcon(icon);
+					lblStatusLanguage.setVisible(true);
 					btnPause.setLabel("Pause");
 					Image iconPause;
 					try {
@@ -408,7 +423,7 @@ public class SelectContent extends JFrame {
 
 	public void pauseDownload() {
 		System.out.println("Stopping---------------------");
-
+		
 		CountDownLatch latch = new CountDownLatch(threadList.size());
 		for (int i = 0; i < threadList.size(); i++) {
 			new RequestStopThread(threadList.get(i), latch).start();
