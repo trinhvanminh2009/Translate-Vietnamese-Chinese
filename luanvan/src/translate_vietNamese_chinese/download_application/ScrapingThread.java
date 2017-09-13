@@ -94,7 +94,7 @@ public class ScrapingThread extends Thread {
             Object object = ctor.newInstance();
             Method scrap = c.getDeclaredMethod("scrap", int.class);
             Method getArticleSize = c.getDeclaredMethod("getArticleSize");
-            //Method getMaxPageNumber = c.getDeclaredMethod("getMaxPageNumber");
+            Method getMaxPageNumber = c.getDeclaredMethod("getMaxPageNumber");
 
             if (articleSize == 0) {
                 Method init = c.getDeclaredMethod("init", String.class);
@@ -103,8 +103,11 @@ public class ScrapingThread extends Thread {
                 Method init = c.getDeclaredMethod("init", String.class, int.class);
                 init.invoke(object, pageName, articleSize);
             }
-           // maxPageNumber = (int) getMaxPageNumber.invoke(object);
+            maxPageNumber = (int) getMaxPageNumber.invoke(object);
             for (int i = currentPage;; i++) {
+                if(i>maxPageNumber){
+                    break;
+                }
                 Object value = scrap.invoke(object, i);
                 currentPage = i;
                 if ((boolean) value == false) {
@@ -126,23 +129,23 @@ public class ScrapingThread extends Thread {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        ScrapingThread t = new ScrapingThread("downloadapplication.VNExpress", "http://vnexpress.net/tin-tuc/thoi-su");
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(60000);
-                    System.out.println(".run()");
-
-                    t.requestStop();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }).start();
-        t.start();
-        System.out.println(t.className + " " + t.currentPage);
+//        ScrapingThread t = new ScrapingThread("downloadapplication.VNExpress", "http://vnexpress.net/tin-tuc/thoi-su");
+//
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(60000);
+//                    System.out.println(".run()");
+//
+//                    t.requestStop();
+//                } catch (InterruptedException ex) {
+//                    Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }).start();
+//        t.start();
+//        System.out.println(t.className + " " + t.currentPage);
 
     }
 }
