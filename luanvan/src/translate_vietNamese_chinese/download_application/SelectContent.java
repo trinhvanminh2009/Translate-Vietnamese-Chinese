@@ -316,10 +316,10 @@ public class SelectContent extends JFrame {
                     for (int i = 0; i < list.getModel().getSize(); i++) {
                         CheckboxListItem checkbox = (CheckboxListItem) list.getModel().getElementAt(i);
                         if (checkbox.isSelected()) {
-                            st = new ScrapingThread(PACKAGE + "." + getClassName(page), checkbox.getPageName());
+                            st = new ScrapingThread(PACKAGE + "." + getClassNameFromWebName(page), checkbox.getPageName());
                             st.start();
                             threadList.add(st);
-                            System.out.println(PACKAGE + "." + getClassName(page) + "  " + checkbox.getPageName());
+                            System.out.println(PACKAGE + "." + getClassNameFromWebName(page) + "  " + checkbox.getPageName());
                         }
                     }
                     btnDownload.setEnabled(false);
@@ -393,13 +393,13 @@ public class SelectContent extends JFrame {
             System.out.println("Resume---------------------");
 
             ScrapingThread st;
-            try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG+getClassName(pageName)+".txt"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"))) {
                 String className = br.readLine();
                 String line = br.readLine();
                 while (line != null) {
                     System.out.println(line);
                     String[] arr = line.split(" ");
-                    st = new ScrapingThread(GetPackageNameClass.getPackageName()+"."+getClassName(pageName), arr[0], Integer.parseInt(arr[1]) + 1, Integer.parseInt(arr[2]));
+                    st = new ScrapingThread(GetPackageNameClass.getPackageName() + "." + className, arr[0], Integer.parseInt(arr[1]) + 1, Integer.parseInt(arr[2]));
                     st.start();
                     threadList.add(st);
                     line = br.readLine();
@@ -433,9 +433,9 @@ public class SelectContent extends JFrame {
             System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " "
                     + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize());
         }
-        
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassName(pageName) + ".txt"), "utf-8"))) {
-            writer.write(getClassName(pageName) + "\n");
+
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"), "utf-8"))) {
+            writer.write(getClassNameFromWebName(pageName) + "\n");
             for (ScrapingThread scrapingThread : threadList) {
                 if (scrapingThread.getStateDownload() == false) {
                     writer.write(scrapingThread.getPageName() + " "
@@ -450,24 +450,33 @@ public class SelectContent extends JFrame {
         threadList.clear();
     }
 
-    public String getClassName(String webName) {
+    public static String getClassNameFromWebName(String webName) {
         String result = null;
-        switch (webName) {
-            case "https://vnexpress.net":
-                result = "VNExpress";
-                break;
-            case "http://www.vietnamplus.vn":
-                if (language == "Vietnamese") {
-                    result = "VietNamPlusVN";
-                } else {
-///////////////////////////////////////////////
-                }
-                break;
+        ArrayList<String[]> arr = new ArrayList<>();
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN"});
+        for (String[] strings : arr) {
+            if (strings[0].equals(webName)) {
+                result = strings[1];
+            }
         }
         return result;
     }
-    public void makeDirectoryDownloadLog(){
-      File file = new File(DOWNLOAD_LOG);
+      public static String getWebNameFromClassName(String className) {
+        String result = null;
+        ArrayList<String[]> arr = new ArrayList<>();
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN"});
+        for (String[] strings : arr) {
+            if (strings[1].equals(className)) {
+                result = strings[0];
+            }
+        }
+        return result;
+    }
+
+    public void makeDirectoryDownloadLog() {
+        File file = new File(DOWNLOAD_LOG);
         if (!file.exists()) {
             if (file.mkdirs()) {
                 System.out.println(DOWNLOAD_LOG + " Directory is created!");
@@ -588,9 +597,10 @@ class CheckboxListRenderer extends JCheckBox implements ListCellRenderer<Checkbo
         return this;
     }
 }
-class GetPackageNameClass{
 
-    public static String getPackageName(){
+class GetPackageNameClass {
+
+    public static String getPackageName() {
         return new GetPackageNameClass().getClass().getPackage().getName();
     }
 }
