@@ -106,6 +106,7 @@ public class ScrapingThread extends Thread {
             maxPageNumber = (int) getMaxPageNumber.invoke(object);
             for (int i = currentPage;; i++) {
                 if(i>maxPageNumber){
+                    downloadDone = true;
                     break;
                 }
                 Object value = scrap.invoke(object, i);
