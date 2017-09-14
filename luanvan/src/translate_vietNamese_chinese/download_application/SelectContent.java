@@ -62,6 +62,7 @@ public class SelectContent extends JFrame {
     private ArrayList<String[]> arraySubject;
     private JProgressBar jpb;
     private String language = "";
+    private String className = "";
     private String pageName = "";
     private JButton btnPause;
 
@@ -158,12 +159,6 @@ public class SelectContent extends JFrame {
         lblStatusLanguage.setBounds(15, 38, 464, 14);
         contentPane.add(lblStatusLanguage);
 
-        if (language.equals("")) {
-            lblStatus.setText("Current page prepare download: " + page);
-        } else {
-            lblStatus.setText("Current page prepare download: " + page);
-            lblStatusLanguage.setText("Current language is: " + language);
-        }
         ////////////////////////////////////
         jpb = new JProgressBar(0, 100);
         jpb.setBounds(50, 330, 400, 15);
@@ -201,6 +196,7 @@ public class SelectContent extends JFrame {
         btnDownload.setLabel("Download");
 
         if (resumeable == true) {
+            this.language=getLanguageFromWebName(pageName);
             lblStatus.setText("Resume download ....");
             lblStatusLanguage.setText("");
             resume = true;
@@ -208,7 +204,8 @@ public class SelectContent extends JFrame {
             resumeDownload();
             arr = new CheckboxListItem[threadList.size()];
             for (int i = 0; i < threadList.size(); i++) {
-                arr[i] = new CheckboxListItem(threadList.get(i).getPageName(), threadList.get(i).getPageName());
+             
+                arr[i] = new CheckboxListItem(getSubjectFromPageName(page,threadList.get(i).getPageName()), threadList.get(i).getPageName());
                 arr[i].setSelected(true);
             }
             resume = false;
@@ -223,7 +220,13 @@ public class SelectContent extends JFrame {
                 arr[i] = new CheckboxListItem(tmp[0], tmp[1]);
             }
         }
-
+        if (language.equals("")) {
+            lblStatus.setText("Current page prepare download: " + page);
+        } else {
+            lblStatus.setText("Current page prepare download: " + page);
+            lblStatusLanguage.setText("Current language is: " + language);
+        }
+        
         list = new JList<CheckboxListItem>(arr);
         list.setCellRenderer(new CheckboxListRenderer());
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -394,7 +397,7 @@ public class SelectContent extends JFrame {
 
             ScrapingThread st;
             try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"))) {
-                String className = br.readLine();
+                className = br.readLine();
                 String line = br.readLine();
                 while (line != null) {
                     System.out.println(line);
@@ -453,8 +456,8 @@ public class SelectContent extends JFrame {
     public static String getClassNameFromWebName(String webName) {
         String result = null;
         ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN"});
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", ""});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
         for (String[] strings : arr) {
             if (strings[0].equals(webName)) {
                 result = strings[1];
@@ -462,14 +465,28 @@ public class SelectContent extends JFrame {
         }
         return result;
     }
-      public static String getWebNameFromClassName(String className) {
+
+    public static String getWebNameFromClassName(String className) {
         String result = null;
         ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN"});
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", ""});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
         for (String[] strings : arr) {
             if (strings[1].equals(className)) {
                 result = strings[0];
+            }
+        }
+        return result;
+    }
+
+    public static String getLanguageFromWebName(String webName) {
+        String result = "";
+        ArrayList<String[]> arr = new ArrayList<>();
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", ""});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        for (String[] strings : arr) {
+            if (strings[0].equals(webName)) {
+                result = strings[2];
             }
         }
         return result;
@@ -484,6 +501,78 @@ public class SelectContent extends JFrame {
                 System.out.println(DOWNLOAD_LOG + " Failed to create directory!");
             }
         }
+    }
+
+    public String getSubjectFromPageName(String webName, String pageName) {
+        String result = "";
+        ArrayList<String[]> arr = new ArrayList<>();
+        switch (webName) {
+            case "https://vnexpress.net":
+                arr.add(new String[]{"Thời sự", "https://vnexpress.net/tin-tuc/thoi-su"});
+                arr.add(new String[]{"Góc nhìn", "https://vnexpress.net/tin-tuc/goc-nhin"});
+                arr.add(new String[]{"Thế giới", "https://vnexpress.net/tin-tuc/the-gioi"});
+                arr.add(new String[]{"Kinh doanh", "https://kinhdoanh.vnexpress.net"});
+                arr.add(new String[]{"Giải trí", "https://giaitri.vnexpress.net"});
+                arr.add(new String[]{"Thể thao", "https://thethao.vnexpress.net"});
+                arr.add(new String[]{"Pháp luật", "https://vnexpress.net/tin-tuc/phap-luat"});
+                arr.add(new String[]{"Giáo dục", "https://vnexpress.net/tin-tuc/giao-duc"});
+                arr.add(new String[]{"Sức khỏe", "https://suckhoe.vnexpress.net/tin-tuc/suc-khoe"});
+                arr.add(new String[]{"Gia đình", "https://giadinh.vnexpress.net"});
+                arr.add(new String[]{"Du lịch", "https://dulich.vnexpress.net"});
+                arr.add(new String[]{"Khoa học", "https://vnexpress.net/tin-tuc/khoa-hoc"});
+                arr.add(new String[]{"Số hóa", "https://sohoa.vnexpress.net"});
+                arr.add(new String[]{"Xe", "https://vnexpress.net/tin-tuc/oto-xe-may"});
+                arr.add(new String[]{"Cộng đồng", "https://vnexpress.net/tin-tuc/cong-dong"});
+                arr.add(new String[]{"Tâm sự", "https://vnexpress.net/tin-tuc/tam-su"});
+                arr.add(new String[]{"Cười", "https://vnexpress.net/tin-tuc/cuoi"});
+                
+                for (String[] strings : arr) {
+                    if(strings[1].equals(pageName)){
+                        return strings[0];
+                    }
+                }
+                
+                break;
+            case "http://www.vietnamplus.vn":
+                if (language == "Vietnamese") {
+                    arr.add(new String[]{"Kinh tế", "http://www.vietnamplus.vn/kinhte.vnp"});
+                    arr.add(new String[]{"Chính trị", "http://www.vietnamplus.vn/chinhtri.vnp"});
+                    arr.add(new String[]{"Xã hội", "http://www.vietnamplus.vn/xahoi.vnp"});
+                    arr.add(new String[]{"Thế giới - ASEAN", "http://www.vietnamplus.vn/thegioi/asean.vnp"});
+                    arr.add(new String[]{"Thế giới - Châu Á-TBD", "http://www.vietnamplus.vn/thegioi/chaua-tbd.vnp"});
+                    arr.add(new String[]{"Thế giới - Trung Đông", "http://www.vietnamplus.vn/thegioi/trungdong.vnp"});
+                    arr.add(new String[]{"Thế giới - Châu Âu", "http://www.vietnamplus.vn/thegioi/chauau.vnp"});
+                    arr.add(new String[]{"Thế giới - Châu Mỹ", "http://www.vietnamplus.vn/thegioi/chaumy.vnp"});
+                    arr.add(new String[]{"Thế giới - Châu Phi", "http://www.vietnamplus.vn/thegioi/chauphi.vnp"});
+                    arr.add(new String[]{"Đời sống", "http://www.vietnamplus.vn/doisong.vnp"});
+                    arr.add(new String[]{"Văn hóa", "http://www.vietnamplus.vn/vanhoa.vnp"});
+                    arr.add(new String[]{"Thể thao - Bóng đá", "http://www.vietnamplus.vn/thethao/bongda.vnp"});
+                    arr.add(new String[]{"Thể thao - Quần vợt", "http://www.vietnamplus.vn/thethao/quanvot.vnp"});
+                    arr.add(new String[]{"Thể thao - Sea Games 29", "http://www.vietnamplus.vn/thethao/seagames29.vnp"});
+                    arr.add(new String[]{"Khoa học", "http://www.vietnamplus.vn/khoahoc.vnp"});
+                    arr.add(new String[]{"Công nghệ", "http://www.vietnamplus.vn/congnghe.vnp"});
+                    arr.add(new String[]{"Chuyện lạ", "http://www.vietnamplus.vn/chuyenla.vnp"});
+                } else {
+                    arr.add(new String[]{"Politics", "http://zh.vietnamplus.vn/politics.vnp"});
+                    arr.add(new String[]{"World", "http://zh.vietnamplus.vn/world.vnp"});
+                    arr.add(new String[]{"Business", "http://zh.vietnamplus.vn/business.vnp"});
+                    arr.add(new String[]{"Social", "http://zh.vietnamplus.vn/social.vnp"});
+                    arr.add(new String[]{"Culture", "http://zh.vietnamplus.vn/culture.vnp"});
+                    arr.add(new String[]{"Sports", "http://zh.vietnamplus.vn/sports.vnp"});
+                    arr.add(new String[]{"Technology", "http://zh.vietnamplus.vn/technology.vnp"});
+                    arr.add(new String[]{"Environment", "http://zh.vietnamplus.vn/environment.vnp"});
+                    arr.add(new String[]{"Travel", "http://zh.vietnamplus.vn/Travel.vnp"});
+                }
+                
+                 for (String[] strings : arr) {
+                    if(strings[1].equals(pageName)){
+                        return strings[0];
+                    }
+                }
+
+                break;
+        }
+        return result;
     }
 
     public ArrayList<String[]> getListSubject(String webName) {
