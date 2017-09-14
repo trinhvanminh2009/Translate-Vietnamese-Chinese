@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTabbedPane;
 import javax.swing.border.TitledBorder;
+import javax.swing.JComboBox;
 
 public class DownloadApplication {
 
@@ -202,7 +203,7 @@ public class DownloadApplication {
 		try {
 			btnCancelImage = ImageIO.read(this.getClass().getResource("/resources/button_cancel.png"));
 			JButton btnCancel_Monolingual = new JButton(new ImageIcon(btnCancelImage));
-			btnCancel_Monolingual.setBounds(6, 277, 135, 50);
+			btnCancel_Monolingual.setBounds(207, 277, 135, 50);
 			panel_Monolingual.add(btnCancel_Monolingual);
 			btnCancel_Monolingual.setBorder(BorderFactory.createEmptyBorder());
 			btnCancel_Monolingual.setContentAreaFilled(false);
@@ -226,27 +227,21 @@ public class DownloadApplication {
 		lbStatus_Monolingual.setForeground(Color.RED);
 		lbStatus_Monolingual.setBounds(27, 11, 374, 23);
 		panel_Monolingual.add(lbStatus_Monolingual);
+		lbStatus_Monolingual.setVisible(false);
 
 		try {
-			BufferedImage btnResumeImage = ImageIO.read(this.getClass().getResource("/resources/button_resume.png"));
-			JButton btnResume_Monolingual = new JButton(new ImageIcon(btnResumeImage));
-			btnResume_Monolingual.setBorder(BorderFactory.createEmptyBorder());
-			btnResume_Monolingual.setBounds(213, 277, 135, 50);
-			btnResume_Monolingual.setContentAreaFilled(false);
-			panel_Monolingual.add(btnResume_Monolingual);
-			lbStatus_Monolingual.setVisible(false);
-			if (SelectContent.checkResumeable()) {
-				btnResume_Monolingual.setEnabled(true);
-			} else {
-				btnResume_Monolingual.setEnabled(false);
-			}
-			btnResume_Monolingual.addActionListener(new ActionListener() {
+			BufferedImage btnCloseImage = ImageIO.read(this.getClass().getResource("/resources/button_close.png"));
+			JButton btnClose_Monolingual = new JButton(new ImageIcon(btnCloseImage));
+			btnClose_Monolingual.setBorder(BorderFactory.createEmptyBorder());
+			btnClose_Monolingual.setBounds(10, 277, 135, 50);
+			btnClose_Monolingual.setContentAreaFilled(false);
+			panel_Monolingual.add(btnClose_Monolingual);
+			
+			btnClose_Monolingual.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					SelectContent selectContent = new SelectContent("", "", true);
-					selectContent.show();
-					selectContent.setLocationRelativeTo(null);
+					System.exit(0);
 				}
 			});
 		} catch (IOException e1) {
@@ -570,6 +565,32 @@ public class DownloadApplication {
 			e1.printStackTrace();
 		}
 
+		///////////////////////////////////////////////////// Bilingual
+		///////////////////////////////////////////////////// handle///////////////////////////////////////////////////////////////
+		JPanel paneResume = new JPanel();
+		tabbedPane.addTab("Resume", null, paneResume, null);
+		paneResume.setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		comboBox.setBounds(109, 52, 381, 35);
+		paneResume.add(comboBox);
+		comboBox.addItem("http://www.vietnamplus.vn");
+		BufferedImage btnResumeImage;
+		try {
+			btnResumeImage = ImageIO.read(this.getClass().getResource("/resources/button_resume.png"));
+			JButton btnResume = new JButton(new ImageIcon(btnResumeImage));
+			btnResume.setBorder(BorderFactory.createEmptyBorder());
+			btnResume.setBounds(187, 124, 135, 50);
+			btnResume.setContentAreaFilled(false);
+			paneResume.add(btnResume);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	
+	
 		// Add all radio button into one group to make sure only select one
 		// radio button in group in one time
 
