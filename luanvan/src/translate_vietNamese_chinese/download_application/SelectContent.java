@@ -35,7 +35,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -60,11 +59,12 @@ public class SelectContent extends JFrame {
     private JList<CheckboxListItem> list;
     private CheckboxListItem[] arr = null;
     private ArrayList<String[]> arraySubject;
-    private JProgressBar jpb;
+    private static JProgressBar jpb;
     private String language = "";
     private String className = "";
     private String pageName = "";
     private JButton btnPause;
+    private static boolean downloadDone = false;
 
     /**
      * Launch the application.
@@ -136,7 +136,7 @@ public class SelectContent extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if (stopped == false) {
+                if (stopped == false&&downloadDone==false) {
                     JOptionPane.showMessageDialog(null, "You cannot close this window");
                 } else {
                     System.exit(0);
@@ -195,17 +195,19 @@ public class SelectContent extends JFrame {
         btnDownload.setBounds(10, 360, 150, 50);
         btnDownload.setLabel("Download");
 
+        updatePercentDownload();
         if (resumeable == true) {
-            this.language=getLanguageFromWebName(pageName);
+            this.language = getLanguageFromWebName(pageName);
             lblStatus.setText("Resume download ....");
             lblStatusLanguage.setText("");
             resume = true;
             btnPause.setEnabled(true);
             resumeDownload();
+
             arr = new CheckboxListItem[threadList.size()];
             for (int i = 0; i < threadList.size(); i++) {
-             
-                arr[i] = new CheckboxListItem(getSubjectFromPageName(page,threadList.get(i).getPageName()), threadList.get(i).getPageName());
+
+                arr[i] = new CheckboxListItem(getSubjectFromPageName(page, threadList.get(i).getPageName()), threadList.get(i).getPageName());
                 arr[i].setSelected(true);
             }
             resume = false;
@@ -226,7 +228,7 @@ public class SelectContent extends JFrame {
             lblStatus.setText("Current page prepare download: " + page);
             lblStatusLanguage.setText("Current language is: " + language);
         }
-        
+
         list = new JList<CheckboxListItem>(arr);
         list.setCellRenderer(new CheckboxListRenderer());
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -387,7 +389,7 @@ public class SelectContent extends JFrame {
         }
     }
 
-    public void setProgressBarValue(int value) {
+    public static void setProgressBarValue(int value) {
         jpb.setValue(value);
     }
 
@@ -436,20 +438,22 @@ public class SelectContent extends JFrame {
             System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " "
                     + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize());
         }
-
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"), "utf-8"))) {
-            writer.write(getClassNameFromWebName(pageName) + "\n");
-            for (ScrapingThread scrapingThread : threadList) {
-                if (scrapingThread.getStateDownload() == false) {
-                    writer.write(scrapingThread.getPageName() + " "
-                            + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize() + "\n");
+        if (downloadDone == false) {
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"), "utf-8"))) {
+                writer.write(getClassNameFromWebName(pageName) + "\n");
+                for (ScrapingThread scrapingThread : threadList) {
+                    if (scrapingThread.getStateDownload() == false && scrapingThread.getArticleSize() > 0) {
+                        writer.write(scrapingThread.getPageName() + " "
+                                + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize() + "\n");
+                    }
                 }
+            } catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         threadList.clear();
     }
 
@@ -503,6 +507,52 @@ public class SelectContent extends JFrame {
         }
     }
 
+    public void updatePercentDownload() {
+        Thread th = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+
+                    int per = 0;
+                    while (per != 100 || downloadDone == false) {
+                        per = 0;
+                        Thread.sleep(4000);
+                        for (ScrapingThread scrapingThread : threadList) {
+                            per += scrapingThread.getDownloadPercent();
+                        }
+                        if (threadList.isEmpty()) {
+                            per = 0;
+                        } else {
+                            per = per / threadList.size();
+                        }
+                        //System.out.println("per" + per);
+                        setProgressBarValue(per);
+
+                        if (per >= 95) {
+                            downloadDone = true;
+                            for (ScrapingThread scrapingThread : threadList) {
+                                if (scrapingThread.getStateDownload() == false) {
+                                    downloadDone = false;
+                                    break;
+                                }
+                            }
+
+                            if (downloadDone == true) {
+                                JOptionPane.showMessageDialog(null, "Download Complete!");
+                                btnPause.setEnabled(false);
+                            }
+                        }
+
+                    }
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+        th.start();
+    }
+
     public String getSubjectFromPageName(String webName, String pageName) {
         String result = "";
         ArrayList<String[]> arr = new ArrayList<>();
@@ -525,13 +575,13 @@ public class SelectContent extends JFrame {
                 arr.add(new String[]{"Cộng đồng", "https://vnexpress.net/tin-tuc/cong-dong"});
                 arr.add(new String[]{"Tâm sự", "https://vnexpress.net/tin-tuc/tam-su"});
                 arr.add(new String[]{"Cười", "https://vnexpress.net/tin-tuc/cuoi"});
-                
+
                 for (String[] strings : arr) {
-                    if(strings[1].equals(pageName)){
+                    if (strings[1].equals(pageName)) {
                         return strings[0];
                     }
                 }
-                
+
                 break;
             case "http://www.vietnamplus.vn":
                 if (language == "Vietnamese") {
@@ -563,9 +613,9 @@ public class SelectContent extends JFrame {
                     arr.add(new String[]{"Environment", "http://zh.vietnamplus.vn/environment.vnp"});
                     arr.add(new String[]{"Travel", "http://zh.vietnamplus.vn/Travel.vnp"});
                 }
-                
-                 for (String[] strings : arr) {
-                    if(strings[1].equals(pageName)){
+
+                for (String[] strings : arr) {
+                    if (strings[1].equals(pageName)) {
                         return strings[0];
                     }
                 }
