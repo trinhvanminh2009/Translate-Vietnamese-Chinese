@@ -70,7 +70,11 @@ public class ScrapingThread extends Thread {
     }
 
     public int getDownloadPercent() {
-        return this.currentPage / this.maxPageNumber * 100;
+        if(this.maxPageNumber==0){
+            return 0;
+        }
+        System.out.println("current "+currentPage+" "+maxPageNumber);
+        return this.currentPage* 100 / this.maxPageNumber;
     }
 
     public void requestStop() {
