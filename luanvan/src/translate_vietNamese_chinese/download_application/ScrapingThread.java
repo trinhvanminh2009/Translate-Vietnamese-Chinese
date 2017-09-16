@@ -73,7 +73,6 @@ public class ScrapingThread extends Thread {
         if(this.maxPageNumber==0){
             return 0;
         }
-        System.out.println("current "+currentPage+" "+maxPageNumber);
         return this.currentPage* 100 / this.maxPageNumber;
     }
 

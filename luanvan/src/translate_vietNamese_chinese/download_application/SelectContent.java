@@ -64,6 +64,7 @@ public class SelectContent extends JFrame {
     private String className = "";
     private String pageName = "";
     private JButton btnPause;
+    private boolean btnPauseClickAble = true;
     private static boolean downloadDone = false;
 
     /**
@@ -73,7 +74,7 @@ public class SelectContent extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    SelectContent frame = new SelectContent("", "", false);
+                    SelectContent frame = new SelectContent("", "none", false, "");
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
 
@@ -117,15 +118,15 @@ public class SelectContent extends JFrame {
      */
     // res=resume
     @SuppressWarnings("deprecation")
-    public SelectContent(String page, String language, boolean resumeable) {
-        this.language = language;
+    public SelectContent(String page, String lan, boolean resumeable, String cName) {
+        this.language = lan;
         this.pageName = page;
         makeDirectoryDownloadLog();
         URL urlImageIcon = SelectContent.class.getResource("/resources/ic_download.png");
         setIconImage(Toolkit.getDefaultToolkit().getImage(urlImageIcon));
         setTitle("Download Application");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setBounds(100, 100, 632, 500);
+        setBounds(100, 100, 640, 500);
         contentPane = new JPanel();
         contentPane.setForeground(Color.CYAN);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -136,7 +137,7 @@ public class SelectContent extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if (stopped == false&&downloadDone==false) {
+                if (stopped == false && downloadDone == false) {
                     JOptionPane.showMessageDialog(null, "You cannot close this window");
                 } else {
                     System.exit(0);
@@ -197,13 +198,14 @@ public class SelectContent extends JFrame {
 
         updatePercentDownload();
         if (resumeable == true) {
-            this.language = getLanguageFromWebName(pageName);
+
             lblStatus.setText("Resume download ....");
             lblStatusLanguage.setText("");
             resume = true;
             btnPause.setEnabled(true);
-            resumeDownload();
-
+            className = cName;
+            resumeDownload(cName);
+            this.language = getLanguageFromClassName(className);
             arr = new CheckboxListItem[threadList.size()];
             for (int i = 0; i < threadList.size(); i++) {
 
@@ -214,6 +216,7 @@ public class SelectContent extends JFrame {
             stopped = false;
             btnDownload.setEnabled(false);
         } else {
+            className = getClassNameFromWebNameAndLanguage(pageName, language);
             arraySubject = getListSubject(page);
             arr = new CheckboxListItem[arraySubject.size()];
             String[] tmp;
@@ -257,23 +260,23 @@ public class SelectContent extends JFrame {
                 if (resume == false) {
                     URL urlImageIcon = SelectContent.class.getResource("/resources/downloading.gif");
                     ImageIcon icon = new ImageIcon(urlImageIcon);
+
+                    URL urlpauseIcon = SelectContent.class.getResource("/resources/ispause.gif");
+                    ImageIcon pauseIcon = new ImageIcon(urlpauseIcon);
+                    btnPause.setLabel("Pause...");
+                    btnPause.setEnabled(false);
+                    btnPause.setIcon(pauseIcon);
                     lblStatusLanguage.setIcon(icon);
                     lblStatusLanguage.setVisible(true);
-                    pauseDownload();
-                    stopped = true;
-                    resume = true;
-                    btnPause.setLabel("Resume");
-                    //lblStatusLanguage.setVisible(false);
-                    Image iconPause;
-                    try {
-                        iconPause = ImageIO.read(this.getClass().getResource("/resources/ic_resume.png"));
-                        btnPause.setIcon(new ImageIcon(iconPause));
 
-                    } catch (IOException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    list.setEnabled(true);
+                    Thread th = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            pauseDownload();
+                        }
+                    });
+                    th.start();
+
                 } else {
                     URL urlImageIcon = SelectContent.class.getResource("/resources/downloading.gif");
                     ImageIcon icon = new ImageIcon(urlImageIcon);
@@ -289,7 +292,7 @@ public class SelectContent extends JFrame {
                         e1.printStackTrace();
                     }
 
-                    resumeDownload();
+                    resumeDownload(className);
                     list.setEnabled(true);
                     for (int i = 0; i < list.getModel().getSize(); i++) {
                         list.getModel().getElementAt(i).setSelected(false);
@@ -321,10 +324,10 @@ public class SelectContent extends JFrame {
                     for (int i = 0; i < list.getModel().getSize(); i++) {
                         CheckboxListItem checkbox = (CheckboxListItem) list.getModel().getElementAt(i);
                         if (checkbox.isSelected()) {
-                            st = new ScrapingThread(PACKAGE + "." + getClassNameFromWebName(page), checkbox.getPageName());
+                            st = new ScrapingThread(PACKAGE + "." + getClassNameFromWebNameAndLanguage(page, language), checkbox.getPageName());
                             st.start();
                             threadList.add(st);
-                            System.out.println(PACKAGE + "." + getClassNameFromWebName(page) + "  " + checkbox.getPageName());
+                            System.out.println(PACKAGE + "." + getClassNameFromWebNameAndLanguage(pageName, language) + "  " + checkbox.getPageName());
                         }
                     }
                     btnDownload.setEnabled(false);
@@ -393,77 +396,100 @@ public class SelectContent extends JFrame {
         jpb.setValue(value);
     }
 
-    public void resumeDownload() {
-        if (resume == true) {
-            System.out.println("Resume---------------------");
-
-            ScrapingThread st;
-            try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"))) {
-                className = br.readLine();
-                String line = br.readLine();
-                while (line != null) {
-                    System.out.println(line);
-                    String[] arr = line.split(" ");
-                    st = new ScrapingThread(GetPackageNameClass.getPackageName() + "." + className, arr[0], Integer.parseInt(arr[1]) + 1, Integer.parseInt(arr[2]));
-                    st.start();
-                    threadList.add(st);
-                    line = br.readLine();
+    public void resumeDownload(String className) {
+        if (btnPauseClickAble == true) {
+            if (resume == true) {
+                btnPauseClickAble = false;
+                ScrapingThread st;
+                try (BufferedReader br = new BufferedReader(new FileReader(DOWNLOAD_LOG + className + ".txt"))) {
+                    String line = br.readLine();
+                    while (line != null) {
+                        System.out.println(line);
+                        String[] arr = line.split(" ");
+                        st = new ScrapingThread(GetPackageNameClass.getPackageName() + "." + className, arr[0], Integer.parseInt(arr[1]) + 1, Integer.parseInt(arr[2]));
+                        st.start();
+                        threadList.add(st);
+                        line = br.readLine();
+                    }
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                btnPauseClickAble = true;
             }
         }
+
     }
 
     public void pauseDownload() {
-        System.out.println("Stopping---------------------");
+        if (btnPauseClickAble == true) {
+            btnPauseClickAble = false;
+            System.out.println("Stopping---------------------");
 
-        CountDownLatch latch = new CountDownLatch(threadList.size());
-        for (int i = 0; i < threadList.size(); i++) {
-            new RequestStopThread(threadList.get(i), latch).start();
-        }
-
-        try {
-            latch.await();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        for (ScrapingThread scrapingThread : threadList) {
-            if (scrapingThread.getStateDownload() == true) {
-                System.out.println("DONE " + scrapingThread.getName());
+            CountDownLatch latch = new CountDownLatch(threadList.size());
+            for (int i = 0; i < threadList.size(); i++) {
+                new RequestStopThread(threadList.get(i), latch).start();
             }
-            System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " "
-                    + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize());
-        }
-        if (downloadDone == false) {
-            try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebName(pageName) + ".txt"), "utf-8"))) {
-                writer.write(getClassNameFromWebName(pageName) + "\n");
-                for (ScrapingThread scrapingThread : threadList) {
-                    if (scrapingThread.getStateDownload() == false && scrapingThread.getArticleSize() > 0) {
-                        writer.write(scrapingThread.getPageName() + " "
-                                + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize() + "\n");
-                    }
+
+            try {
+                latch.await();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            for (ScrapingThread scrapingThread : threadList) {
+                if (scrapingThread.getStateDownload() == true) {
+                    System.out.println("DONE " + scrapingThread.getName());
                 }
-            } catch (UnsupportedEncodingException ex) {
-                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " "
+                        + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize());
             }
+            if (downloadDone == false) {
+                try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebNameAndLanguage(pageName, language) + ".txt"), "utf-8"))) {
+                    for (ScrapingThread scrapingThread : threadList) {
+                        if (scrapingThread.getStateDownload() == false && scrapingThread.getArticleSize() > 0) {
+                            writer.write(scrapingThread.getPageName() + " "
+                                    + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize() + "\n");
+                        }
+                    }
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            threadList.clear();
+            stopped = true;
+            btnPause.setEnabled(true);
+            resume = true;
+            btnPause.setLabel("Resume");
+            //lblStatusLanguage.setVisible(false);
+            Image iconPause;
+            try {
+                iconPause = ImageIO.read(this.getClass().getResource("/resources/ic_resume.png"));
+                btnPause.setIcon(new ImageIcon(iconPause));
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+            list.setEnabled(true);
+            btnPauseClickAble = true;
         }
 
-        threadList.clear();
     }
 
-    public static String getClassNameFromWebName(String webName) {
+    ////////////////////
+    public static String getClassNameFromWebNameAndLanguage(String webName, String language) {
         String result = null;
         ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", ""});
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
         arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
         for (String[] strings : arr) {
-            if (strings[0].equals(webName)) {
+            if (strings[0].equals(webName) && strings[2].equals(language)) {
                 result = strings[1];
             }
         }
@@ -473,8 +499,9 @@ public class SelectContent extends JFrame {
     public static String getWebNameFromClassName(String className) {
         String result = null;
         ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", ""});
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
         arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
         for (String[] strings : arr) {
             if (strings[1].equals(className)) {
                 result = strings[0];
@@ -483,13 +510,14 @@ public class SelectContent extends JFrame {
         return result;
     }
 
-    public static String getLanguageFromWebName(String webName) {
+    public static String getLanguageFromClassName(String className) {
         String result = "";
         ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", ""});
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
         arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
         for (String[] strings : arr) {
-            if (strings[0].equals(webName)) {
+            if (strings[1].equals(className)) {
                 result = strings[2];
             }
         }

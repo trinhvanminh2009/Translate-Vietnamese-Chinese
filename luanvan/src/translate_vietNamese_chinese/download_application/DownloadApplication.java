@@ -102,10 +102,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnNguoiLaoDong = new JRadioButton("http://nld.com.vn/");
+        JRadioButton rdbtnNguoiLaoDong = new JRadioButton("http://nld.com.vn");
         rdbtnNguoiLaoDong.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnNguoiLaoDong.setBounds(6, 218, 177, 41);
-        rdbtnNguoiLaoDong.setActionCommand("http://nld.com.vn/");
+        rdbtnNguoiLaoDong.setActionCommand("http://nld.com.vn");
         try {
             rdbtnNguoiLaoDong.setIcon(
                     new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
@@ -115,10 +115,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnDanTri = new JRadioButton("http://dantri.com.vn/");
+        JRadioButton rdbtnDanTri = new JRadioButton("http://dantri.com.vn");
         rdbtnDanTri.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnDanTri.setBounds(288, 35, 177, 41);
-        rdbtnDanTri.setActionCommand("http://dantri.com.vn/");
+        rdbtnDanTri.setActionCommand("http://dantri.com.vn");
         try {
             rdbtnDanTri.setIcon(
                     new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
@@ -128,10 +128,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnNgoiSaoNet = new JRadioButton("http://ngoisao.net/");
+        JRadioButton rdbtnNgoiSaoNet = new JRadioButton("http://ngoisao.net");
         rdbtnNgoiSaoNet.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnNgoiSaoNet.setBounds(6, 35, 191, 41);
-        rdbtnNgoiSaoNet.setActionCommand("http://ngoisao.net/");
+        rdbtnNgoiSaoNet.setActionCommand("http://ngoisao.net");
         try {
             rdbtnNgoiSaoNet.setIcon(
                     new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
@@ -141,10 +141,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnNgoiSaoVN = new JRadioButton("https://ngoisao.vn/");
+        JRadioButton rdbtnNgoiSaoVN = new JRadioButton("https://ngoisao.vn");
         rdbtnNgoiSaoVN.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnNgoiSaoVN.setBounds(288, 92, 177, 41);
-        rdbtnNgoiSaoVN.setActionCommand("https://ngoisao.vn/");
+        rdbtnNgoiSaoVN.setActionCommand("https://ngoisao.vn");
         try {
             rdbtnNgoiSaoVN.setIcon(
                     new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
@@ -154,10 +154,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnTuoitre = new JRadioButton("http://tuoitre.vn/");
+        JRadioButton rdbtnTuoitre = new JRadioButton("http://tuoitre.vn");
         rdbtnTuoitre.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnTuoitre.setBounds(6, 155, 177, 41);
-        rdbtnTuoitre.setActionCommand("http://tuoitre.vn/");
+        rdbtnTuoitre.setActionCommand("http://tuoitre.vn");
         try {
             rdbtnTuoitre.setIcon(
                     new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
@@ -167,10 +167,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnBongDaPlus = new JRadioButton("http://bongdaplus.vn/");
+        JRadioButton rdbtnBongDaPlus = new JRadioButton("http://bongdaplus.vn");
         rdbtnBongDaPlus.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnBongDaPlus.setBounds(288, 155, 191, 41);
-        rdbtnBongDaPlus.setActionCommand("http://bongdaplus.vn/");
+        rdbtnBongDaPlus.setActionCommand("http://bongdaplus.vn");
         try {
             rdbtnBongDaPlus.setIcon(
                     new ImageIcon(ImageIO.read(this.getClass().getResource("/resources/radio_button_unselected.png"))));
@@ -266,10 +266,11 @@ public class DownloadApplication {
                     // Get action comment to parse to SelectContent
                     if (groupSelectPage.getSelection() != null) {
                         SelectContent selectContent = new SelectContent(
-                                groupSelectPage.getSelection().getActionCommand(), "", false);
+                                groupSelectPage.getSelection().getActionCommand(), "none", false, "none");
                         lbStatus_Monolingual.setVisible(false);
                         selectContent.setLocationRelativeTo(null);
                         selectContent.show();
+                        frmDownloadApplication.dispose();
                     } else {
                         lbStatus_Monolingual.setText("Please select a page you want to download");
                         lbStatus_Monolingual.setVisible(true);
@@ -316,10 +317,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnDongNaiGov = new JRadioButton("https://www.dongnai.gov.vn/");
+        JRadioButton rdbtnDongNaiGov = new JRadioButton("https://www.dongnai.gov.vn");
         rdbtnDongNaiGov.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnDongNaiGov.setBounds(30, 92, 230, 41);
-        rdbtnDongNaiGov.setActionCommand("https://www.dongnai.gov.vn/");
+        rdbtnDongNaiGov.setActionCommand("https://www.dongnai.gov.vn");
         panel.add(rdbtnDongNaiGov);
         try {
             rdbtnDongNaiGov.setIcon(
@@ -330,10 +331,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnSaiGonGiaiPhong = new JRadioButton("http://www.sggp.org.vn/");
+        JRadioButton rdbtnSaiGonGiaiPhong = new JRadioButton("http://www.sggp.org.vn");
         rdbtnSaiGonGiaiPhong.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnSaiGonGiaiPhong.setBounds(30, 152, 217, 41);
-        rdbtnSaiGonGiaiPhong.setActionCommand("http://www.sggp.org.vn/");
+        rdbtnSaiGonGiaiPhong.setActionCommand("http://www.sggp.org.vn");
         panel.add(rdbtnSaiGonGiaiPhong);
         try {
             rdbtnSaiGonGiaiPhong.setIcon(
@@ -344,10 +345,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnBaoDinhDuong = new JRadioButton("http://baobinhduong.vn/");
+        JRadioButton rdbtnBaoDinhDuong = new JRadioButton("http://baobinhduong.vn");
         rdbtnBaoDinhDuong.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnBaoDinhDuong.setBounds(276, 25, 187, 41);
-        rdbtnBaoDinhDuong.setActionCommand("http://baobinhduong.vn/");
+        rdbtnBaoDinhDuong.setActionCommand("http://baobinhduong.vn");
         panel.add(rdbtnBaoDinhDuong);
         try {
             rdbtnBaoDinhDuong.setIcon(
@@ -358,10 +359,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnNhanDan = new JRadioButton("http://www.nhandan.com.vn/");
+        JRadioButton rdbtnNhanDan = new JRadioButton("http://www.nhandan.com.vn");
         rdbtnNhanDan.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnNhanDan.setBounds(276, 152, 215, 41);
-        rdbtnNhanDan.setActionCommand("http://www.nhandan.com.vn/");
+        rdbtnNhanDan.setActionCommand("http://www.nhandan.com.vn");
         panel.add(rdbtnNhanDan);
         try {
             rdbtnNhanDan.setIcon(
@@ -372,10 +373,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnBaoChinhPhu = new JRadioButton("http://baochinhphu.vn/");
+        JRadioButton rdbtnBaoChinhPhu = new JRadioButton("http://baochinhphu.vn");
         rdbtnBaoChinhPhu.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnBaoChinhPhu.setBounds(276, 92, 187, 41);
-        rdbtnBaoChinhPhu.setActionCommand("http://baochinhphu.vn/");
+        rdbtnBaoChinhPhu.setActionCommand("http://baochinhphu.vn");
         panel.add(rdbtnBaoChinhPhu);
         try {
             rdbtnBaoChinhPhu.setIcon(
@@ -386,10 +387,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnQuanDoiNhanDan = new JRadioButton("http://www.qdnd.vn/");
+        JRadioButton rdbtnQuanDoiNhanDan = new JRadioButton("http://www.qdnd.vn");
         rdbtnQuanDoiNhanDan.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnQuanDoiNhanDan.setBounds(30, 210, 174, 41);
-        rdbtnQuanDoiNhanDan.setActionCommand("http://www.qdnd.vn/");
+        rdbtnQuanDoiNhanDan.setActionCommand("http://www.qdnd.vn");
         panel.add(rdbtnQuanDoiNhanDan);
         try {
             rdbtnQuanDoiNhanDan.setIcon(
@@ -400,10 +401,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnTapChiCongSan = new JRadioButton("http://www.tapchicongsan.org.vn/");
+        JRadioButton rdbtnTapChiCongSan = new JRadioButton("http://www.tapchicongsan.org.vn");
         rdbtnTapChiCongSan.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnTapChiCongSan.setBounds(276, 210, 267, 41);
-        rdbtnTapChiCongSan.setActionCommand("http://www.tapchicongsan.org.vn/");
+        rdbtnTapChiCongSan.setActionCommand("http://www.tapchicongsan.org.vn");
         panel.add(rdbtnTapChiCongSan);
         try {
             rdbtnTapChiCongSan.setIcon(
@@ -414,10 +415,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnThoiDai = new JRadioButton("http://thoidai.com.vn/");
+        JRadioButton rdbtnThoiDai = new JRadioButton("http://thoidai.com.vn");
         rdbtnThoiDai.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnThoiDai.setBounds(30, 274, 187, 41);
-        rdbtnThoiDai.setActionCommand("http://thoidai.com.vn/");
+        rdbtnThoiDai.setActionCommand("http://thoidai.com.vn");
         panel.add(rdbtnThoiDai);
         try {
             rdbtnThoiDai.setIcon(
@@ -428,10 +429,10 @@ public class DownloadApplication {
             e2.printStackTrace();
         }
 
-        JRadioButton rdbtnBaoThaiNguyen = new JRadioButton("http://baothainguyen.org.vn/");
+        JRadioButton rdbtnBaoThaiNguyen = new JRadioButton("http://baothainguyen.org.vn");
         rdbtnBaoThaiNguyen.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnBaoThaiNguyen.setBounds(276, 274, 240, 41);
-        rdbtnBaoThaiNguyen.setActionCommand("http://baothainguyen.org.vn/");
+        rdbtnBaoThaiNguyen.setActionCommand("http://baothainguyen.org.vn");
         panel.add(rdbtnBaoThaiNguyen);
         try {
             rdbtnBaoThaiNguyen.setIcon(
@@ -551,10 +552,11 @@ public class DownloadApplication {
                     if (radioGroupBilingual.getSelection() != null && groupLanguages.getSelection() != null) {
                         SelectContent selectContent = new SelectContent(
                                 radioGroupBilingual.getSelection().getActionCommand(),
-                                groupLanguages.getSelection().getActionCommand(), false);
+                                groupLanguages.getSelection().getActionCommand(), false, "none");
                         lblStatus_Bilingual.setVisible(false);
                         selectContent.setLocationRelativeTo(null);
                         selectContent.show();
+                        frmDownloadApplication.dispose();
                     } else {
                         lblStatus_Bilingual.setText("Please select a page and language you want to download ");
                         lblStatus_Bilingual.setVisible(true);
@@ -602,10 +604,11 @@ public class DownloadApplication {
             btnResume.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
                     String webName = comboBox.getSelectedItem().toString();
-                    SelectContent t = new SelectContent(SelectContent.getWebNameFromClassName(webName), "", true);
+                    SelectContent t = new SelectContent(SelectContent.getWebNameFromClassName(webName), "none", true, comboBox.getSelectedItem().toString());
                     lblStatus_Bilingual.setVisible(false);
                     t.setLocationRelativeTo(null);
                     t.show();
+                    frmDownloadApplication.dispose();
                 }
             });
             btnResume.setBorder(BorderFactory.createEmptyBorder());
