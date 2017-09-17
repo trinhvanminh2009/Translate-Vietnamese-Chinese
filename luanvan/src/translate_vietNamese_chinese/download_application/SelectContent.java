@@ -481,48 +481,7 @@ public class SelectContent extends JFrame {
 
     }
 
-    ////////////////////
-    public static String getClassNameFromWebNameAndLanguage(String webName, String language) {
-        String result = null;
-        ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
-        for (String[] strings : arr) {
-            if (strings[0].equals(webName) && strings[2].equals(language)) {
-                result = strings[1];
-            }
-        }
-        return result;
-    }
-
-    public static String getWebNameFromClassName(String className) {
-        String result = null;
-        ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
-        for (String[] strings : arr) {
-            if (strings[1].equals(className)) {
-                result = strings[0];
-            }
-        }
-        return result;
-    }
-
-    public static String getLanguageFromClassName(String className) {
-        String result = "";
-        ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
-        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
-        for (String[] strings : arr) {
-            if (strings[1].equals(className)) {
-                result = strings[2];
-            }
-        }
-        return result;
-    }
+    
 
     public void makeDirectoryDownloadLog() {
         File file = new File(DOWNLOAD_LOG);
@@ -709,6 +668,48 @@ public class SelectContent extends JFrame {
                 break;
         }
         return arr;
+    }
+    ////////////////////
+    public static String getClassNameFromWebNameAndLanguage(String webName, String language) {
+        String result = null;
+        ArrayList<String[]> arr = new ArrayList<>();
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
+        for (String[] strings : arr) {
+            if (strings[0].equals(webName) && strings[2].equals(language)) {
+                result = strings[1];
+            }
+        }
+        return result;
+    }
+
+    public static String getWebNameFromClassName(String className) {
+        String result = null;
+        ArrayList<String[]> arr = new ArrayList<>();
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
+        for (String[] strings : arr) {
+            if (strings[1].equals(className)) {
+                result = strings[0];
+            }
+        }
+        return result;
+    }
+
+    public static String getLanguageFromClassName(String className) {
+        String result = "";
+        ArrayList<String[]> arr = new ArrayList<>();
+        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
+        for (String[] strings : arr) {
+            if (strings[1].equals(className)) {
+                result = strings[2];
+            }
+        }
+        return result;
     }
 
 }
