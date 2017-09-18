@@ -604,7 +604,7 @@ public class DownloadApplication {
             btnResume.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
                     String webName = comboBox.getSelectedItem().toString();
-                    SelectContent t = new SelectContent(SelectContent.getWebNameFromClassName(webName), "none", true, comboBox.getSelectedItem().toString());
+                    SelectContent t = new SelectContent(SelectContent.getWebFromClassName(webName), "none", true, comboBox.getSelectedItem().toString());
                     lblStatus_Bilingual.setVisible(false);
                     t.setLocationRelativeTo(null);
                     t.show();
