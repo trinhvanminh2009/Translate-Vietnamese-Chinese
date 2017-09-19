@@ -633,6 +633,36 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
+                 case "http://www.sggp.org.vn":
+                if (language == "Vietnamese") {
+                    arr.add(new String[]{"Kinh tế", "http://www.sggp.org.vn/kinhte"});
+                    arr.add(new String[]{"Chính trị", "http://www.sggp.org.vn/chinhtri"});
+                    arr.add(new String[]{"Xã hội", "http://www.sggp.org.vn/xahoi"});
+                    arr.add(new String[]{"Thế giới", "http://www.sggp.org.vn/thegioi"});
+                    arr.add(new String[]{"Đời sống công nghệ", "http://www.sggp.org.vn/doisongcongnghe"});
+                    arr.add(new String[]{"Giáo dục", "http://www.sggp.org.vn/giaoduc"});
+                    arr.add(new String[]{"Khoa học công nghệ", "http://www.sggp.org.vn/khoahoc_congnghe"});
+                    arr.add(new String[]{"Pháp luật", "http://www.sggp.org.vn/phapluat"});
+                    arr.add(new String[]{"Y tế - Sức khỏe", "http://www.sggp.org.vn/ytesuckhoe"});
+                    arr.add(new String[]{"Văn hóa - Giải trí", "http://www.sggp.org.vn/vanhoavannghe"});
+                    arr.add(new String[]{"Nhịp cầu bạn đọc", "http://www.sggp.org.vn/nhipcaubandoc"});
+                  
+                } else {
+                    arr.add(new String[]{"Politics", "http://cn.sggp.org.vn/時政/"});
+                    arr.add(new String[]{"Law", "http://cn.sggp.org.vn/法律/"});
+                    arr.add(new String[]{"Economic", "http://cn.sggp.org.vn/經濟/"});
+                    arr.add(new String[]{"International", "http://cn.sggp.org.vn/國際/"});
+                    arr.add(new String[]{"Chinese dynamic", "http://cn.sggp.org.vn/華人動態/"});
+                    arr.add(new String[]{"Education", "http://cn.sggp.org.vn/教育/"});
+                    arr.add(new String[]{"Sports", "http://cn.sggp.org.vn/體育/"});        
+                    arr.add(new String[]{"Technology", "http://cn.sggp.org.vn/科技/"});
+                    arr.add(new String[]{"Health", "http://cn.sggp.org.vn/健康-飲食/"});
+                    arr.add(new String[]{"Entertainment", "http://cn.sggp.org.vn/文娛/"});
+                    arr.add(new String[]{"Readers - Charity", "http://cn.sggp.org.vn/讀者-慈善/"});
+                    arr.add(new String[]{"Travel", "http://cn.sggp.org.vn/旅遊/"});
+                }
+
+                break;
         }
         for (String[] strings : arr) {
             if (strings[1].equals(pageName)) {
@@ -733,6 +763,37 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
+                
+                case "http://www.sggp.org.vn":
+                if (language == "Vietnamese") {
+                    arr.add(new String[]{"Kinh tế", "http://www.sggp.org.vn/kinhte"});
+                    arr.add(new String[]{"Chính trị", "http://www.sggp.org.vn/chinhtri"});
+                    arr.add(new String[]{"Xã hội", "http://www.sggp.org.vn/xahoi"});
+                    arr.add(new String[]{"Thế giới", "http://www.sggp.org.vn/thegioi"});
+                    arr.add(new String[]{"Đời sống công nghệ", "http://www.sggp.org.vn/doisongcongnghe"});
+                    arr.add(new String[]{"Giáo dục", "http://www.sggp.org.vn/giaoduc"});
+                    arr.add(new String[]{"Khoa học công nghệ", "http://www.sggp.org.vn/khoahoc_congnghe"});
+                    arr.add(new String[]{"Pháp luật", "http://www.sggp.org.vn/phapluat"});
+                    arr.add(new String[]{"Y tế - Sức khỏe", "http://www.sggp.org.vn/ytesuckhoe"});
+                    arr.add(new String[]{"Văn hóa - Giải trí", "http://www.sggp.org.vn/vanhoavannghe"});
+                    arr.add(new String[]{"Nhịp cầu bạn đọc", "http://www.sggp.org.vn/nhipcaubandoc"});
+                  
+                } else {
+                    arr.add(new String[]{"Politics", "http://cn.sggp.org.vn/時政/"});
+                    arr.add(new String[]{"Law", "http://cn.sggp.org.vn/法律/"});
+                    arr.add(new String[]{"Economic", "http://cn.sggp.org.vn/經濟/"});
+                    arr.add(new String[]{"International", "http://cn.sggp.org.vn/國際/"});
+                    arr.add(new String[]{"Chinese dynamic", "http://cn.sggp.org.vn/華人動態/"});
+                    arr.add(new String[]{"Education", "http://cn.sggp.org.vn/教育/"});
+                    arr.add(new String[]{"Sports", "http://cn.sggp.org.vn/體育/"});        
+                    arr.add(new String[]{"Technology", "http://cn.sggp.org.vn/科技/"});
+                    arr.add(new String[]{"Health", "http://cn.sggp.org.vn/健康-飲食/"});
+                    arr.add(new String[]{"Entertainment", "http://cn.sggp.org.vn/文娛/"});
+                    arr.add(new String[]{"Readers - Charity", "http://cn.sggp.org.vn/讀者-慈善/"});
+                    arr.add(new String[]{"Travel", "http://cn.sggp.org.vn/旅遊/"});
+                }
+
+                break;
         }
         return arr;
     }
@@ -746,6 +807,8 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
          arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongVN", "Vietnamese"});
           arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongCN", "Chinese"});
+           arr.add(new String[]{"http://www.sggp.org.vn", "SGGPVN", "Vietnamese"});
+            arr.add(new String[]{"http://www.sggp.org.vn", "SGGPCN", "Chinese"});
         for (String[] strings : arr) {
             if (strings[0].equals(webName) && strings[2].equals(language)) {
                 result = strings[1];
@@ -762,6 +825,8 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
          arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongVN", "Vietnamese"});
           arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongCN", "Chinese"});
+          arr.add(new String[]{"http://www.sggp.org.vn", "SGGPVN", "Vietnamese"});
+            arr.add(new String[]{"http://www.sggp.org.vn", "SGGPCN", "Chinese"});
         for (String[] strings : arr) {
             if (strings[1].equals(className)) {
                 result = strings[0];
@@ -778,6 +843,8 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
          arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongVN", "Vietnamese"});
           arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongCN", "Chinese"});
+          arr.add(new String[]{"http://www.sggp.org.vn", "SGGPVN", "Vietnamese"});
+            arr.add(new String[]{"http://www.sggp.org.vn", "SGGPCN", "Chinese"});
         for (String[] strings : arr) {
             if (strings[1].equals(className)) {
                 result = strings[2];

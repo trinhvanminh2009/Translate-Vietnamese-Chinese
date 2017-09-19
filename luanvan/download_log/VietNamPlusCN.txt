@@ -1,9 +1,0 @@
-http://zh.vietnamplus.vn/politics.vnp 2 33
-http://zh.vietnamplus.vn/world.vnp 9 161
-http://zh.vietnamplus.vn/business.vnp 8 144
-http://zh.vietnamplus.vn/social.vnp 9 159
-http://zh.vietnamplus.vn/culture.vnp 8 137
-http://zh.vietnamplus.vn/sports.vnp 8 138
-http://zh.vietnamplus.vn/technology.vnp 8 142
-http://zh.vietnamplus.vn/environment.vnp 7 126
-http://zh.vietnamplus.vn/Travel.vnp 2 35

@@ -109,7 +109,7 @@ public class ScrapingThread extends Thread {
             maxPageNumber = (int) getMaxPageNumber.invoke(object);
             System.out.println(maxPageNumber);
             for (int i = currentPage;; i++) {
-                if(i>maxPageNumber){
+                if(i>maxPageNumber||maxPageNumber==-1){
                     downloadDone = true;
                     break;
                 }

@@ -285,7 +285,7 @@ public class VNExpress {
 
     public int getMaxPageNumber() {
         System.out.println("Finding max page number");
-        int result = 1;
+        int result = 1000;
         int f = 1000;
         boolean pre = true;
         boolean reachInvalidLink = false;
@@ -309,6 +309,9 @@ public class VNExpress {
             System.out.println(result + " " + checkValidLink(result) + " " + f);
             if (f <= 5) {
                 break;
+            }
+            if(f>=50000||f<=0){
+                return -1;
             }
         }
 
