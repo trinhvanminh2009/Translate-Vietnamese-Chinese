@@ -131,24 +131,6 @@ public class VietNamPlusVN {
         return countPage;
     }
 
-    public static String getFinalURL(String url) {
-        try {
-            HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
-            con.setInstanceFollowRedirects(false);
-            con.connect();
-            con.getInputStream();
-
-            if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
-                String redirectUrl = con.getHeaderField("Location");
-                return getFinalURL(redirectUrl);
-            }
-        } catch (MalformedURLException ex) {
-            return url;
-        } catch (IOException ex) {
-            Logger.getLogger(VNExpress.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return url;
-    }
 
     public int getArticleSize() {
         return articleSize;

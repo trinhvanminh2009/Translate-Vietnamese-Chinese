@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
@@ -115,25 +112,6 @@ public class VietNamPlusCN {
             Logger.getLogger(VietNamPlusVN.class.getName()).log(Level.SEVERE, null, ex);
         }
         return countPage;
-    }
-
-    public static String getFinalURL(String url) {
-        try {
-            HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
-            con.setInstanceFollowRedirects(false);
-            con.connect();
-            con.getInputStream();
-
-            if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
-                String redirectUrl = con.getHeaderField("Location");
-                return getFinalURL(redirectUrl);
-            }
-        } catch (MalformedURLException ex) {
-            return url;
-        } catch (IOException ex) {
-            Logger.getLogger(VNExpress.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return url;
     }
 
     public int getArticleSize() {

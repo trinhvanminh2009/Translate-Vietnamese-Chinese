@@ -283,14 +283,19 @@ public class VNExpress {
         return true;
     }
 
-    public int getMaxPageNumber() {
+     public int getMaxPageNumber() {
         System.out.println("Finding max page number");
         int result = 1000;
         int f = 1000;
-        boolean pre = true;
         boolean reachInvalidLink = false;
         while (true) {
 
+            if (f <= 5) {
+                break;
+            }
+            if(f>=50000||f<=0){
+                return -1;
+            }
             if (checkValidLink(result)) {
                 if (reachInvalidLink == true) {
                     f = f / 2;
@@ -298,33 +303,25 @@ public class VNExpress {
                 } else {
                     result += f;
                 }
-                pre = true;
             } else {
                 f = f / 2;
                 result -= f;
-
-                pre = false;
                 reachInvalidLink = true;
             }
-            System.out.println(result + " " + checkValidLink(result) + " " + f);
-            if (f <= 5) {
-                break;
-            }
-            if(f>=50000||f<=0){
-                return -1;
-            }
+          
         }
-
-        if (pre == true) {
+        if (checkValidLink(result) == true) {
             //neu chay 10000 lan k co ket qua thi dung 
             for (int i = result; i < 10000; i++) {
                 if (!checkValidLink(i)) {
+                    
                     return i - 1;
                 }
             }
         } else {
             for (int i = result; i >= 1; i--) {
                 if (checkValidLink(i)) {
+                  
                     return i;
                 }
             }
