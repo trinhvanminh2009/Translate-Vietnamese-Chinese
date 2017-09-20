@@ -100,7 +100,6 @@ public class SelectContent extends JFrame {
         };
         Thread threadStopDownload = new Thread(runnableStopDownload);
         if (stopped == true) {
-            lblStatusLanguage.setVisible(false);
         } else {
 
             threadStopDownload.start();
@@ -159,6 +158,7 @@ public class SelectContent extends JFrame {
         lblStatusLanguage.setForeground(Color.MAGENTA);
         lblStatusLanguage.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 15));
         lblStatusLanguage.setBounds(15, 38, 464, 14);
+        lblStatusLanguage.setVisible(true);
         contentPane.add(lblStatusLanguage);
 
         ////////////////////////////////////
@@ -267,9 +267,7 @@ public class SelectContent extends JFrame {
                     btnPause.setLabel("Pause...");
                     btnPause.setEnabled(false);
                     btnPause.setIcon(pauseIcon);
-                    lblStatusLanguage.setIcon(icon);
-                    lblStatusLanguage.setVisible(true);
-
+               
                     Thread th = new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -281,8 +279,7 @@ public class SelectContent extends JFrame {
                 } else {
                     URL urlImageIcon = SelectContent.class.getResource("/resources/downloading.gif");
                     ImageIcon icon = new ImageIcon(urlImageIcon);
-                    lblStatusLanguage.setIcon(icon);
-                    lblStatusLanguage.setVisible(true);
+            
                     btnPause.setLabel("Pause");
                     Image iconPause;
                     try {
@@ -466,7 +463,6 @@ public class SelectContent extends JFrame {
             btnPause.setEnabled(true);
             resume = true;
             btnPause.setLabel("Resume");
-            //lblStatusLanguage.setVisible(false);
             Image iconPause;
             try {
                 iconPause = ImageIO.read(this.getClass().getResource("/resources/ic_resume.png"));
