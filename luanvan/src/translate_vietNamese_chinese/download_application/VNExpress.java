@@ -32,10 +32,12 @@ public class VNExpress {
     private String currentDirectory;
     private String pageName;
     private int articleSize;
+    private int position;
     private final String USER_AGENT = "Mozilla/5.0";
 
     public VNExpress() {
         articleSize = 0;
+        position = 0;
         currentDirectory = "";
     }
 
@@ -112,7 +114,7 @@ public class VNExpress {
         System.out.println("Start download VNExpress: " + pageName);
     }
 
-    public boolean scrapAjaxPage(int pageNumber) {
+    public void scrapAjaxPage(int pageNumber) {
         try {
             String url = "https://vnexpress.net/tin-tuc/goc-nhin?category_id=1003450&page=" + pageNumber + "&exclude=3&rule=2";
             URL obj = new URL(url);
@@ -138,7 +140,7 @@ public class VNExpress {
             //System.out.println(response.toString());
             JSONObject jsonObject = new JSONObject(response.toString());
             if (!jsonObject.get("error").equals(1)) {
-                return false;
+                return;
             }
             JSONArray arr = jsonObject.getJSONArray("message");
             System.out.println(arr.length());
@@ -161,7 +163,6 @@ public class VNExpress {
         } catch (IOException | JSONException ex) {
             Logger.getLogger(VNExpress.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
     }
 
     public boolean getDetailsAjaxPage(Article ar) {
@@ -189,25 +190,23 @@ public class VNExpress {
         }
     }
 
-    public boolean scrap(int pageNumber) throws JSONException {
-        System.out.println(pageName + " " + pageNumber);
+    public int getPosition() {
+        return position;
+    }
 
+    public void scrap(int pageNumber, int position) throws JSONException {
+        System.out.println(pageName + " " + pageNumber);
         if (pageName.equals("https://vnexpress.net/tin-tuc/goc-nhin")) {
-            if (!scrapAjaxPage(pageNumber)) {
-                return false;
-            }
+            scrapAjaxPage(pageNumber);
         } else {
             if (pageNumber == 1) {
-                getLink(pageName);
+                getLink(pageName, position);
             } else {
-                if (!getLink(pageName + "/page/" + pageNumber + ".html")) {
-                    return false;
-                }
+                getLink(pageName + "/page/" + pageNumber + ".html", position);
             }
         }
-
-        return true;
     }
+
 
     public static String getFinalURL(String url) {
         try {
@@ -283,7 +282,7 @@ public class VNExpress {
         return true;
     }
 
-     public int getMaxPageNumber() {
+    public int getMaxPageNumber() {
         System.out.println("Finding max page number");
         int result = 1000;
         int f = 1000;
@@ -293,7 +292,7 @@ public class VNExpress {
             if (f <= 5) {
                 break;
             }
-            if(f>=50000||f<=0){
+            if (f >= 50000 || f <= 0) {
                 return -1;
             }
             if (checkValidLink(result)) {
@@ -308,20 +307,20 @@ public class VNExpress {
                 result -= f;
                 reachInvalidLink = true;
             }
-          
+
         }
         if (checkValidLink(result) == true) {
             //neu chay 10000 lan k co ket qua thi dung 
             for (int i = result; i < 10000; i++) {
                 if (!checkValidLink(i)) {
-                    
+
                     return i - 1;
                 }
             }
         } else {
             for (int i = result; i >= 1; i--) {
                 if (checkValidLink(i)) {
-                  
+
                     return i;
                 }
             }
@@ -332,28 +331,31 @@ public class VNExpress {
     public int getArticleSize() {
         return articleSize;
     }
-//     public int getCurrentPage() {
-//        return currentPage;
-//    }
-
-    public boolean getLink(String page) {
-        //System.out.println(originalUrl);
+    
+public void getLink(String page, int position) {
         try {
             Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
             Elements div = doc1.select("section.container section.sidebar_1 > article.list_news");
+            int divSize = div.size();
             System.out.println(page);
-            System.out.println(div.size());
-            for (Element i : div) {
-                Article ar = new Article();
-                ar.setLink(i.select("h3 a[href]").first().attr("abs:href"));
-                //System.out.println(i.select("h3 a[href]").first().attr("abs:href"));
-                // System.exit(0);
-                if (getDetails(ar)) {
-                    articleSize++;
-                    saveArticle(currentDirectory, ar);
+            System.out.println(divSize);
+            Article ar;
+            for (int i = position; i < divSize; i++) {
+                if (ScrapingThread.stop == true) {
+                    this.position = i;
+                    break;
                 } else {
-                    System.out.println("Skip");
+                    ar = new Article();
+                    ar.setLink(div.get(i).select("h3 a[href]").first().attr("abs:href"));
+                    // System.out.println(i.select("a[href]").first().attr("abs:href"));
+                    //  System.exit(0);
+                    if (getDetails(ar)) {
+                        articleSize++;
+                        saveArticle(currentDirectory, ar);
+                    } else {
+                        System.out.println("Skip");
+                    }
                 }
             }
 
@@ -361,8 +363,9 @@ public class VNExpress {
             System.out.println("ex1: " + page);
             System.out.println("ex1: " + ex);
         }
-        return true;
     }
+
+    
 
     public boolean getDetails(Article ar) {
 

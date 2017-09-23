@@ -1,7 +1,5 @@
 package translate_vietNamese_chinese.download_application;
 
-import java.awt.Button;
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -26,7 +24,6 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -403,7 +400,8 @@ public class SelectContent extends JFrame {
                     while (line != null) {
                         System.out.println(line);
                         String[] arr = line.split(" ");
-                        st = new ScrapingThread(GetPackageNameClass.getPackageName() + "." + className, arr[0], Integer.parseInt(arr[1]) + 1, Integer.parseInt(arr[2]));
+                        st = new ScrapingThread(GetPackageNameClass.getPackageName() + "." + className, arr[0], Integer.parseInt(arr[1]), Integer.parseInt(arr[2]), Integer.parseInt(arr[3]));
+                        System.out.println("Resume "+arr[0]+" " +arr[1]+" " +arr[2]+" " +arr[3]);
                         st.start();
                         threadList.add(st);
                         line = br.readLine();
@@ -424,30 +422,26 @@ public class SelectContent extends JFrame {
             btnPauseClickAble = false;
             System.out.println("Stopping---------------------");
 
-            CountDownLatch latch = new CountDownLatch(threadList.size());
-            for (int i = 0; i < threadList.size(); i++) {
-                new RequestStopThread(threadList.get(i), latch).start();
+              for (int i = 0; i < threadList.size(); i++) {
+               threadList.get(i).requestStop();
             }
-
-            try {
-                latch.await();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
-            }
+  
 
             for (ScrapingThread scrapingThread : threadList) {
                 if (scrapingThread.getStateDownload() == true) {
                     System.out.println("DONE " + scrapingThread.getName());
                 }
                 System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " "
-                        + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize());
+                        + scrapingThread.getCurrentPage() + " "+ scrapingThread.getPosition()+ " " + scrapingThread.getArticleSize());
             }
             if (downloadDone == false) {
                 try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebNameAndLanguage(pageName, language) + ".txt"), "utf-8"))) {
                     for (ScrapingThread scrapingThread : threadList) {
                         if (scrapingThread.getStateDownload() == false && scrapingThread.getArticleSize() > 0) {
                             writer.write(scrapingThread.getPageName() + " "
-                                    + scrapingThread.getCurrentPage() + " " + scrapingThread.getArticleSize() + "\n");
+                                    + scrapingThread.getCurrentPage() + " " 
+                                    + scrapingThread.getPosition()+ " "
+                                    + scrapingThread.getArticleSize() + "\n");
                         }
                     }
                 } catch (UnsupportedEncodingException ex) {

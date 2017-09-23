@@ -25,10 +25,11 @@ public class ThoiDaiVN {
     private String currentDirectory;
     private String pageName;
     private int articleSize;
-    private final String USER_AGENT = "Mozilla/5.0";
+    private int position;
 
     public ThoiDaiVN() {
         articleSize = 0;
+        position = 0;
         currentDirectory = "";
     }
 
@@ -103,23 +104,15 @@ public class ThoiDaiVN {
         System.out.println("Start download ThoiDai: " + pageName);
     }
 
-    
-
-    public boolean scrap(int pageNumber) throws JSONException {
+    public void scrap(int pageNumber, int position) throws JSONException {
         System.out.println(pageName + " " + pageNumber);
-       
-            if (pageNumber == 1) {
-                getLink(pageName);
-            } else {
-                if (!getLink(pageName + "p" + pageNumber)) {
-                    return false;
-                }
-            }       
-        return true;
+
+        if (pageNumber == 1) {
+            getLink(pageName, position);
+        } else {
+            getLink(pageName + "p" + pageNumber, position);
+        }
     }
-
-
-
 
     public int getMaxPageNumber() {
         int countPage = -1;
@@ -136,23 +129,34 @@ public class ThoiDaiVN {
         return articleSize;
     }
 
-    public boolean getLink(String page) {
+    public int getPosition() {
+        return position;
+    }
+
+    public void getLink(String page, int position) {
         try {
             Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
             Elements div = doc1.select("#dnn_ctr530_ModuleContent div.contentx > div.xitem");
+            int divSize = div.size();
             System.out.println(page);
-            System.out.println(div.size());
-            for (Element i : div) {
-                Article ar = new Article();
-                ar.setLink(i.select("a[href]").first().attr("abs:href"));
-               // System.out.println(i.select("a[href]").first().attr("abs:href"));
-               //  System.exit(0);
-                if (getDetails(ar)) {
-                    articleSize++;
-                    saveArticle(currentDirectory, ar);
+            System.out.println(divSize);
+            Article ar;
+            for (int i = position; i < divSize; i++) {
+                if (ScrapingThread.stop == true) {
+                    this.position = i;
+                    break;
                 } else {
-                    System.out.println("Skip");
+                    ar = new Article();
+                    ar.setLink(div.get(i).select("a[href]").first().attr("abs:href"));
+                    // System.out.println(i.select("a[href]").first().attr("abs:href"));
+                    //  System.exit(0);
+                    if (getDetails(ar)) {
+                        articleSize++;
+                        saveArticle(currentDirectory, ar);
+                    } else {
+                        System.out.println("Skip");
+                    }
                 }
             }
 
@@ -160,7 +164,6 @@ public class ThoiDaiVN {
             System.out.println("ex1: " + page);
             System.out.println("ex1: " + ex);
         }
-        return true;
     }
 
     public boolean getDetails(Article ar) {
@@ -172,14 +175,14 @@ public class ThoiDaiVN {
                 return false;
             }
             ar.setTitle(doc1.select("#dnn_ctr519_Main_UserNewsDetail_up h1").first().text());
-          //  System.out.println(doc1.select("#dnn_ctr519_Main_UserNewsDetail_up h1").first().text());
-         //       System.exit(0);
+            //  System.out.println(doc1.select("#dnn_ctr519_Main_UserNewsDetail_up h1").first().text());
+            //       System.exit(0);
             if (doc1.select("#dnn_ctr519_Main_UserNewsDetail_up > div.xcontents").isEmpty()) {
                 return false;
             }
             ar.setContent(doc1.select("#dnn_ctr519_Main_UserNewsDetail_up > div.xcontents").first().text());
-           // System.out.println(doc1.select("#dnn_ctr519_Main_UserNewsDetail_up > div.xcontents").first().text());
-           // System.exit(0);
+            // System.out.println(doc1.select("#dnn_ctr519_Main_UserNewsDetail_up > div.xcontents").first().text());
+            // System.exit(0);
             return true;
 
         } catch (Exception ex) {
@@ -220,16 +223,6 @@ public class ThoiDaiVN {
     }
 
     public static void main(String[] args) throws Exception {
-        ThoiDaiVN v = new ThoiDaiVN();
-        v.init("http://thoidai.com.vn/thoi-su_t113c3");
-        for (int i = 1;; i++) {
-            if (!v.scrap(i)) {
-                break;
-            }
-        }
-        System.out.println(v.articleSize);
-        System.out.println(v.getMaxPageNumber());
 
     }
-
 }

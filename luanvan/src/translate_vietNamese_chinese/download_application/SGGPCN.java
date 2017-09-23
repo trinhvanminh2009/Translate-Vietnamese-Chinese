@@ -22,9 +22,11 @@ public class SGGPCN {
     private String currentDirectory;
     private String pageName;
     private int articleSize;
+    private int position;
 
     public SGGPCN() {
         articleSize = 0;
+        position = 0;
         currentDirectory = "";
     }
 
@@ -87,21 +89,20 @@ public class SGGPCN {
         makeDirectory(currentDirectory, true);
         System.out.println("Start download SGGPCN: " + pageName);
     }
-
-    public boolean scrap(int pageNumber) throws JSONException {
-
-        System.out.println(pageName + " " + pageNumber);
-        String url = pageName + "page-" + pageNumber + ".html";
-        if (pageNumber == 1) {
-            getLink(pageName);
-        } else {
-            if (!getLink(url)) {
-                return false;
-            }
-        }
-        return true;
-
+    public int getPosition() {
+        return position;
     }
+
+    public void scrap(int pageNumber, int position) throws JSONException {
+        System.out.println(pageName + " " + pageNumber);
+
+        if (pageNumber == 1) {
+            getLink(pageName, position);
+        } else {
+            getLink(pageName + "page-" + pageNumber + ".html", position);
+        }
+    }
+
 
     public static String getFinalURL(String url) {
         try {
@@ -177,27 +178,30 @@ public class SGGPCN {
     public int getArticleSize() {
         return articleSize;
     }
-
-    public boolean getLink(String page) {
-
+public void getLink(String page, int position) {
         try {
-
             Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
-            Elements div = doc1.select("#box-content section.zone.story-listing div.zone-content > article");
-            if (div.isEmpty()) {
-                return false;
-            }
 
+            Elements div = doc1.select("#box-content section.zone.story-listing div.zone-content > article");
+            int divSize = div.size();
             System.out.println(page);
-            System.out.println(div.size());
-            for (Element i : div) {
-                Article ar = new Article();
-                ar.setLink(i.select("a[href]").first().attr("abs:href"));
-                if (getDetails(ar)) {
-                    articleSize++;
-                    saveArticle(currentDirectory, ar);
+            System.out.println(divSize);
+            Article ar;
+            for (int i = position; i < divSize; i++) {
+                if (ScrapingThread.stop == true) {
+                    this.position = i;
+                    break;
                 } else {
-                    System.out.println("Skip " + ar.getLink());
+                    ar = new Article();
+                    ar.setLink(div.get(i).select("a[href]").first().attr("abs:href"));
+                    // System.out.println(i.select("a[href]").first().attr("abs:href"));
+                    //  System.exit(0);
+                    if (getDetails(ar)) {
+                        articleSize++;
+                        saveArticle(currentDirectory, ar);
+                    } else {
+                        System.out.println("Skip");
+                    }
                 }
             }
 
@@ -205,8 +209,8 @@ public class SGGPCN {
             System.out.println("ex1: " + page);
             System.out.println("ex1: " + ex);
         }
-        return true;
     }
+   
 
     public boolean getDetails(Article ar) {
 
@@ -264,18 +268,5 @@ public class SGGPCN {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        SGGPCN v = new SGGPCN();
-        v.init("http://cn.sggp.org.vn/時政/");
-        System.out.println(v.getMaxPageNumber());
-//        for (int i = 1;; i++) {
-//            if (!v.scrap(i)) {
-//                break;
-//            }
-//        }
-//        System.out.println(v.articleSize);
-//        //System.out.println(v.currentPage);
-//         System.out.println(v.getMaxPageNumber());
-
-    }
+   
 }

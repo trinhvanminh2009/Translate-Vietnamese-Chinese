@@ -23,27 +23,30 @@ public class ScrapingThread extends Thread {
     private int maxPageNumber;
     private int currentPage;
     private int articleSize;
-    private volatile boolean stop;
-    private CountDownLatch latch;
+    private int position;
+    public static volatile boolean stop;
     private boolean downloadDone;
+    private CountDownLatch latch;
 
     public ScrapingThread(String className, String pageName) {
         this.className = className;
         this.currentPage = 1;
         this.articleSize = 0;
+        this.position = 0;
         this.pageName = pageName;
-        this.stop = false;
         this.latch = new CountDownLatch(1);
+        ScrapingThread.stop = false;
         this.downloadDone = false;
         this.maxPageNumber = 0;
     }
 
-    public ScrapingThread(String className, String pageName, int currentPage, int articleSize) {
+    public ScrapingThread(String className, String pageName, int currentPage, int position, int articleSize) {
         this.className = className;
         this.currentPage = currentPage;
         this.articleSize = articleSize;
+        this.position = position;
         this.pageName = pageName;
-        this.stop = false;
+        ScrapingThread.stop = false;
         this.latch = new CountDownLatch(1);
         this.downloadDone = false;
         this.maxPageNumber = 0;
@@ -60,6 +63,9 @@ public class ScrapingThread extends Thread {
     public int getArticleSize() {
         return this.articleSize;
     }
+    public int getPosition() {
+        return this.position;
+    }
 
     public String getPageName() {
         return this.pageName;
@@ -70,19 +76,18 @@ public class ScrapingThread extends Thread {
     }
 
     public int getDownloadPercent() {
-        if(this.maxPageNumber==0){
+        if (this.maxPageNumber == 0) {
             return 0;
         }
-        return this.currentPage* 100 / this.maxPageNumber;
+        return this.currentPage * 100 / this.maxPageNumber;
     }
 
-    public void requestStop() {
+    public  void requestStop() {
         try {
             stop = true;
             latch.await();
             System.out.println("Stopped");
         } catch (InterruptedException ex) {
-            System.out.println("downloadapplication.ScrapingThread.requestStop()");
             Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -95,8 +100,9 @@ public class ScrapingThread extends Thread {
             Class<?> c = Class.forName(className);
             Constructor<?> ctor = c.getConstructor();
             Object object = ctor.newInstance();
-            Method scrap = c.getDeclaredMethod("scrap", int.class);
+            Method scrap = c.getDeclaredMethod("scrap", int.class, int.class);
             Method getArticleSize = c.getDeclaredMethod("getArticleSize");
+            Method getPosition = c.getDeclaredMethod("getPosition");
             Method getMaxPageNumber = c.getDeclaredMethod("getMaxPageNumber");
 
             if (articleSize == 0) {
@@ -108,26 +114,26 @@ public class ScrapingThread extends Thread {
             }
             maxPageNumber = (int) getMaxPageNumber.invoke(object);
             System.out.println(maxPageNumber);
-            for (int i = currentPage;; i++) {
-                if(i>maxPageNumber||maxPageNumber==-1){
+            int current=currentPage;
+            for (int i = current;; i++) {
+                if (i > maxPageNumber || maxPageNumber == -1) {
                     downloadDone = true;
                     break;
                 }
-                Object value = scrap.invoke(object, i);
+                if(i == current){
+                     scrap.invoke(object, i,this.position);
+                }else{
+                    scrap.invoke(object, i,0);
+                }
                 currentPage = i;
-                if ((boolean) value == false) {
-                    currentPage--;
+                if (stop == true) {
                     articleSize = (int) getArticleSize.invoke(object);
-                    downloadDone = true;
-                    System.out.println("Stop at " + currentPage + " " + articleSize);
-                    break;
-                } else if (stop == true) {
-                    articleSize = (int) getArticleSize.invoke(object);
-                    System.out.println("manual Stop at " + currentPage + " " + articleSize);
+                    position=(int) getPosition.invoke(object);
+                    latch.countDown();
+                    System.out.println("manual Stop at " + currentPage + " " + position + " "+ articleSize);
                     break;
                 }
             }
-            latch.countDown();
         } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
             Logger.getLogger(ScrapingThread.class.getName()).log(Level.SEVERE, null, ex);
         }

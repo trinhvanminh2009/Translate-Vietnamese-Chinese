@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
@@ -23,10 +20,11 @@ public class VietNamPlusVN {
     private String currentDirectory;
     private String pageName;
     private int articleSize;
-    private final String USER_AGENT = "Mozilla/5.0";
+     private int position;
 
     public VietNamPlusVN() {
         articleSize = 0;
+         position = 0;
         currentDirectory = "";
     }
 
@@ -104,20 +102,21 @@ public class VietNamPlusVN {
         makeDirectory(currentDirectory, true);
         System.out.println("Start download VietNamPlus: " + pageName);
     }
+    public int getPosition() {
+        return position;
+    }
 
-    public boolean scrap(int pageNumber) throws JSONException {
+    public void scrap(int pageNumber, int position) throws JSONException {
         System.out.println(pageName + " " + pageNumber);
 
         if (pageNumber == 1) {
-            getLink(pageName);
+            getLink(pageName, position);
         } else {
             String name = pageName.substring(0, pageName.length() - 4);
-            if (!getLink(name + "/trang" + pageNumber + ".vnp")) {
-                return false;
-            }
+            getLink(name + "/trang" + pageNumber + ".vnp", position);
         }
-        return true;
     }
+  
 
     public int getMaxPageNumber() {
         int countPage = -1;
@@ -135,26 +134,30 @@ public class VietNamPlusVN {
     public int getArticleSize() {
         return articleSize;
     }
-
-    public boolean getLink(String page) {
-
+ public void getLink(String page, int position) {
         try {
-            Document doc1 = Jsoup.connect(page).timeout(0).get();
-            Elements div = doc1.select("div.story-listing.slist-03 > article");
-            if (div.isEmpty()) {
-                return false;
-            }
+            Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
+            Elements div = doc1.select("div.story-listing.slist-03 > article");
+            int divSize = div.size();
             System.out.println(page);
-            System.out.println(div.size());
-            for (Element i : div) {
-                Article ar = new Article();
-                ar.setLink(i.select("a[href]").first().attr("abs:href"));
-                if (getDetails(ar)) {
-                    articleSize++;
-                    saveArticle(currentDirectory, ar);
+            System.out.println(divSize);
+            Article ar;
+            for (int i = position; i < divSize; i++) {
+                if (ScrapingThread.stop == true) {
+                    this.position = i;
+                    break;
                 } else {
-                    System.out.println("Skip");
+                    ar = new Article();
+                    ar.setLink(div.get(i).select("a[href]").first().attr("abs:href"));
+                    // System.out.println(i.select("a[href]").first().attr("abs:href"));
+                    //  System.exit(0);
+                    if (getDetails(ar)) {
+                        articleSize++;
+                        saveArticle(currentDirectory, ar);
+                    } else {
+                        System.out.println("Skip");
+                    }
                 }
             }
 
@@ -162,8 +165,9 @@ public class VietNamPlusVN {
             System.out.println("ex1: " + page);
             System.out.println("ex1: " + ex);
         }
-        return true;
     }
+    
+    
 
     public boolean getDetails(Article ar) {
 
