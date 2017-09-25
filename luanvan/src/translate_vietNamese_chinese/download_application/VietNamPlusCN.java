@@ -33,31 +33,31 @@ public class VietNamPlusCN {
         switch (pageName) {
             
 
-            case "http://zh.vietnamplus.vn/politics.vnp":
+            case "https://zh.vietnamplus.vn/politics.vnp":
                 directory = "vietnamplusCN/politics";
                 break;
-            case "http://zh.vietnamplus.vn/world.vnp":
+            case "https://zh.vietnamplus.vn/world.vnp":
                 directory = "vietnamplusCN/world";
                 break;
-            case "http://zh.vietnamplus.vn/business.vnp":
+            case "https://zh.vietnamplus.vn/business.vnp":
                 directory = "vietnamplusCN/business";
                 break;
-            case "http://zh.vietnamplus.vn/social.vnp":
+            case "https://zh.vietnamplus.vn/social.vnp":
                 directory = "vietnamplusCN/social";
                 break;
-            case "http://zh.vietnamplus.vn/culture.vnp":
+            case "https://zh.vietnamplus.vn/culture.vnp":
                 directory = "vietnamplusCN/culture";
                 break;
-            case "http://zh.vietnamplus.vn/sports.vnp":
+            case "https://zh.vietnamplus.vn/sports.vnp":
                 directory = "vietnamplusCN/sports";
                 break;
-            case "http://zh.vietnamplus.vn/technology.vnp":
+            case "https://zh.vietnamplus.vn/technology.vnp":
                 directory = "vietnamplusCN/technology";
                 break;
-            case "http://zh.vietnamplus.vn/environment.vnp":
+            case "https://zh.vietnamplus.vn/environment.vnp":
                 directory = "vietnamplusCN/environment";
                 break;
-            case "http://zh.vietnamplus.vn/Travel.vnp":
+            case "https://zh.vietnamplus.vn/Travel.vnp":
                 directory = "vietnamplusCN/travel";
                 break;
         }

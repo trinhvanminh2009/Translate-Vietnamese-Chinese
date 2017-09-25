@@ -304,10 +304,10 @@ public class DownloadApplication {
         lblStatus_Bilingual.setFont(new Font("Tahoma", Font.BOLD, 13));
         lblStatus_Bilingual.setVisible(false);
 
-        JRadioButton rdbtnVietnamPlus = new JRadioButton("http://www.vietnamplus.vn");
+        JRadioButton rdbtnVietnamPlus = new JRadioButton("https://www.vietnamplus.vn");
         rdbtnVietnamPlus.setFont(new Font("Tahoma", Font.PLAIN, 13));
         rdbtnVietnamPlus.setBounds(30, 29, 242, 41);
-        rdbtnVietnamPlus.setActionCommand("http://www.vietnamplus.vn");
+        rdbtnVietnamPlus.setActionCommand("https://www.vietnamplus.vn");
         panel.add(rdbtnVietnamPlus);
         try {
             rdbtnVietnamPlus.setIcon(

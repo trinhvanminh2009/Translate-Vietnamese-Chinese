@@ -31,55 +31,55 @@ public class VietNamPlusVN {
     public static String getCurrentDirectory(String pageName) {
         String directory = "";
         switch (pageName) {
-            case "http://www.vietnamplus.vn/kinhte.vnp":
+            case "https://www.vietnamplus.vn/kinhte.vnp":
                 directory = "vietnamplusVN/kinhte";
                 break;
-            case "http://www.vietnamplus.vn/chinhtri.vnp":
+            case "https://www.vietnamplus.vn/chinhtri.vnp":
                 directory = "vietnamplusVN/chinhtri";
                 break;
-            case "http://www.vietnamplus.vn/xahoi.vnp":
+            case "https://www.vietnamplus.vn/xahoi.vnp":
                 directory = "vietnamplusVN/xahoi";
                 break;
-            case "http://www.vietnamplus.vn/thegioi/asean.vnp":
+            case "https://www.vietnamplus.vn/thegioi/asean.vnp":
                 directory = "vietnamplusVN/thegioi/asean";
                 break;
-            case "http://www.vietnamplus.vn/thegioi/chaua-tbd.vnp":
+            case "https://www.vietnamplus.vn/thegioi/chaua-tbd.vnp":
                 directory = "vietnamplusVN/thegioi/chaua-tbd";
                 break;
-            case "http://www.vietnamplus.vn/thegioi/trungdong.vnp":
+            case "https://www.vietnamplus.vn/thegioi/trungdong.vnp":
                 directory = "vietnamplusVN/thegioi/trungdong";
                 break;
-            case "http://www.vietnamplus.vn/thegioi/chauau.vnp":
+            case "https://www.vietnamplus.vn/thegioi/chauau.vnp":
                 directory = "vietnamplusVN/thegioi/chauau";
                 break;
-            case "http://www.vietnamplus.vn/thegioi/chaumy.vnp":
+            case "https://www.vietnamplus.vn/thegioi/chaumy.vnp":
                 directory = "vietnamplusVN/thegioi/chaumy";
                 break;
-            case "http://www.vietnamplus.vn/thegioi/chauphi.vnp":
+            case "https://www.vietnamplus.vn/thegioi/chauphi.vnp":
                 directory = "vietnamplusVN/thegioi/chauphi";
                 break;
-            case "http://www.vietnamplus.vn/doisong.vnp":
+            case "https://www.vietnamplus.vn/doisong.vnp":
                 directory = "vietnamplusVN/doisong";
                 break;
-            case "http://www.vietnamplus.vn/vanhoa.vnp":
+            case "https://www.vietnamplus.vn/vanhoa.vnp":
                 directory = "vietnamplusVN/vanhoa";
                 break;
-            case "http://www.vietnamplus.vn/thethao/bongda.vnp":
+            case "https://www.vietnamplus.vn/thethao/bongda.vnp":
                 directory = "vietnamplusVN/thethao/bongda";
                 break;
-                 case "http://www.vietnamplus.vn/thethao/quanvot.vnp":
+                 case "https://www.vietnamplus.vn/thethao/quanvot.vnp":
                 directory = "vietnamplusVN/thethao/quanvot";
                 break;
-                 case "http://www.vietnamplus.vn/thethao/seagames29.vnp":
+                 case "https://www.vietnamplus.vn/thethao/seagames29.vnp":
                 directory = "vietnamplusVN/thethao/seagames29";
                 break;
-            case "http://www.vietnamplus.vn/khoahoc.vnp":
+            case "https://www.vietnamplus.vn/khoahoc.vnp":
                 directory = "vietnamplusVN/khoahoc";
                 break;
-            case "http://www.vietnamplus.vn/congnghe.vnp":
+            case "https://www.vietnamplus.vn/congnghe.vnp":
                 directory = "vietnamplusVN/congnghe";
                 break;
-            case "http://www.vietnamplus.vn/chuyenla.vnp":
+            case "https://www.vietnamplus.vn/chuyenla.vnp":
                 directory = "vietnamplusVN/chuyenla";
                 break;
 
@@ -226,7 +226,7 @@ public class VietNamPlusVN {
 
     public static void main(String[] args) throws Exception {
         VietNamPlusVN v = new VietNamPlusVN();
-        v.init("http://www.vietnamplus.vn/thegioi.vnp");
+        v.init("https://www.vietnamplus.vn/congnghe.vnp");
 //		 for (int i = 1;; i++) {
 //		 if (!v.scrap(i)) {
 //		 break;
