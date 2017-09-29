@@ -401,7 +401,7 @@ public class SelectContent extends JFrame {
                         System.out.println(line);
                         String[] arr = line.split(" ");
                         st = new ScrapingThread(GetPackageNameClass.getPackageName() + "." + className, arr[0], Integer.parseInt(arr[1]), Integer.parseInt(arr[2]), Integer.parseInt(arr[3]));
-                        System.out.println("Resume "+arr[0]+" " +arr[1]+" " +arr[2]+" " +arr[3]);
+                        System.out.println("Resume " + arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[3]);
                         st.start();
                         threadList.add(st);
                         line = br.readLine();
@@ -422,25 +422,24 @@ public class SelectContent extends JFrame {
             btnPauseClickAble = false;
             System.out.println("Stopping---------------------");
 
-              for (int i = 0; i < threadList.size(); i++) {
-               threadList.get(i).requestStop();
+            for (int i = 0; i < threadList.size(); i++) {
+                threadList.get(i).requestStop();
             }
-  
 
             for (ScrapingThread scrapingThread : threadList) {
                 if (scrapingThread.getStateDownload() == true) {
                     System.out.println("DONE " + scrapingThread.getName());
                 }
                 System.out.println("-----" + scrapingThread.getClassName() + " " + scrapingThread.getPageName() + " "
-                        + scrapingThread.getCurrentPage() + " "+ scrapingThread.getPosition()+ " " + scrapingThread.getArticleSize());
+                        + scrapingThread.getCurrentPage() + " " + scrapingThread.getPosition() + " " + scrapingThread.getArticleSize());
             }
             if (downloadDone == false) {
                 try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebNameAndLanguage(pageName, language) + ".txt"), "utf-8"))) {
                     for (ScrapingThread scrapingThread : threadList) {
                         if (scrapingThread.getStateDownload() == false && scrapingThread.getArticleSize() > 0) {
                             writer.write(scrapingThread.getPageName() + " "
-                                    + scrapingThread.getCurrentPage() + " " 
-                                    + scrapingThread.getPosition()+ " "
+                                    + scrapingThread.getCurrentPage() + " "
+                                    + scrapingThread.getPosition() + " "
                                     + scrapingThread.getArticleSize() + "\n");
                         }
                     }
@@ -530,165 +529,8 @@ public class SelectContent extends JFrame {
 
     public String getSubjectFromPageName(String webName, String pageName) {
         String result = "";
-        ArrayList<String[]> arr = new ArrayList<>();
-        switch (webName) {
-            case "https://vnexpress.net":
-                arr.add(new String[]{"Thời sự", "https://vnexpress.net/tin-tuc/thoi-su"});
-                arr.add(new String[]{"Góc nhìn", "https://vnexpress.net/tin-tuc/goc-nhin"});
-                arr.add(new String[]{"Thế giới", "https://vnexpress.net/tin-tuc/the-gioi"});
-                arr.add(new String[]{"Kinh doanh", "https://kinhdoanh.vnexpress.net"});
-                arr.add(new String[]{"Giải trí", "https://giaitri.vnexpress.net"});
-                arr.add(new String[]{"Thể thao", "https://thethao.vnexpress.net"});
-                arr.add(new String[]{"Pháp luật", "https://vnexpress.net/tin-tuc/phap-luat"});
-                arr.add(new String[]{"Giáo dục", "https://vnexpress.net/tin-tuc/giao-duc"});
-                arr.add(new String[]{"Sức khỏe", "https://suckhoe.vnexpress.net/tin-tuc/suc-khoe"});
-                arr.add(new String[]{"Gia đình", "https://giadinh.vnexpress.net"});
-                arr.add(new String[]{"Du lịch", "https://dulich.vnexpress.net"});
-                arr.add(new String[]{"Khoa học", "https://vnexpress.net/tin-tuc/khoa-hoc"});
-                arr.add(new String[]{"Số hóa", "https://sohoa.vnexpress.net"});
-                arr.add(new String[]{"Xe", "https://vnexpress.net/tin-tuc/oto-xe-may"});
-                arr.add(new String[]{"Cộng đồng", "https://vnexpress.net/tin-tuc/cong-dong"});
-                arr.add(new String[]{"Tâm sự", "https://vnexpress.net/tin-tuc/tam-su"});
-                arr.add(new String[]{"Cười", "https://vnexpress.net/tin-tuc/cuoi"});
+        ArrayList<String[]> arr = getListSubject(webName);
 
-                break;
-            case "https://www.vietnamplus.vn":
-                if (language == "Vietnamese") {
-                    arr.add(new String[]{"Kinh tế", "https://www.vietnamplus.vn/kinhte.vnp"});
-                    arr.add(new String[]{"Chính trị", "https://www.vietnamplus.vn/chinhtri.vnp"});
-                    arr.add(new String[]{"Xã hội", "https://www.vietnamplus.vn/xahoi.vnp"});
-                    arr.add(new String[]{"Thế giới - ASEAN", "https://www.vietnamplus.vn/thegioi/asean.vnp"});
-                    arr.add(new String[]{"Thế giới - Châu Á-TBD", "https://www.vietnamplus.vn/thegioi/chaua-tbd.vnp"});
-                    arr.add(new String[]{"Thế giới - Trung Đông", "https://www.vietnamplus.vn/thegioi/trungdong.vnp"});
-                    arr.add(new String[]{"Thế giới - Châu Âu", "https://www.vietnamplus.vn/thegioi/chauau.vnp"});
-                    arr.add(new String[]{"Thế giới - Châu Mỹ", "https://www.vietnamplus.vn/thegioi/chaumy.vnp"});
-                    arr.add(new String[]{"Thế giới - Châu Phi", "https://www.vietnamplus.vn/thegioi/chauphi.vnp"});
-                    arr.add(new String[]{"Đời sống", "https://www.vietnamplus.vn/doisong.vnp"});
-                    arr.add(new String[]{"Văn hóa", "https://www.vietnamplus.vn/vanhoa.vnp"});
-                    arr.add(new String[]{"Thể thao - Bóng đá", "https://www.vietnamplus.vn/thethao/bongda.vnp"});
-                    arr.add(new String[]{"Thể thao - Quần vợt", "https://www.vietnamplus.vn/thethao/quanvot.vnp"});
-                    arr.add(new String[]{"Thể thao - Sea Games 29", "https://www.vietnamplus.vn/thethao/seagames29.vnp"});
-                    arr.add(new String[]{"Khoa học", "https://www.vietnamplus.vn/khoahoc.vnp"});
-                    arr.add(new String[]{"Công nghệ", "https://www.vietnamplus.vn/congnghe.vnp"});
-                    arr.add(new String[]{"Chuyện lạ", "https://www.vietnamplus.vn/chuyenla.vnp"});
-                } else {
-                    arr.add(new String[]{"Politics", "https://zh.vietnamplus.vn/politics.vnp"});
-                    arr.add(new String[]{"World", "https://zh.vietnamplus.vn/world.vnp"});
-                    arr.add(new String[]{"Business", "https://zh.vietnamplus.vn/business.vnp"});
-                    arr.add(new String[]{"Social", "https://zh.vietnamplus.vn/social.vnp"});
-                    arr.add(new String[]{"Culture", "https://zh.vietnamplus.vn/culture.vnp"});
-                    arr.add(new String[]{"Sports", "https://zh.vietnamplus.vn/sports.vnp"});
-                    arr.add(new String[]{"Technology", "https://zh.vietnamplus.vn/technology.vnp"});
-                    arr.add(new String[]{"Environment", "https://zh.vietnamplus.vn/environment.vnp"});
-                    arr.add(new String[]{"Travel", "https://zh.vietnamplus.vn/Travel.vnp"});
-                }
-
-                break;
-
-            case "http://baobinhduong.vn":
-                if (language == "Vietnamese") {
-                    arr.add(new String[]{"Kinh tế", "http://baobinhduong.vn/kinh-te"});
-                    arr.add(new String[]{"Chính trị", "http://baobinhduong.vn/chinh-tri"});
-                    arr.add(new String[]{"Xã hội", "http://baobinhduong.vn/xa-hoi"});
-                    arr.add(new String[]{"Quốc tế", "http://baobinhduong.vn/quoc-te"});
-                    arr.add(new String[]{"Thể thao", "http://baobinhduong.vn/the-thao"});
-                    arr.add(new String[]{"Phân tích", "http://baobinhduong.vn/phan-tich"});
-                    arr.add(new String[]{"Bạn đọc", "http://baobinhduong.vn/ban-doc"});
-                    arr.add(new String[]{"Pháp luật", "http://baobinhduong.vn/phap-luat"});
-                    arr.add(new String[]{"Y tế", "http://baobinhduong.vn/yte"});
-                    arr.add(new String[]{"Văn hóa - Văn nghệ", "http://baobinhduong.vn/van-hoa-van-nghe"});
-                    arr.add(new String[]{"Doanh nhân", "http://baobinhduong.vn/doanh-nghiep-doanh-nhan"});
-                    arr.add(new String[]{"Quốc phòng - An ninh", "http://baobinhduong.vn/quoc-phong-an-ninh"});
-                    arr.add(new String[]{"Gia đình", "http://baobinhduong.vn/gia-dinh"});
-                    arr.add(new String[]{"Khoa học - Công nghệ", "http://baobinhduong.vn/khoahoc-congnghe"});
-                    arr.add(new String[]{"Ô tô - Xe máy ", "http://baobinhduong.vn/oto-xemay"});
-                    arr.add(new String[]{"Lao động", "http://baobinhduong.vn/lao-dong"});
-                    arr.add(new String[]{"Hồ sơ - Tư liệu", "http://baobinhduong.vn/ho-so-tu-lieu"});
-                    arr.add(new String[]{"Môi trường", "http://baobinhduong.vn/moi-truong"});
-                } else {
-                    arr.add(new String[]{"Politics", "http://baobinhduong.vn/cn/politic-cn"});
-                    arr.add(new String[]{"Việt Nam - World", "http://baobinhduong.vn/cn/vietnam-and-world-cn"});
-                    arr.add(new String[]{"Sea-islands", "http://baobinhduong.vn/cn/sea-islands-cn"});
-                    arr.add(new String[]{"Economic", "http://baobinhduong.vn/cn/economic-cn"});
-                    arr.add(new String[]{"International", "http://baobinhduong.vn/cn/international-cn"});
-                    arr.add(new String[]{"Society", "http://baobinhduong.vn/cn/society-cn"});
-                    arr.add(new String[]{"Health", "http://baobinhduong.vn/cn/health-cn"});
-                    arr.add(new String[]{"Culture", "http://baobinhduong.vn/cn/culture-cn"});
-                    arr.add(new String[]{"Policy", "http://baobinhduong.vn/cn/policy-cn"});
-                    arr.add(new String[]{"Travel", "http://baobinhduong.vn/cn/travel-cn"});
-                    arr.add(new String[]{"Technology", "http://baobinhduong.vn/cn/technology-cn"});
-                    arr.add(new String[]{"Environment", "http://baobinhduong.vn/cn/environment-cn"});
-                    arr.add(new String[]{"Realstate", "http://baobinhduong.vn/cn/realstate-cn"});
-                }
-
-                break;
-            case "http://www.sggp.org.vn":
-                if (language == "Vietnamese") {
-                    arr.add(new String[]{"Kinh tế", "http://www.sggp.org.vn/kinhte"});
-                    arr.add(new String[]{"Chính trị", "http://www.sggp.org.vn/chinhtri"});
-                    arr.add(new String[]{"Xã hội", "http://www.sggp.org.vn/xahoi"});
-                    arr.add(new String[]{"Thế giới", "http://www.sggp.org.vn/thegioi"});
-                    arr.add(new String[]{"Đời sống công nghệ", "http://www.sggp.org.vn/doisongcongnghe"});
-                    arr.add(new String[]{"Giáo dục", "http://www.sggp.org.vn/giaoduc"});
-                    arr.add(new String[]{"Khoa học công nghệ", "http://www.sggp.org.vn/khoahoc_congnghe"});
-                    arr.add(new String[]{"Pháp luật", "http://www.sggp.org.vn/phapluat"});
-                    arr.add(new String[]{"Y tế - Sức khỏe", "http://www.sggp.org.vn/ytesuckhoe"});
-                    arr.add(new String[]{"Văn hóa - Giải trí", "http://www.sggp.org.vn/vanhoavannghe"});
-                    arr.add(new String[]{"Nhịp cầu bạn đọc", "http://www.sggp.org.vn/nhipcaubandoc"});
-
-                } else {
-                    arr.add(new String[]{"Politics", "http://cn.sggp.org.vn/時政/"});
-                    arr.add(new String[]{"Law", "http://cn.sggp.org.vn/法律/"});
-                    arr.add(new String[]{"Economic", "http://cn.sggp.org.vn/經濟/"});
-                    arr.add(new String[]{"International", "http://cn.sggp.org.vn/國際/"});
-                    arr.add(new String[]{"Chinese dynamic", "http://cn.sggp.org.vn/華人動態/"});
-                    arr.add(new String[]{"Education", "http://cn.sggp.org.vn/教育/"});
-                    arr.add(new String[]{"Sports", "http://cn.sggp.org.vn/體育/"});
-                    arr.add(new String[]{"Technology", "http://cn.sggp.org.vn/科技/"});
-                    arr.add(new String[]{"Health", "http://cn.sggp.org.vn/健康-飲食/"});
-                    arr.add(new String[]{"Entertainment", "http://cn.sggp.org.vn/文娛/"});
-                    arr.add(new String[]{"Readers - Charity", "http://cn.sggp.org.vn/讀者-慈善/"});
-                    arr.add(new String[]{"Travel", "http://cn.sggp.org.vn/旅遊/"});
-                }
-
-                break;
-            case "http://thoidai.com.vn":
-                if (language == "Vietnamese") {
-                    arr.add(new String[]{"Kinh tế", "http://thoidai.com.vn/kinh-te_t113c14"});
-                    arr.add(new String[]{"Thời sự", "http://thoidai.com.vn/thoi-su_t113c3"});
-                    arr.add(new String[]{"Sức khỏe", "http://thoidai.com.vn/suc-khoe_t113c23"});
-                    arr.add(new String[]{"Thế giới", "http://thoidai.com.vn/the-gioi_t113c6"});
-                    arr.add(new String[]{"Bạn năm châu", "http://thoidai.com.vn/ban-nam-chau_t113c34"});
-                    arr.add(new String[]{"Giáo dục", "http://thoidai.com.vn/giao-duc_t113c20"});
-                    arr.add(new String[]{"Tắm lòng bè bạn", "http://thoidai.com.vn/tam-long-be-ban_t113c35"});
-                    arr.add(new String[]{"Văn hóa - Du lịch", "http://thoidai.com.vn/van-hoa-du-lich_t113c9"});
-                    arr.add(new String[]{"Thế giới", "http://thoidai.com.vn/the-gioi_t113c6"});
-                    arr.add(new String[]{"An toàn - Giao thông", "http://thoidai.com.vn/an-toan-giao-thong_t113c95"});
-                    arr.add(new String[]{"Bạn đọc", "http://thoidai.com.vn/ban-doc_t113c30"});
-
-                    arr.add(new String[]{"Pháp luật", "http://thoidai.com.vn/old/phap-luat_t113c54"});
-                    arr.add(new String[]{"Gia đình việt", "http://thoidai.com.vn/old/gia-dinh-viet_t113c49"});
-                    arr.add(new String[]{"Nông thôn", "http://thoidai.com.vn/old/nong-thon_t113c46"});
-                    arr.add(new String[]{"Thể thao", "http://thoidai.com.vn/old/the-thao_t113c59"});
-                    arr.add(new String[]{"Môi trường", "http://thoidai.com.vn/old/moi-truong_t113c62"});
-                    arr.add(new String[]{"Nhân ái", "http://thoidai.com.vn/nhan-ai_t113c27"});
-
-                } else {
-                    arr.add(new String[]{"Politics", "http://shidai.vn/政治_t113c3"});
-                    arr.add(new String[]{"Cultural - Sport", "http://shidai.vn/文化-体育_t113c6"});
-                    arr.add(new String[]{"Economic", "http://shidai.vn/经济_t113c89"});
-                    arr.add(new String[]{"International", "http://shidai.vn/国际_t113c30"});
-                    arr.add(new String[]{"Vietnamese - Family", "http://shidai.vn/越南家庭_t113c9"});
-                    arr.add(new String[]{"Society", "http://shidai.vn/社会_t113c14"});
-                    arr.add(new String[]{"Love the motherland", "http://shidai.vn/热爱祖国_t113c20"});
-                    arr.add(new String[]{"Vietnamese relations", "http://shidai.vn/越中关系_t113c23"});
-                    arr.add(new String[]{"Four Seas Brothers", "http://shidai.vn/四海兄弟_t113c27"});
-
-                }
-
-                break;
-
-        }
         for (String[] strings : arr) {
             if (strings[1].equals(pageName)) {
                 return strings[0];
@@ -697,6 +539,7 @@ public class SelectContent extends JFrame {
         return result;
     }
 
+//////////////////////////////////////////////////////////////////////////////////////////
     public ArrayList<String[]> getListSubject(String webName) {
         ArrayList<String[]> arr = new ArrayList<>();
         switch (webName) {
@@ -854,14 +697,38 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
+
+            case "http://www.tapchicongsan.org.vn":
+                if (language == "Vietnamese") {
+                    arr.add(new String[]{"Chính trị", "http://www.tapchicongsan.org.vn/Home/xay-dung-dang.aspx"});
+                    arr.add(new String[]{"Nghiên cứu", "http://www.tapchicongsan.org.vn/Home/Nghiencuu-Traodoi.aspx"});
+                    arr.add(new String[]{"Bình luận", "http://www.tapchicongsan.org.vn/Home/Binh-luan.aspx"});
+                    arr.add(new String[]{"Thông tin lý luận", "http://www.tapchicongsan.org.vn/Home/Thong-tin-ly-luan.aspx"});
+                    arr.add(new String[]{"Thế giới", "http://www.tapchicongsan.org.vn/Home/The-gioi-van-de-su-kien.aspx"});
+                    arr.add(new String[]{"Kinh tế", "http://www.tapchicongsan.org.vn/Home/kinh-te.aspx"});
+                    arr.add(new String[]{"Văn hóa", "http://www.tapchicongsan.org.vn/Home/Van-hoa-xa-hoi.aspx"});
+                    arr.add(new String[]{"An ninh", "http://www.tapchicongsan.org.vn/Home/An-ninh-quoc-phong.aspx"});
+                    arr.add(new String[]{"Đối ngoại", "http://www.tapchicongsan.org.vn/Home/Doi-ngoai-va-hoi-nhap.aspx"});
+                    arr.add(new String[]{"Sinh hoạt tư tưởng", "http://www.tapchicongsan.org.vn/Home/Sinh-hoat-tu-tuong.aspx"});
+
+                } else {
+                    arr.add(new String[]{"Politics", "http://cn.tapchicongsan.org.vn/Home/party"});
+                    arr.add(new String[]{"News", "http://cn.tapchicongsan.org.vn/Home/Political"});
+                    arr.add(new String[]{"Economic", "http://cn.tapchicongsan.org.vn/Home/economic"});
+                    arr.add(new String[]{"Social", "http://cn.tapchicongsan.org.vn/Home/social"});
+                    arr.add(new String[]{"The World", "http://cn.tapchicongsan.org.vn/Home/TheWorld"});
+
+                }
+
+                break;
         }
         return arr;
     }
 
-    ////////////////////
-    public static String getClassNameFromWebNameAndLanguage(String webName, String language) {
-        String result = null;
+    ///////////////////////////////////////////////////////////////
+    public static ArrayList<String[]> getClassInfor() {
         ArrayList<String[]> arr = new ArrayList<>();
+
         arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
         arr.add(new String[]{"https://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
         arr.add(new String[]{"https://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
@@ -871,6 +738,17 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://www.sggp.org.vn", "SGGPCN", "Chinese"});
         arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiVN", "Vietnamese"});
         arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiCN", "Chinese"});
+        arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanCN", "Chinese"});
+
+        return arr;
+    }
+
+    ////////////////////
+    public static String getClassNameFromWebNameAndLanguage(String webName, String language) {
+        String result = null;
+        ArrayList<String[]> arr = getClassInfor();
+
         for (String[] strings : arr) {
             if (strings[0].equals(webName) && strings[2].equals(language)) {
                 result = strings[1];
@@ -881,16 +759,7 @@ public class SelectContent extends JFrame {
 
     public static String getWebFromClassName(String className) {
         String result = null;
-        ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
-        arr.add(new String[]{"https://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
-        arr.add(new String[]{"https://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
-        arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongVN", "Vietnamese"});
-        arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongCN", "Chinese"});
-        arr.add(new String[]{"http://www.sggp.org.vn", "SGGPVN", "Vietnamese"});
-        arr.add(new String[]{"http://www.sggp.org.vn", "SGGPCN", "Chinese"});
-        arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiVN", "Vietnamese"});
-        arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiCN", "Chinese"});
+        ArrayList<String[]> arr = getClassInfor();
         for (String[] strings : arr) {
             if (strings[1].equals(className)) {
                 result = strings[0];
@@ -901,16 +770,7 @@ public class SelectContent extends JFrame {
 
     public static String getLanguageFromClassName(String className) {
         String result = "";
-        ArrayList<String[]> arr = new ArrayList<>();
-        arr.add(new String[]{"https://vnexpress.net", "VNExpress", "none"});
-        arr.add(new String[]{"https://www.vietnamplus.vn", "VietNamPlusVN", "Vietnamese"});
-        arr.add(new String[]{"https://www.vietnamplus.vn", "VietNamPlusCN", "Chinese"});
-        arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongVN", "Vietnamese"});
-        arr.add(new String[]{"http://baobinhduong.vn", "BaoBinhDuongCN", "Chinese"});
-        arr.add(new String[]{"http://www.sggp.org.vn", "SGGPVN", "Vietnamese"});
-        arr.add(new String[]{"http://www.sggp.org.vn", "SGGPCN", "Chinese"});
-        arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiVN", "Vietnamese"});
-        arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiCN", "Chinese"});
+        ArrayList<String[]> arr = getClassInfor();
         for (String[] strings : arr) {
             if (strings[1].equals(className)) {
                 result = strings[2];
