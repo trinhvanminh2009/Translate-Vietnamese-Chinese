@@ -721,6 +721,31 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
+                
+                 case "http://baothainguyen.org.vn":
+                if (language == "Vietnamese") {
+                    arr.add(new String[]{"Thời sự trong tỉnh", "http://baothainguyen.org.vn/chuyen-muc/thoi-su-trong-tinh_205.html"});
+                    arr.add(new String[]{"Chính trị", "http://baothainguyen.org.vn/chuyen-muc/chinh-tri_97.html"});
+                    arr.add(new String[]{"Kinh tế", "http://baothainguyen.org.vn/chuyen-muc/kinh-te_108.html"});
+                    arr.add(new String[]{"Xã hội", "http://baothainguyen.org.vn/chuyen-muc/xa-hoi_85.html"});
+                    arr.add(new String[]{"Văn hóa", "http://baothainguyen.org.vn/chuyen-muc/van-hoa_98.html"});
+                    arr.add(new String[]{"Giáo dục", "http://baothainguyen.org.vn/chuyen-muc/giao-duc_100.html"});
+                    arr.add(new String[]{"Pháp luật", "http://baothainguyen.org.vn/chuyen-muc/phap-luat_101.html"});
+                    arr.add(new String[]{"Thể thao", "http://baothainguyen.org.vn/chuyen-muc/the-thao_83.html"});
+                    arr.add(new String[]{"Khoa học công nghệ", "http://baothainguyen.org.vn/chuyen-muc/khoa-hoc-cn_99.html"});
+                    arr.add(new String[]{"Giao thông", "http://baothainguyen.org.vn/chuyen-muc/giao-thong_103.html"});
+
+                    arr.add(new String[]{"Oto xe máy", "http://baothainguyen.org.vn/chuyen-muc/o-to-xe-may_110.html"});
+                    arr.add(new String[]{"Nét đẹp đời thường", "http://baothainguyen.org.vn/chuyen-muc/net-dep-doi-thuong_116.html"});
+                    arr.add(new String[]{"Văn bản chính sách mới", "http://baothainguyen.org.vn/chuyen-muc/van-ban-chinh-sach-moi_184.html"});
+                    arr.add(new String[]{"Thông tin quảng cáo", "http://baothainguyen.org.vn/chuyen-muc/thong-tin-quang-cao_38.html"});
+                    arr.add(new String[]{"Đất và người Thái Nguyên", "http://baothainguyen.org.vn/chuyen-muc/dat-va-nguoi-thai-nguyen_40.html"});
+                    arr.add(new String[]{"Quê hương đất nước", "http://baothainguyen.org.vn/chuyen-muc/que-huong-dat-nuoc_104.html"});
+                } else {
+                    arr.add(new String[]{"Chinese", "http://baothainguyen.org.vn/chuyen-muc/tieng-trung-quoc_31.html"});
+                }
+
+                break;
         }
         return arr;
     }
@@ -740,6 +765,8 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiCN", "Chinese"});
         arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanVN", "Vietnamese"});
         arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanCN", "Chinese"});
+         arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenVN", "Vietnamese"});
+        arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenCN", "Chinese"});
 
         return arr;
     }
