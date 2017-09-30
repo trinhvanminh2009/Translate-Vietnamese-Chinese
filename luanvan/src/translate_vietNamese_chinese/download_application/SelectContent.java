@@ -746,6 +746,41 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
+                
+                case "http://www.nhandan.com.vn":
+                if (language == "Vietnamese") {
+                    
+                    arr.add(new String[]{"Chính trị", "http://www.nhandan.com.vn/chinhtri"});
+                    arr.add(new String[]{"Kinh tế", "http://www.nhandan.com.vn/kinhte"});
+                    arr.add(new String[]{"Xã hội", "http://www.nhandan.com.vn/xahoi"});
+                    arr.add(new String[]{"Văn hóa", "http://www.nhandan.com.vn/vanhoa"});
+                    arr.add(new String[]{"Thế giới", "http://www.nhandan.com.vn/thegioi"});
+                    arr.add(new String[]{"Công nghệ", "http://www.nhandan.com.vn/congnghe"});
+                    arr.add(new String[]{"Khoa học", "http://www.nhandan.com.vn/khoahoc"});
+                    arr.add(new String[]{"Giáo dục", "http://www.nhandan.com.vn/giaoduc"});
+                    arr.add(new String[]{"Sức khỏe", "http://www.nhandan.com.vn/suckhoe"});
+                    arr.add(new String[]{"Pháp luật", "http://www.nhandan.com.vn/phapluat"});
+                    arr.add(new String[]{"Thể thao", "http://www.nhandan.com.vn/thethao"});
+                    arr.add(new String[]{"Bạn đọc", "http://www.nhandan.com.vn/bandoc"});
+                   
+                } else {
+                    arr.add(new String[]{"Leader", "http://cn.nhandan.com.vn/leader"});
+                     arr.add(new String[]{"Political", "http://cn.nhandan.com.vn/political"});
+                    arr.add(new String[]{"International", "http://cn.nhandan.com.vn/international"});
+                    arr.add(new String[]{"Economic", "http://cn.nhandan.com.vn/economic"});
+                    arr.add(new String[]{"Society", "http://cn.nhandan.com.vn/society"});
+                    arr.add(new String[]{"Culture", "http://cn.nhandan.com.vn/culture"});
+                    arr.add(new String[]{"Sports", "http://cn.nhandan.com.vn/sports"});
+                    arr.add(new String[]{"Tourism", "http://cn.nhandan.com.vn/tourism"});
+                    arr.add(new String[]{"Friendshipbridge", "http://cn.nhandan.com.vn/friendshipbridge"});
+                    arr.add(new String[]{"Documentation", "http://cn.nhandan.com.vn/documentation"});
+                    arr.add(new String[]{"Local", "http://cn.nhandan.com.vn/local"});
+                    arr.add(new String[]{"Asean", "http://cn.nhandan.com.vn/asean"});
+                    arr.add(new String[]{"Vietnam Window", "http://cn.nhandan.com.vn/vietnamwindow"});
+                     arr.add(new String[]{"The nation of Vietnam", "http://cn.nhandan.com.vn/the-nation-of-vietnam"});
+                }
+
+                break;
         }
         return arr;
     }
@@ -767,6 +802,8 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanCN", "Chinese"});
          arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenVN", "Vietnamese"});
         arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenCN", "Chinese"});
+        arr.add(new String[]{"http://www.nhandan.com.vn", "NhanDanVN", "Vietnamese"});
+        arr.add(new String[]{"http://www.nhandan.com.vn", "NhanDanCN", "Chinese"});
 
         return arr;
     }
