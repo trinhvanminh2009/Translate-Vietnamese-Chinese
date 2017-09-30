@@ -1,5 +1,6 @@
 package translate_vietNamese_chinese.download_application;
 
+import java.io.IOException;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 
@@ -7,15 +8,12 @@ import org.jsoup.Jsoup;
 public class Test {
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		try {
-                    String url = java.net.URLDecoder.decode("http://cn.sggp.org.vn/%E6%99%82%E6%94%BF/page-2000.html","UTF-8");
-            Connection.Response response = Jsoup.connect(url).followRedirects(false).execute();       
-                    System.out.println( response.header("location"));
-        } catch (Exception e) {
-           
-        }
+		for(int i=1;i<10;i++){
+                    System.out.println(Jsoup.connect("http://cn.news.chinhphu.vn/Home/tin-bo-nganh/trang-"+i+".vgp").userAgent("Mozilla").timeout(0).get());
+                }
+                System.out.println("translate_vietNamese_chinese.download_application.Test.main()");
 	}
 
 }

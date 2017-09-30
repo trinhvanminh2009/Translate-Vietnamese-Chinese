@@ -32,7 +32,7 @@ public class SGGPCN {
 
     public static String getCurrentDirectory(String pageName) {
         String directory = "";
-        switch (pageName) {            
+        switch (pageName) {
             case "http://cn.sggp.org.vn/時政/":
                 directory = "sggpCN/Politics";
                 break;
@@ -89,6 +89,7 @@ public class SGGPCN {
         makeDirectory(currentDirectory, true);
         System.out.println("Start download SGGPCN: " + pageName);
     }
+
     public int getPosition() {
         return position;
     }
@@ -103,17 +104,15 @@ public class SGGPCN {
         }
     }
 
-
     public static String getFinalURL(String url) {
         try {
             String strUrl = java.net.URLDecoder.decode(url, "UTF-8");
             Connection.Response response = Jsoup.connect(strUrl).followRedirects(false).execute();
-            if(response.header("location")!=null){
-                 return response.header("location");
+            if (response.header("location") != null) {
+                return response.header("location");
+            } else {
+                return "true";
             }
-            else{
-                 return "true";
-            }                      
         } catch (IOException ex) {
             Logger.getLogger(SGGPCN.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,7 +138,7 @@ public class SGGPCN {
             if (f <= 5) {
                 break;
             }
-            if(f>=50000||f<=0){
+            if (f >= 50000 || f <= 0) {
                 return -1;
             }
             if (checkValidLink(result)) {
@@ -154,20 +153,20 @@ public class SGGPCN {
                 result -= f;
                 reachInvalidLink = true;
             }
-          
+
         }
         if (checkValidLink(result) == true) {
             //neu chay 10000 lan k co ket qua thi dung 
             for (int i = result; i < 10000; i++) {
                 if (!checkValidLink(i)) {
-                    
+
                     return i - 1;
                 }
             }
         } else {
             for (int i = result; i >= 1; i--) {
                 if (checkValidLink(i)) {
-                  
+
                     return i;
                 }
             }
@@ -178,7 +177,8 @@ public class SGGPCN {
     public int getArticleSize() {
         return articleSize;
     }
-public void getLink(String page, int position) {
+
+    public void getLink(String page, int position) {
         try {
             Document doc1 = Jsoup.connect(page).userAgent("Mozilla").timeout(0).get();
 
@@ -197,8 +197,10 @@ public void getLink(String page, int position) {
                     // System.out.println(i.select("a[href]").first().attr("abs:href"));
                     //  System.exit(0);
                     if (getDetails(ar)) {
-                        articleSize++;
-                        saveArticle(currentDirectory, ar);
+                        if (ar.getContent().length() > 100) {
+                            articleSize++;
+                            saveArticle(currentDirectory, ar);
+                        }
                     } else {
                         System.out.println("Skip");
                     }
@@ -210,7 +212,6 @@ public void getLink(String page, int position) {
             System.out.println("ex1: " + ex);
         }
     }
-   
 
     public boolean getDetails(Article ar) {
 
@@ -254,19 +255,16 @@ public void getLink(String page, int position) {
     }
 
     public void saveArticle(String name, Article a) throws UnsupportedEncodingException, IOException {
-        if (a.getTitle() != null && a.getContent().length() > 100 && a.getLink() != null) {
-            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"),
-                    "utf-8"))) {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"),
+                "utf-8"))) {
 
-                writer.write(a.getLink() + "\n-----------------\n");
-                writer.write(a.getTitle() + "\n-----------------\n");
-                writer.write(a.getContent() + "\n-----------------\n");
-                System.out.println("Created " + System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"
-                        + " files Successfully");
-            }
+            writer.write(a.getLink() + "\n-----------------\n");
+            writer.write(a.getTitle() + "\n-----------------\n");
+            writer.write(a.getContent() + "\n-----------------\n");
+            System.out.println("Created " + System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"
+                    + " files Successfully");
         }
     }
 
-   
 }

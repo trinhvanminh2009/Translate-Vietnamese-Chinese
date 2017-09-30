@@ -147,8 +147,10 @@ public class BaoThaiNguyenVN {
                     ar = new Article();
                     ar.setLink(div.get(i).select("a[href]").first().attr("abs:href"));
                     if (getDetails(ar)) {
-                        articleSize++;
-                        saveArticle(currentDirectory, ar);
+                           if (ar.getContent().length() > 100) {
+                            articleSize++;
+                            saveArticle(currentDirectory, ar);
+                        }
                     } else {
                         System.out.println("Skip");
                     }
@@ -201,18 +203,16 @@ public class BaoThaiNguyenVN {
         }
     }
 
-    public void saveArticle(String name, Article a) throws UnsupportedEncodingException, IOException {
-        if (a.getTitle() != null && a.getContent().length() > 100 && a.getLink() != null) {
-            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"),
-                    "utf-8"))) {
+   public void saveArticle(String name, Article a) throws UnsupportedEncodingException, IOException {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"),
+                "utf-8"))) {
 
-                writer.write(a.getLink() + "\n-----------------\n");
-                writer.write(a.getTitle() + "\n-----------------\n");
-                writer.write(a.getContent() + "\n-----------------\n");
-                System.out.println("Created " + System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"
-                        + " files Successfully");
-            }
+            writer.write(a.getLink() + "\n-----------------\n");
+            writer.write(a.getTitle() + "\n-----------------\n");
+            writer.write(a.getContent() + "\n-----------------\n");
+            System.out.println("Created " + System.getProperty("user.dir") + "/" + name + "/" + articleSize + ".txt"
+                    + " files Successfully");
         }
     }
 
