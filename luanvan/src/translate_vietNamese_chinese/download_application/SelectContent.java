@@ -721,8 +721,8 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
-                
-                 case "http://baothainguyen.org.vn":
+
+            case "http://baothainguyen.org.vn":
                 if (language == "Vietnamese") {
                     arr.add(new String[]{"Thời sự trong tỉnh", "http://baothainguyen.org.vn/chuyen-muc/thoi-su-trong-tinh_205.html"});
                     arr.add(new String[]{"Chính trị", "http://baothainguyen.org.vn/chuyen-muc/chinh-tri_97.html"});
@@ -746,10 +746,10 @@ public class SelectContent extends JFrame {
                 }
 
                 break;
-                
-                case "http://www.nhandan.com.vn":
+
+            case "http://www.nhandan.com.vn":
                 if (language == "Vietnamese") {
-                    
+
                     arr.add(new String[]{"Chính trị", "http://www.nhandan.com.vn/chinhtri"});
                     arr.add(new String[]{"Kinh tế", "http://www.nhandan.com.vn/kinhte"});
                     arr.add(new String[]{"Xã hội", "http://www.nhandan.com.vn/xahoi"});
@@ -762,10 +762,10 @@ public class SelectContent extends JFrame {
                     arr.add(new String[]{"Pháp luật", "http://www.nhandan.com.vn/phapluat"});
                     arr.add(new String[]{"Thể thao", "http://www.nhandan.com.vn/thethao"});
                     arr.add(new String[]{"Bạn đọc", "http://www.nhandan.com.vn/bandoc"});
-                   
+
                 } else {
                     arr.add(new String[]{"Leader", "http://cn.nhandan.com.vn/leader"});
-                     arr.add(new String[]{"Political", "http://cn.nhandan.com.vn/political"});
+                    arr.add(new String[]{"Political", "http://cn.nhandan.com.vn/political"});
                     arr.add(new String[]{"International", "http://cn.nhandan.com.vn/international"});
                     arr.add(new String[]{"Economic", "http://cn.nhandan.com.vn/economic"});
                     arr.add(new String[]{"Society", "http://cn.nhandan.com.vn/society"});
@@ -777,7 +777,32 @@ public class SelectContent extends JFrame {
                     arr.add(new String[]{"Local", "http://cn.nhandan.com.vn/local"});
                     arr.add(new String[]{"Asean", "http://cn.nhandan.com.vn/asean"});
                     arr.add(new String[]{"Vietnam Window", "http://cn.nhandan.com.vn/vietnamwindow"});
-                     arr.add(new String[]{"The nation of Vietnam", "http://cn.nhandan.com.vn/the-nation-of-vietnam"});
+                    arr.add(new String[]{"The nation of Vietnam", "http://cn.nhandan.com.vn/the-nation-of-vietnam"});
+                }
+
+                break;
+
+            case "http://baochinhphu.vn":
+                if (language == "Vietnamese") {
+
+                    arr.add(new String[]{"Chính trị", "http://baochinhphu.vn/Chinh-tri/442.vgp"});
+                    arr.add(new String[]{"Kinh tế", "http://baochinhphu.vn/Kinh-te/7.vgp"});
+                    arr.add(new String[]{"Xã hội", "http://baochinhphu.vn/Xa-hoi/449.vgp"});
+                    arr.add(new String[]{"Văn hóa", "http://baochinhphu.vn/Van-hoa/249.vgp"});
+                    arr.add(new String[]{"Khoa giáo", "http://baochinhphu.vn/Khoa-giao/451.vgp"});
+                    arr.add(new String[]{"Quốc tế", "http://baochinhphu.vn/Quoc-te/6.vgp"});
+                    arr.add(new String[]{"Hội Nhập", "http://baochinhphu.vn/Hoi-nhap/453.vgp"});
+                } else {
+                    arr.add(new String[]{"Government activity", "http://cn.news.chinhphu.vn/Home/hoat-dong-dang-cp.vgp"});
+                    arr.add(new String[]{"Prime minister", "http://cn.news.chinhphu.vn/Home/thu-tuong-chinh-phu.vgp"});
+                    arr.add(new String[]{"Government prime minister guidance and decision", "http://cn.news.chinhphu.vn/Home/chi-dao-ttcp.vgp"});
+                    arr.add(new String[]{"Government department activities", "http://cn.news.chinhphu.vn/Home/tin-bo-nganh.vgp"});
+                    arr.add(new String[]{"Provinces and cities activities", "http://cn.news.chinhphu.vn/Home/tin-dia-phuong.vgp"});
+                    arr.add(new String[]{"Economic Society", "http://cn.news.chinhphu.vn/Home/kinhte-xahoi.vgp"});
+                    arr.add(new String[]{"Science & Technology", "http://cn.news.chinhphu.vn/Home/kh-cn.vgp"});
+                    arr.add(new String[]{"Cultural Tourism", "http://cn.news.chinhphu.vn/Home/vanhoa-dulich.vgp"});
+                    arr.add(new String[]{"Vietnam and the world", "http://cn.news.chinhphu.vn/Home/thegioi-vietnam.vgp"});
+                    arr.add(new String[]{"Statistical Bulletin of National Economic and Social Development", "http://cn.news.chinhphu.vn/Home/thongtin-kinhte-xahoi.vgp"});
                 }
 
                 break;
@@ -800,10 +825,12 @@ public class SelectContent extends JFrame {
         arr.add(new String[]{"http://thoidai.com.vn", "ThoiDaiCN", "Chinese"});
         arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanVN", "Vietnamese"});
         arr.add(new String[]{"http://www.tapchicongsan.org.vn", "TapChiCongSanCN", "Chinese"});
-         arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenVN", "Vietnamese"});
+        arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenVN", "Vietnamese"});
         arr.add(new String[]{"http://baothainguyen.org.vn", "BaoThaiNguyenCN", "Chinese"});
         arr.add(new String[]{"http://www.nhandan.com.vn", "NhanDanVN", "Vietnamese"});
         arr.add(new String[]{"http://www.nhandan.com.vn", "NhanDanCN", "Chinese"});
+        arr.add(new String[]{"http://baochinhphu.vn", "BaoChinhPhuVN", "Vietnamese"});
+        arr.add(new String[]{"http://baochinhphu.vn", "BaoChinhPhuCN", "Chinese"});
 
         return arr;
     }
