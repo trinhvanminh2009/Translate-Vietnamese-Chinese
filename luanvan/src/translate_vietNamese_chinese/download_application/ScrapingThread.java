@@ -117,6 +117,8 @@ public class ScrapingThread extends Thread {
             int current=currentPage;
             for (int i = current;; i++) {
                 if (i > maxPageNumber || maxPageNumber == -1) {
+                    articleSize = (int) getArticleSize.invoke(object);
+                    position=(int) getPosition.invoke(object);
                     downloadDone = true;
                     break;
                 }

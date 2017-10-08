@@ -435,13 +435,11 @@ public class SelectContent extends JFrame {
             }
             if (downloadDone == false) {
                 try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebNameAndLanguage(pageName, language) + ".txt"), "utf-8"))) {
-                    for (ScrapingThread scrapingThread : threadList) {
-                        if (scrapingThread.getStateDownload() == false && scrapingThread.getArticleSize() > 0) {
+                    for (ScrapingThread scrapingThread : threadList) {       
                             writer.write(scrapingThread.getPageName() + " "
                                     + scrapingThread.getCurrentPage() + " "
                                     + scrapingThread.getPosition() + " "
-                                    + scrapingThread.getArticleSize() + "\n");
-                        }
+                                    + scrapingThread.getArticleSize() + "\n");                        
                     }
                 } catch (UnsupportedEncodingException ex) {
                     Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
@@ -488,7 +486,8 @@ public class SelectContent extends JFrame {
                 try {
 
                     int per = 0;
-                    while (per != 100 || downloadDone == false) {
+                    boolean stopDownload=false;
+                    while (!stopDownload) {
                         per = 0;
                         Thread.sleep(4000);
                         for (ScrapingThread scrapingThread : threadList) {
@@ -512,8 +511,35 @@ public class SelectContent extends JFrame {
                             }
 
                             if (downloadDone == true) {
-                                JOptionPane.showMessageDialog(null, "Download Complete!");
-                                btnPause.setEnabled(false);
+                                boolean  allThreadDeath = true;
+                                for (ScrapingThread scrapingThread : threadList) {
+                                    if (scrapingThread.isAlive()) {
+                                        allThreadDeath = false;
+                                        break;
+                                    }
+                                }
+                                if(allThreadDeath){
+                                    try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(DOWNLOAD_LOG + getClassNameFromWebNameAndLanguage(pageName, language) + ".txt"), "utf-8"))) {
+                                        for (ScrapingThread scrapingThread : threadList) {       
+                                                writer.write(scrapingThread.getPageName() + " "
+                                                        + scrapingThread.getCurrentPage() + " "
+                                                        + scrapingThread.getPosition() + " "
+                                                        + (scrapingThread.getArticleSize()-1) + "\n"); 
+                                                System.out.println("DONE "+scrapingThread.getPageName() + " "
+                                                        + scrapingThread.getCurrentPage() + " "
+                                                        + scrapingThread.getPosition() + " "
+                                                        + (scrapingThread.getArticleSize()-1) + "\n");
+                                        }
+                                    } catch (UnsupportedEncodingException ex) {
+                                        Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(SelectContent.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    
+                                    JOptionPane.showMessageDialog(null, "Download Complete!");
+                                    btnPause.setEnabled(false);
+                                    stopDownload=true;
+                                }                              
                             }
                         }
 
