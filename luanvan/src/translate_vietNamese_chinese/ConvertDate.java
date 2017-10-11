@@ -431,16 +431,30 @@ public class ConvertDate {
 			}
 			tempCount = 0;
 		}
+		ArrayList<String>listCheckBeforeWriteDownToFile = new ArrayList<>();
+		String currentString = new String();
 		for (int i = 0; i < listFilePathAndItemsVN.size(); i++) {
 			for (int j = 0; j < listFilePathAndItemsVN.get(i).getListDate().size(); j++) {
 				for (int k = 0; k < listFilePathAndItemsCN.size(); k++) {
 					for (int h = 0; h < listFilePathAndItemsCN.get(k).getListDate().size(); h++) {
 						if (CompareTitle.printSimilarity1(listFilePathAndItemsCN.get(k).getListDate().get(h),
 								listFilePathAndItemsVN.get(i).getListDate().get(j))) {
-							WriteFile.writeDateTimeSimilarity(listFilePathAndItemsVN.get(i).getFilePath() + " with "
+							currentString = listFilePathAndItemsVN.get(i).getFilePath() + " with "
 									+ listFilePathAndItemsVN.get(i).getListDate().get(j) + " similarity with "
 									+ listFilePathAndItemsCN.get(k).getFilePath() + " with "
-									+ listFilePathAndItemsCN.get(k).getListDate().get(h) + "\n");
+									+ listFilePathAndItemsCN.get(k).getListDate().get(h);
+							if(percentSimilarityBetweenTwoFiles(listFilePathAndItemsVN.get(i).getListDate(), 
+									listFilePathAndItemsCN.get(k).getListDate()) != 0){
+								System.out.println(listFilePathAndItemsVN.get(i).getFilePath() + " with "
+										+ listFilePathAndItemsCN.get(k).getFilePath());
+							}
+							
+							if(!listCheckBeforeWriteDownToFile.contains(currentString))
+							{
+								listCheckBeforeWriteDownToFile.add(currentString);
+								WriteFile.writeDateTimeSimilarity(currentString + "\n");
+							}
+							
 						}
 					}
 				}
@@ -449,19 +463,38 @@ public class ConvertDate {
 		System.out.println("Write file successfully!");
 	}
 
-	private static int percentSimilarityBetweenTwoFiles(int numberListDateVN, int numberListDateCN,
-			int numberSimilarity) {
-		if(numberListDateVN == numberListDateCN && numberListDateVN == numberSimilarity)
-		{
-			return 100;
+	private static int percentSimilarityBetweenTwoFiles(ArrayList<String>listDatesVN, ArrayList<String>listDatesCN) {
+		int count = 0;
+		for(int i = 0 ; i < listDatesVN.size(); i++) {	
+			for(int j = 0; j < listDatesCN.size(); j++) {
+				if(listDatesVN.get(i).equals(listDatesCN.get(j))){
+					count++;
+				}
+			}
+			if(count >= 1)
+			{
+				System.out.println(count);
+				System.out.println( "Date VN "+listDatesVN.get(i));
+				for(int j = 0; j <listDatesCN.size(); j++) {
+					System.out.println(listDatesCN.get(j));
+				}
+				//Compare with list in VN
+				if(listDatesCN.size() == listDatesVN.size() && listDatesVN.size() == count) {
+					System.out.println("100%");
+					return count;
+				}
+				
+					
+			}
+			count = 0;
 		}
 		return 0;
 	}
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
-		final File folder2 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
+		final File folder = new File("/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politics_VietNamese");
+		final File folder2 = new File("/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politis_Chinese");
 		listFilesForFolder(folder, folder2);
 	}
 }
