@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class ConvertDate {
 
@@ -230,7 +231,7 @@ public class ConvertDate {
 				// Length of year and space
 				lastIndex += 2;
 				// Get substring is date month year and space
-				tempString = content.substring(lastIndex - 7, lastIndex + 8).trim();
+				tempString = content.substring(lastIndex - 7, lastIndex + 10).trim();
 				// Check first is digit to make sure it's year in Chinese
 				if (Character.isDigit(tempString.charAt(0))) {
 					// Make sure substring include date
@@ -259,9 +260,7 @@ public class ConvertDate {
 		int lastIndex = 0;
 		String subTempString;
 		String tempString;
-
 		ArrayList<ConvertDate> listDateMonth = new ArrayList<>();
-
 		while (lastIndex != -1) {
 			lastIndex = content.indexOf("年 ", lastIndex);
 			if (lastIndex != -1) {
@@ -292,7 +291,6 @@ public class ConvertDate {
 	public static String convertFormatAfterTranslated(String input) {
 		input = input.toLowerCase();
 		if (input.contains("ngày")) {
-			input = input.toLowerCase();
 			input = input.replace("tháng", "/");
 			input = input.replace("năm", "/");
 			input = input.replace("đến", "-");
@@ -304,6 +302,14 @@ public class ConvertDate {
 			input = input.replace("đến", "-");
 			input = input.replace(" ", "");
 			input = input.replace("tháng", "tháng ");
+			if (Pattern.compile("(\\d+)(tháng)").matcher(input).find()) {
+				input = input.replace("tháng", "/");
+				input = input.replace("năm", "/");
+				input = input.replace("đến", "-");
+				input = input.replace(" ", "");
+				input = "ngày " + input;
+			}
+
 		}
 
 		return input;
@@ -431,7 +437,7 @@ public class ConvertDate {
 			}
 			tempCount = 0;
 		}
-		ArrayList<String>listCheckBeforeWriteDownToFile = new ArrayList<>();
+		ArrayList<String> listCheckBeforeWriteDownToFile = new ArrayList<>();
 		String currentString = new String();
 		for (int i = 0; i < listFilePathAndItemsVN.size(); i++) {
 			for (int j = 0; j < listFilePathAndItemsVN.get(i).getListDate().size(); j++) {
@@ -443,18 +449,15 @@ public class ConvertDate {
 									+ listFilePathAndItemsVN.get(i).getListDate().get(j) + " similarity with "
 									+ listFilePathAndItemsCN.get(k).getFilePath() + " with "
 									+ listFilePathAndItemsCN.get(k).getListDate().get(h);
-							if(percentSimilarityBetweenTwoFiles(listFilePathAndItemsVN.get(i).getListDate(), 
-									listFilePathAndItemsCN.get(k).getListDate()) != 0){
-								System.out.println(listFilePathAndItemsVN.get(i).getFilePath() + " with "
-										+ listFilePathAndItemsCN.get(k).getFilePath());
-							}
-							
-							if(!listCheckBeforeWriteDownToFile.contains(currentString))
-							{
+
+							percentSimilarityBetweenTwoFiles(listFilePathAndItemsVN.get(i).getListDate(),
+									listFilePathAndItemsCN.get(k).getListDate(),
+									listFilePathAndItemsVN.get(i).getFilePath(),
+									listFilePathAndItemsCN.get(k).getFilePath());
+							if (!listCheckBeforeWriteDownToFile.contains(currentString)) {
 								listCheckBeforeWriteDownToFile.add(currentString);
 								WriteFile.writeDateTimeSimilarity(currentString + "\n");
 							}
-							
 						}
 					}
 				}
@@ -463,38 +466,43 @@ public class ConvertDate {
 		System.out.println("Write file successfully!");
 	}
 
-	private static int percentSimilarityBetweenTwoFiles(ArrayList<String>listDatesVN, ArrayList<String>listDatesCN) {
+	private static int percentSimilarityBetweenTwoFiles(ArrayList<String> listDatesVN, ArrayList<String> listDatesCN,
+			String pathVN, String pathCN) {
+
 		int count = 0;
-		for(int i = 0 ; i < listDatesVN.size(); i++) {	
-			for(int j = 0; j < listDatesCN.size(); j++) {
-				if(listDatesVN.get(i).equals(listDatesCN.get(j))){
+		for (int i = 0; i < listDatesVN.size(); i++) {
+			for (int j = 0; j < listDatesCN.size(); j++) {
+				if (listDatesVN.get(i).equals(listDatesCN.get(j))) {
 					count++;
 				}
 			}
-			if(count >= 1)
-			{
-				System.out.println(count);
-				System.out.println( "Date VN "+listDatesVN.get(i));
-				for(int j = 0; j <listDatesCN.size(); j++) {
-					System.out.println(listDatesCN.get(j));
-				}
-				//Compare with list in VN
-				if(listDatesCN.size() == listDatesVN.size() && listDatesVN.size() == count) {
-					System.out.println("100%");
+			if (count >= 1) { // Compare with list in VN
+				if (listDatesCN.size() == listDatesVN.size() && listDatesVN.size() == count) {
+					System.out.println(count);
+					System.out.println(pathVN + " is similiraty with " + pathCN + " is 100%");
+					System.out.println("Date VN " + listDatesVN.get(i));
+					System.out.println(listDatesCN.size());
+					for (int j = 0; j < listDatesCN.size(); j++) {
+						System.out.println(listDatesCN.get(j));
+					}
 					return count;
 				}
-				
-					
 			}
 			count = 0;
+		}
+		for(int i = 0 ; i < listDatesCN.size(); i++)
+		{
+			System.out.println(listDatesCN.get(i));
 		}
 		return 0;
 	}
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File("/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politics_VietNamese");
-		final File folder2 = new File("/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politis_Chinese");
+		final File folder = new File(
+				"/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politics_VietNamese");
+		final File folder2 = new File(
+				"/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politis_Chinese");
 		listFilesForFolder(folder, folder2);
 	}
 }
