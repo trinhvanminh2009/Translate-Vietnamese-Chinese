@@ -157,8 +157,9 @@ public class TapChiCongSanCN {
             System.out.println(divSize);
             Article ar;
             for (int i = position; i < divSize; i++) {
+                 this.position = i;
                 if (ScrapingThread.stop == true) {
-                    this.position = i;
+                   
                     break;
                 } else {
                     ar = new Article();
