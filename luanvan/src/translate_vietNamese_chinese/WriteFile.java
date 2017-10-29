@@ -11,29 +11,24 @@ import java.nio.file.StandardOpenOption;
 
 public class WriteFile {
 
-	public static void writeDateTimeSimilarity(String content)
-	{
-		try{
-			File file = new File(System.getProperty("user.dir")+"/SimilarityByDate.txt");
-			if(file.exists())
-			{
-				Files.write(Paths.get(System.getProperty("user.dir")+"/SimilarityByDate.txt") ,
-						content.getBytes(), StandardOpenOption.APPEND);
-			}
-			else{
-				Writer writer = new BufferedWriter(new OutputStreamWriter
-						(new FileOutputStream(System.getProperty("user.dir")+"/SimilarityByDate.txt"),"utf-8"));
+	public static void writeDateTimeSimilarity(String content, String fileName) {
+		try {
+			File file = new File(System.getProperty("user.dir") + "/"+fileName+".txt");
+			if (file.exists()) {
+				Files.write(Paths.get(System.getProperty("user.dir") + "/"+fileName+".txt"), content.getBytes(),
+						StandardOpenOption.APPEND);
+			} else {
+				Writer writer = new BufferedWriter(new OutputStreamWriter(
+						new FileOutputStream(System.getProperty("user.dir") +"/"+fileName+".txt"), "utf-8"));
 				writer.write(content);
 				writer.close();
 			}
-		
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
+	
 
 }

@@ -25,7 +25,7 @@ public class Translate {
 		
 	public Translate(){}
 	
-	public String translateDateMonth(String input) throws Exception
+	public static String translateChineseToVietnamese(String input) throws Exception
 	{
 		Translate http = new Translate();
 		  String wordToEnglish = http.callUrlAndParseResult("zh-CN", "en", input);

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.regex.Pattern;
 
 public class ConvertDate {
@@ -318,12 +319,12 @@ public class ConvertDate {
 	public static void handleArrayListDate(ArrayList<ConvertDate> listVN, ArrayList<ConvertDate> listCN)
 			throws Exception {
 		ArrayList<ConvertDate> listCNTranslated = new ArrayList<>();
-		Translate translate = new Translate();
+
 		// Translate date time and then convert format to easy to compare with
 		// Vietnamese
 		for (int i = 0; i < listCN.size(); i++) {
 			ConvertDate convertDate = new ConvertDate(
-					convertFormatAfterTranslated(translate.translateDateMonth(listCN.get(i).getContent())),
+					convertFormatAfterTranslated(Translate.translateChineseToVietnamese(listCN.get(i).getContent())),
 					listCN.get(i).getFilePath());
 			listCNTranslated.add(convertDate);
 		}
@@ -345,12 +346,12 @@ public class ConvertDate {
 		SimilarityDate similarityDate = null;
 		ArrayList<ConvertDate> listCNTranslated = new ArrayList<>();
 		ArrayList<SimilarityDate> listSimilarityDate = new ArrayList<>();
-		Translate translate = new Translate();
+
 		// Translate date time and then convert format to easy to compare with
 		// Vietnamese
 		for (int i = 0; i < listCN.size(); i++) {
 			ConvertDate convertDate = new ConvertDate(
-					convertFormatAfterTranslated(translate.translateDateMonth(listCN.get(i).getContent())),
+					convertFormatAfterTranslated(Translate.translateChineseToVietnamese(listCN.get(i).getContent())),
 					listCN.get(i).getFilePath());
 			listCNTranslated.add(convertDate);
 		}
@@ -388,7 +389,7 @@ public class ConvertDate {
 	// This function to get which date or month in VN similarity with CN, and
 	// show how many % similarity between files
 	public static void printSimilarity(ArrayList<SimilarityDate> listSimilarityDate, ArrayList<ConvertDate> listVN,
-			ArrayList<ConvertDate> listCN) {
+			ArrayList<ConvertDate> listCN) throws Exception {
 		System.out.println("Write file is running!");
 
 		ArrayList<FilePathAndItems> listFilePathAndItemsVN = new ArrayList<>();
@@ -438,71 +439,70 @@ public class ConvertDate {
 			tempCount = 0;
 		}
 		ArrayList<String> listCheckBeforeWriteDownToFile = new ArrayList<>();
+		ArrayList<PercentSimilarity> listPercentSimilarity = new ArrayList<>();
 		String currentString = new String();
 		for (int i = 0; i < listFilePathAndItemsVN.size(); i++) {
 			for (int j = 0; j < listFilePathAndItemsVN.get(i).getListDate().size(); j++) {
 				for (int k = 0; k < listFilePathAndItemsCN.size(); k++) {
 					for (int h = 0; h < listFilePathAndItemsCN.get(k).getListDate().size(); h++) {
+
 						if (CompareTitle.printSimilarity1(listFilePathAndItemsCN.get(k).getListDate().get(h),
 								listFilePathAndItemsVN.get(i).getListDate().get(j))) {
-							currentString = listFilePathAndItemsVN.get(i).getFilePath() + " with "
-									+ listFilePathAndItemsVN.get(i).getListDate().get(j) + " similarity with "
-									+ listFilePathAndItemsCN.get(k).getFilePath() + " with "
-									+ listFilePathAndItemsCN.get(k).getListDate().get(h);
-
-							percentSimilarityBetweenTwoFiles(listFilePathAndItemsVN.get(i).getListDate(),
-									listFilePathAndItemsCN.get(k).getListDate(),
-									listFilePathAndItemsVN.get(i).getFilePath(),
-									listFilePathAndItemsCN.get(k).getFilePath());
-							if (!listCheckBeforeWriteDownToFile.contains(currentString)) {
-								listCheckBeforeWriteDownToFile.add(currentString);
-								WriteFile.writeDateTimeSimilarity(currentString + "\n");
+							float percentSimilarity = percentSimilarityBetweenTwoFiles(
+									listFilePathAndItemsVN.get(i).getListDate(),
+									listFilePathAndItemsCN.get(k).getListDate());
+							if (percentSimilarity != 0 && percentSimilarity < 101) {
+								PercentSimilarity percentSimilarityObject = new PercentSimilarity(percentSimilarity,
+										listFilePathAndItemsVN.get(i).getFilePath(),
+										listFilePathAndItemsCN.get(k).getFilePath());
+								listPercentSimilarity.add(percentSimilarityObject);
 							}
 						}
 					}
 				}
 			}
 		}
+	
+		sortByPercentSimilarity(listPercentSimilarity);
+		for (int i = 0; i < listPercentSimilarity.size(); i++) {
+	
+			currentString = listPercentSimilarity.get(i).getPathVN() + " similarity with "
+					+ listPercentSimilarity.get(i).getPathCN() + " about "
+					+ listPercentSimilarity.get(i).getPercentSimilarity() + " %";
+			if (!listCheckBeforeWriteDownToFile.contains(currentString)) {
+				listCheckBeforeWriteDownToFile.add(currentString);
+				WriteFile.writeDateTimeSimilarity(currentString + "\n","SimilarityByDate");
+			}
+		}
 		System.out.println("Write file successfully!");
 	}
 
-	private static int percentSimilarityBetweenTwoFiles(ArrayList<String> listDatesVN, ArrayList<String> listDatesCN,
-			String pathVN, String pathCN) {
+	private static ArrayList<PercentSimilarity> sortByPercentSimilarity(
+			ArrayList<PercentSimilarity> listPercentSimilarity) {
+		listPercentSimilarity.sort(Comparator.comparing(PercentSimilarity::getPercentSimilarity));
+		return listPercentSimilarity;
 
+	}
+
+	private static float percentSimilarityBetweenTwoFiles(ArrayList<String> listDatesVN,
+			ArrayList<String> listDatesCN) {
 		int count = 0;
 		for (int i = 0; i < listDatesVN.size(); i++) {
 			for (int j = 0; j < listDatesCN.size(); j++) {
 				if (listDatesVN.get(i).equals(listDatesCN.get(j))) {
-					count++;
+					count = count + 1;
 				}
 			}
-			if (count >= 1) { // Compare with list in VN
-				if (listDatesCN.size() == listDatesVN.size() && listDatesVN.size() == count) {
-					System.out.println(count);
-					System.out.println(pathVN + " is similiraty with " + pathCN + " is 100%");
-					System.out.println("Date VN " + listDatesVN.get(i));
-					System.out.println(listDatesCN.size());
-					for (int j = 0; j < listDatesCN.size(); j++) {
-						System.out.println(listDatesCN.get(j));
-					}
-					return count;
-				}
-			}
-			count = 0;
 		}
-		for(int i = 0 ; i < listDatesCN.size(); i++)
-		{
-			System.out.println(listDatesCN.get(i));
-		}
-		return 0;
+
+		return ((float) count / (float) ((listDatesVN.size() + listDatesCN.size()) / 2)) * 100;
+
 	}
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File(
-				"/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politics_VietNamese");
-		final File folder2 = new File(
-				"/home/nlplab/git/Translate-Vietnamese-Chinese-master/luanvan/DATA/Politics/Politis_Chinese");
+		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
+		final File folder2 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
 		listFilesForFolder(folder, folder2);
 	}
 }
