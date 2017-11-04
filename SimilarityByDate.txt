@@ -144,6 +144,7 @@ D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\1660.txt similarit
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\1660.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\14011.txt about 22.222223 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\10302.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\526.txt about 25.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\10302.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\674.txt about 25.0 %
+D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\10346.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13581.txt about 25.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\10346.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\6955.txt about 25.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\10822.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13367.txt about 25.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\10822.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13981.txt about 25.0 %
@@ -504,6 +505,7 @@ D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3118.txt similarit
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3125.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\12569.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3125.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13879.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3161.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\3564.txt about 50.0 %
+D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3169.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13581.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3169.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13367.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3170.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\12569.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\3185.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\3312.txt about 50.0 %
@@ -668,6 +670,7 @@ D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\9107.txt similarit
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\9215.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\5182.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\925.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\2637.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\9284.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\8153.txt about 50.0 %
+D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\9284.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13581.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\9311.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13708.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\939.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\3312.txt about 50.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\9449.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\526.txt about 50.0 %
@@ -853,6 +856,7 @@ D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\12082.txt similari
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\12119.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\8161.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\1213.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\2637.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\12146.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\7935.txt about 100.0 %
+D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\1215.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13581.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\12177.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\8161.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\12226.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\1161.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\12259.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\526.txt about 100.0 %
@@ -1124,6 +1128,7 @@ D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7603.txt similarit
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7653.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\12570.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7718.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\5181.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7745.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\5583.txt about 100.0 %
+D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7765.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13581.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7813.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\5181.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7826.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\5181.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\7876.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\3564.txt about 100.0 %
@@ -1139,6 +1144,7 @@ D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\8155.txt similarit
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\8162.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\5181.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\8189.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\3564.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\825.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\3564.txt about 100.0 %
+D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\8290.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\13581.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\8345.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\6063.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\8350.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\6916.txt about 100.0 %
 D:\Dowloads\luanvan\luanvan\DATA\Politics\Politics_VietNamese\837.txt similarity with D:\Dowloads\luanvan\luanvan\DATA\Politics\Politis_Chinese\6063.txt about 100.0 %

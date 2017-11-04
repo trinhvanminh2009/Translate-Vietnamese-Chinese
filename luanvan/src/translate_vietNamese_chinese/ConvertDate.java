@@ -439,7 +439,7 @@ public class ConvertDate {
 			tempCount = 0;
 		}
 		ArrayList<String> listCheckBeforeWriteDownToFile = new ArrayList<>();
-		ArrayList<PercentSimilarity> listPercentSimilarity = new ArrayList<>();
+		ArrayList<PercentSimilarityTitle> listPercentSimilarity = new ArrayList<>();
 		String currentString = new String();
 		for (int i = 0; i < listFilePathAndItemsVN.size(); i++) {
 			for (int j = 0; j < listFilePathAndItemsVN.get(i).getListDate().size(); j++) {
@@ -452,7 +452,7 @@ public class ConvertDate {
 									listFilePathAndItemsVN.get(i).getListDate(),
 									listFilePathAndItemsCN.get(k).getListDate());
 							if (percentSimilarity != 0 && percentSimilarity < 101) {
-								PercentSimilarity percentSimilarityObject = new PercentSimilarity(percentSimilarity,
+								PercentSimilarityTitle percentSimilarityObject = new PercentSimilarityTitle(percentSimilarity,
 										listFilePathAndItemsVN.get(i).getFilePath(),
 										listFilePathAndItemsCN.get(k).getFilePath());
 								listPercentSimilarity.add(percentSimilarityObject);
@@ -472,14 +472,15 @@ public class ConvertDate {
 			if (!listCheckBeforeWriteDownToFile.contains(currentString)) {
 				listCheckBeforeWriteDownToFile.add(currentString);
 				WriteFile.writeDateTimeSimilarity(currentString + "\n","SimilarityByDate");
+			
 			}
 		}
 		System.out.println("Write file successfully!");
 	}
 
-	private static ArrayList<PercentSimilarity> sortByPercentSimilarity(
-			ArrayList<PercentSimilarity> listPercentSimilarity) {
-		listPercentSimilarity.sort(Comparator.comparing(PercentSimilarity::getPercentSimilarity));
+	private static ArrayList<PercentSimilarityTitle> sortByPercentSimilarity(
+			ArrayList<PercentSimilarityTitle> listPercentSimilarity) {
+		listPercentSimilarity.sort(Comparator.comparing(PercentSimilarityTitle::getPercentSimilarity));
 		return listPercentSimilarity;
 
 	}
@@ -488,7 +489,9 @@ public class ConvertDate {
 			ArrayList<String> listDatesCN) {
 		int count = 0;
 		for (int i = 0; i < listDatesVN.size(); i++) {
+			System.out.println("Date VN: "+ listDatesVN.get(i) + "\n");
 			for (int j = 0; j < listDatesCN.size(); j++) {
+				System.out.println("Date CN: "+ listDatesCN.get(j) + "\n");
 				if (listDatesVN.get(i).equals(listDatesCN.get(j))) {
 					count = count + 1;
 				}

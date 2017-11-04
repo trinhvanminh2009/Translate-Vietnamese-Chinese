@@ -94,7 +94,7 @@ public class CompareTitle {
 	}
 
 	public static void listFilesForFolder(final File folderVN, final File folderCN) {
-		ArrayList<PercentSimilarity> listPercentSimilarity = new ArrayList<>();
+		ArrayList<PercentSimilarityTitle> listPercentSimilarity = new ArrayList<>();
 		float percentBiggest = 0;
 		String pathVN = "";
 		String pathCN = "";
@@ -122,7 +122,7 @@ public class CompareTitle {
 				titleVN = readFileFromPath(listFileVN[0].getPath());
 				titleCN = readFileFromPath2(listFileCN[0].getPath());
 			}
-			PercentSimilarity percentSimilarity = new PercentSimilarity(percentBiggest, pathVN, pathCN, titleVN,
+			PercentSimilarityTitle percentSimilarity = new PercentSimilarityTitle(percentBiggest, pathVN, pathCN, titleVN,
 					titleCN);
 			listPercentSimilarity.add(percentSimilarity);
 
