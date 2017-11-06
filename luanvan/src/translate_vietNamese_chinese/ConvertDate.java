@@ -83,7 +83,7 @@ public class ConvertDate {
 		return result;
 	}
 
-	private static ArrayList<ConvertDate> handleFileString(String content, String key, String filePath)
+	private static ArrayList<ConvertDate> handleFileString(String content, String key, String filePath)//Return main content
 			throws Exception {
 		// Check file and remove key to get main contain
 		int lastIndex = 0;
@@ -99,16 +99,12 @@ public class ConvertDate {
 			}
 		}
 		String mainContent = content.substring(listIndex.get(1), listIndex.get(2));
-		if (filePath.equals("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese"))
-			;
-		{
+		if (filePath.equals("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese")) {
 			resultList.addAll(getDayMonthYearVN(mainContent, filePath));
 			resultList.addAll(getMonthYearVN(mainContent, filePath));
 
 		}
-		if (filePath.equals("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese"))
-			;
-		{
+		if (filePath.equals("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese")) {
 			resultList.addAll(getDateMonthYearCN(mainContent, filePath));
 			resultList.addAll(getMonthYearCN(mainContent, filePath));
 
@@ -452,8 +448,8 @@ public class ConvertDate {
 									listFilePathAndItemsVN.get(i).getListDate(),
 									listFilePathAndItemsCN.get(k).getListDate());
 							if (percentSimilarity != 0 && percentSimilarity < 101) {
-								PercentSimilarityTitle percentSimilarityObject = new PercentSimilarityTitle(percentSimilarity,
-										listFilePathAndItemsVN.get(i).getFilePath(),
+								PercentSimilarityTitle percentSimilarityObject = new PercentSimilarityTitle(
+										percentSimilarity, listFilePathAndItemsVN.get(i).getFilePath(),
 										listFilePathAndItemsCN.get(k).getFilePath());
 								listPercentSimilarity.add(percentSimilarityObject);
 							}
@@ -462,17 +458,17 @@ public class ConvertDate {
 				}
 			}
 		}
-	
+
 		sortByPercentSimilarity(listPercentSimilarity);
 		for (int i = 0; i < listPercentSimilarity.size(); i++) {
-	
+
 			currentString = listPercentSimilarity.get(i).getPathVN() + " similarity with "
 					+ listPercentSimilarity.get(i).getPathCN() + " about "
 					+ listPercentSimilarity.get(i).getPercentSimilarity() + " %";
 			if (!listCheckBeforeWriteDownToFile.contains(currentString)) {
 				listCheckBeforeWriteDownToFile.add(currentString);
-				WriteFile.writeDateTimeSimilarity(currentString + "\n","SimilarityByDate");
-			
+				WriteFile.writeDateTimeSimilarity(currentString + "\n", "SimilarityByDate");
+
 			}
 		}
 		System.out.println("Write file successfully!");
@@ -489,9 +485,9 @@ public class ConvertDate {
 			ArrayList<String> listDatesCN) {
 		int count = 0;
 		for (int i = 0; i < listDatesVN.size(); i++) {
-			System.out.println("Date VN: "+ listDatesVN.get(i) + "\n");
+			System.out.println("Date VN: " + listDatesVN.get(i) + "\n");
 			for (int j = 0; j < listDatesCN.size(); j++) {
-				System.out.println("Date CN: "+ listDatesCN.get(j) + "\n");
+				System.out.println("Date CN: " + listDatesCN.get(j) + "\n");
 				if (listDatesVN.get(i).equals(listDatesCN.get(j))) {
 					count = count + 1;
 				}
