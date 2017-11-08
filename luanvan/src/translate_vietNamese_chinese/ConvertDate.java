@@ -461,14 +461,12 @@ public class ConvertDate {
 
 		sortByPercentSimilarity(listPercentSimilarity);
 		for (int i = 0; i < listPercentSimilarity.size(); i++) {
-
 			currentString = listPercentSimilarity.get(i).getPathVN() + " similarity with "
 					+ listPercentSimilarity.get(i).getPathCN() + " about "
 					+ listPercentSimilarity.get(i).getPercentSimilarity() + " %";
 			if (!listCheckBeforeWriteDownToFile.contains(currentString)) {
 				listCheckBeforeWriteDownToFile.add(currentString);
 				WriteFile.writeDateTimeSimilarity(currentString + "\n", "SimilarityByDate");
-
 			}
 		}
 		System.out.println("Write file successfully!");

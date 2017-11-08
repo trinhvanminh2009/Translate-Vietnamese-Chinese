@@ -9,6 +9,8 @@ import java.util.ArrayList;
 public class ComparePercent {
 
 	public static void listFilesForFolder(final File folderVN, final File folderCN) {
+		System.out.println("Starting compare......");
+		System.out.println("It may take some day!");
 		ArrayList<PercentObject> percentObjectsVN = new ArrayList<>();
 		ArrayList<PercentObject> percentObjectsCN = new ArrayList<>();
 		for (final File file : folderVN.listFiles()) {
@@ -27,20 +29,27 @@ public class ComparePercent {
 				if (readFileFromPath(file.getPath()) != null) {
 					percentObjectsCN.add(readFileFromPath(file.getPath()));
 				}
-
 			}
 		}
 
-		for (int i = 0; i < percentObjectsCN.size(); i++) {
-			System.out.println(percentObjectsCN.get(i).getFilePath() + "\n");
-			for (int j = 0; j < percentObjectsCN.get(i).getListPercent().size(); j++) {
-				System.out.println(percentObjectsCN.get(i).getListPercent().get(j));
-			}
-		}
-		
 		System.out.println(percentObjectsCN.size());
 		System.out.println(percentObjectsVN.size());
-	
+		String currentString = "";
+		for (int i = 0; i < percentObjectsVN.size(); i++) {
+			for (int j = 0; j < percentObjectsCN.size(); j++) {
+				// Check percent is valid
+				float percentSimilarity = percentSimilarityBetweenTwoFiles(percentObjectsVN.get(i).getListPercent(),
+						percentObjectsCN.get(j).getListPercent());
+				if (percentSimilarity > 0 && percentSimilarity < 101) {
+					currentString = percentObjectsVN.get(i).getFilePath() + " similarity with "
+							+ percentObjectsCN.get(j).getFilePath() + " about " +(int)percentSimilarity + "% ";
+					System.out.println(currentString);
+					WriteFile.writeDateTimeSimilarity(currentString + "\n", "SimilarityByPercent");
+					
+				}
+			}
+		}
+		System.out.println("Write file successfully!");
 	}
 
 	public static PercentObject readFileFromPath(String filePath) {
@@ -111,17 +120,30 @@ public class ComparePercent {
 				}
 				listPercent.add(percent);
 
+			} else {
+				break;// Not found any percent in here
 			}
 			tempString = "";
-			lastIndex++;// Not in loop
-
+			lastIndex++;// find next percent
 		}
 		if (listPercent.size() > 0) {
 			PercentObject result = new PercentObject(filePath, listPercent);
 			return result;
 		}
-
 		return null;
+	}
+
+	private static float percentSimilarityBetweenTwoFiles(ArrayList<String> listPercentVN,
+			ArrayList<String> listPercentCN) {
+		int count = 0;
+		for (int i = 0; i < listPercentVN.size(); i++) {
+			for (int j = 0; j < listPercentCN.size(); j++) {
+				if (listPercentVN.get(i).equals(listPercentCN.get(j))) {
+					count = count + 1;
+				}
+			}
+		}
+		return ((float) count / ((listPercentVN.size() + listPercentCN.size()) / 2)) * 100;
 	}
 
 	public static void main(String[] args) throws IOException {

@@ -1,7 +1,6 @@
 package translate_vietNamese_chinese;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by trinh on 8/31/2017.
