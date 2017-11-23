@@ -20,7 +20,7 @@ import org.json.JSONArray;
 public class Translate {
 	public static void main(String[] args) throws Exception 
 	 {
-		runTranslate();
+		
 	 }
 		
 	public Translate(){}
@@ -33,6 +33,8 @@ public class Translate {
 		  return  wordEnglishToVietnamese;
 		 
 	}
+	
+	
 	public static void runTranslate()
 	{
 		//Run translate from Chinese, each folder is an thread
