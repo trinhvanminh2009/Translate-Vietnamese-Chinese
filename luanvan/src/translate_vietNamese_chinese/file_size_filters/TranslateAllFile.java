@@ -233,7 +233,7 @@ public class TranslateAllFile {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
+		final File folder = new File("G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/Politis_Chinese1");
 		try {
 			listFilesForFolder(folder, "Politics_Chinese_Translted");
 		} catch (Exception e) {
