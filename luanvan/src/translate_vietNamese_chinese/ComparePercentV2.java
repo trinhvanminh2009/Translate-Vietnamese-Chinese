@@ -40,7 +40,7 @@ public class ComparePercentV2 {
     public void getResultValue(String str) {
         String[] split = str.split(" ");
 
-        if (Integer.parseInt(split[5].substring(0, split[5].length() - 1)) >= MIN_PERCEN) {
+        if (Double.parseDouble(split[5].substring(0, split[5].length() - 1)) >= MIN_PERCEN) {
             Pattern pattern = Pattern.compile("\\\\(\\d+\\.txt)");
             Matcher file1 = pattern.matcher(split[0]);
             Matcher file2 = pattern.matcher(split[3]);
@@ -64,7 +64,7 @@ public class ComparePercentV2 {
             String[] splitContent = split[split.length - 1].split("\\.");
 
             for (int i = 0, splitIndex = 0; i < NUMBER_SENTENCES&&splitIndex<splitContent.length;) {
-                String value = splitContent[splitIndex];
+                String value = splitContent[splitIndex].trim();
                 if (value.length() >= MIN_NUMBER_CHARACTER) {
                     i++;
                     result += value;
@@ -140,7 +140,7 @@ public class ComparePercentV2 {
 					currentString = "./DATA/Politics/Politics_VietNamese/" + file1 + " similarity with "
 							+ "./DATA/Politics_Chinese_Translted/" + file2 + " about " +percen + "% ";
 					System.out.println(currentString);
-					WriteFile.writeDateTimeSimilarity(currentString + "\n", "SimilarityByPercentV2");
+					WriteFile.writeDateTimeSimilarity(currentString + "\n", "SimilarityByDateV2");
 					
 				}
         }
@@ -148,7 +148,7 @@ public class ComparePercentV2 {
 
     public static void main(String[] args) {
         ComparePercentV2 c = new ComparePercentV2();
-        //c.listFilesForFolder(new File("../"));
-        c.readFileResult("../SimilarityByPercent.txt");
+        //c.readFileResult("../SimilarityByPercent.txt");
+        c.readFileResult("../SimilarityByDate.txt");
     }
 }
