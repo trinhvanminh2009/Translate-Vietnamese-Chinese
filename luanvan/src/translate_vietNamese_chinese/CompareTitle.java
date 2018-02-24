@@ -120,7 +120,7 @@ public class CompareTitle {
 				pathVN = listFileVN[i].getPath();
 				pathCN = listFileCN[i].getPath();
 				titleVN = readFileFromPath(listFileVN[0].getPath());
-				titleCN = readFileFromPath2(listFileCN[0].getPath());
+				titleCN = readFileFromPath(listFileCN[0].getPath());
 			}
 			PercentSimilarityTitle percentSimilarity = new PercentSimilarityTitle(percentBiggest, pathVN, pathCN, titleVN,
 					titleCN);
@@ -136,7 +136,7 @@ public class CompareTitle {
 					+ listPercentSimilarity.get(i).getTitleCN() + " about "
 					+ listPercentSimilarity.get(i).getPercentSimilarity() + "% \n";
 
-			WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle");
+			WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle_");
 		}
 		System.out.println("Write file successfully!");
 	}
@@ -154,6 +154,8 @@ public class CompareTitle {
 			String line = bufferedReader.readLine();
 			while (line != null) {
 				stringBuilder.append(line);
+                                System.out.println(line);
+                                System.exit(0);
 				stringBuilder.append(System.lineSeparator());
 				line = bufferedReader.readLine();
 
@@ -217,8 +219,12 @@ public class CompareTitle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final File folder1 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
-		final File folder2 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politis_Chinese_Translated");
+		final File folder1 = new File("DATA/Politics/Politics_VietNamese");
+		final File folder2 = new File("G:\\IT\\luanvan\\Git\\Translate-Vietnamese-Chinese\\luanvan\\DATA\\Politics_Chinese_Translted");
+                
+//                final File folder1 = new File("grimmstories.com/vn");
+//		final File folder2 = new File("grimmstories_translated");
+                
 		listFilesForFolder(folder1, folder2);
 
 	}

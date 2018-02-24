@@ -38,7 +38,7 @@ public class DanTri {
 
 	public void getAllLink(String pageName) {
 
-		for (int i = 6062;; i++) {
+		for (int i = 1;; i++) {
 			if (i == 1) {
 				getLink(pageName);
 			} else {

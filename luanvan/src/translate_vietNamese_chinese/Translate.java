@@ -42,7 +42,9 @@ public class Translate {
 			
 			@Override
 			public void run() {
+                            
 				// TODO Auto-generated method stub
+
 				  final File folder = new File("G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/DATA/Politics/Politis_Chinese");
 					try {
 						listFilesForFolder(folder,"Politis_Chinese_Translted");

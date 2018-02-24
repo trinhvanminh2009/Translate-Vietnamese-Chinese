@@ -1,0 +1,308 @@
+grimmstories.com\vn\1.txt with title 
+Chó sói và bảy chú dê con
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.8108108% 
+grimmstories.com\vn\10.txt with title 
+Mười hai hoàng tử
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.162162% 
+grimmstories.com\vn\11.txt with title 
+Cô bé choàng khăn đỏ
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.3783784% 
+grimmstories.com\vn\12.txt with title 
+Hãnsel và Gretel
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.8378378% 
+grimmstories.com\vn\13.txt with title 
+Cô dâu đích thực
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.7297298% 
+grimmstories.com\vn\14.txt with title 
+Ba người lùn trong rừng
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.5945945% 
+grimmstories.com\vn\15.txt with title 
+Bảy con quạ
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.5135136% 
+grimmstories.com\vn\16.txt with title 
+Chu du thiên hạ để học rùng mình
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 3.5675676% 
+grimmstories.com\vn\17.txt with title 
+Sáu con thiên nga
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.162162% 
+grimmstories.com\vn\18.txt with title 
+Mèo, chuột kết nghĩa
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.5945945% 
+grimmstories.com\vn\19.txt with title 
+Ba chiếc lông chim
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.3783784% 
+grimmstories.com\vn\2.txt with title 
+Anh và em gái
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.8378378% 
+grimmstories.com\vn\20.txt with title 
+Chiếc chìa khóa vàng
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.5945945% 
+grimmstories.com\vn\21.txt with title 
+Ba chiếc lông chim
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.3783784% 
+grimmstories.com\vn\22.txt with title 
+Hai vợ chồng người đánh cá (hay chuyện Ông già và biển cả)
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 5.6216216% 
+grimmstories.com\vn\3.txt with title 
+Công chúa ngủ trong rừng
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.8108108% 
+grimmstories.com\vn\4.txt with title 
+Cô lọ lem
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.2972972% 
+grimmstories.com\vn\5.txt with title 
+Bà chúa tuyết
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.7297298% 
+grimmstories.com\vn\6.txt with title 
+Bạch Tuyết và bảy chú lùn
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 2.9189188% 
+grimmstories.com\vn\7.txt with title 
+Vua Ếch
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.1891892% 
+grimmstories.com\vn\8.txt with title 
+Chú bé tí hon
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.6216216% 
+grimmstories.com\vn\9.txt with title 
+Con rắn trắng
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+-----------------
+Vào mùa đông, tuyết phủ khắp trái đất, một cậu bé nghèo khổ đã phải đi ra ngoài và trượt một chiếc xe kéo để bắt củi.
+Sau khi nhặt củi, họ trói cậu bé làm thế nào tôi muốn anh ấy không phải về nhà ngay lập tức, để đặt một ngọn lửa và ấm lên, ah, ông đã gần như đóng băng.
+Vì vậy, ông đã lấy tuyết xuống một bên, giải toả ra một chỗ, khi ông tìm thấy một chìa khóa vàng nhỏ.
+Anh nghĩ, kể từ khi chìa khóa được đưa vào, khóa phải ở gần, đào nó xuống đất và đào ra một hộp thiếc.
+"Nếu chìa khóa này có thể được trang bị khóa sắt này!" Anh ta nghĩ, "phải có rất nhiều kho báu trong hộp nhỏ đó.
+"Anh ta tìm kiếm, nhưng không thể tìm thấy lỗ khoá.
+Cuối cùng, anh ta tìm thấy một lỗ nhỏ mà hầu như không thể nhìn thấy.
+Ông đã thử nó, chìa khóa chỉ cần chèn vào.
+Anh ta quay chìa khóa, và bây giờ chúng ta phải đợi một lát, cho đến khi anh mở hộp thiếc và mở nắp và biết cái gì trong hộp.
+ about 1.8378378% 

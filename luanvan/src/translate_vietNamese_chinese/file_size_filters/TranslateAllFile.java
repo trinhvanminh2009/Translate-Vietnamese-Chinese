@@ -171,7 +171,7 @@ public class TranslateAllFile {
 
 			while (line != null)// Read each line in folder
 			{
-				stringBuilder.append(line);
+				stringBuilder.append(line.replace("\"", ""));
 				stringBuilder.append(System.lineSeparator());
 				line = bufferedReader.readLine();
 
@@ -233,13 +233,14 @@ public class TranslateAllFile {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File("G:/IT/luanvan/Git/Translate-Vietnamese-Chinese/luanvan/Politis_Chinese1");
+		final File folder = new File("grimmstories.com/cn");
 		try {
-			listFilesForFolder(folder, "Politics_Chinese_Translted");
+			listFilesForFolder(folder, "grimmstories_translated");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 }

@@ -90,7 +90,6 @@ public class ComparePercent {
 				lastIndex += key.length();
 				content.substring(lastIndex, content.length());
 				listIndex.add(lastIndex);
-
 			}
 		}
 		String mainContent = content.substring(listIndex.get(1), listIndex.get(2));
