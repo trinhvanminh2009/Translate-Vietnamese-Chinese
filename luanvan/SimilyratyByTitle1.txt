@@ -1,0 +1,84 @@
+grimmstories.com\vn\10.txt with title 
+Mười hai hoàng tử
+ similarity with grimmstories_translated\10.txt with title Mười hai anh em
+ about 61.904762% 
+grimmstories.com\vn\11.txt with title 
+Cô bé choàng khăn đỏ
+ similarity with grimmstories_translated\11.txt with title Bé quàng khăn đỏ
+ about 66.666664% 
+grimmstories.com\vn\12.txt with title 
+Hãnsel và Gretel
+ similarity with grimmstories_translated\12.txt with title Hansel và Gretel
+ about 85.0% 
+grimmstories.com\vn\13.txt with title 
+Cô dâu đích thực
+ similarity with grimmstories_translated\13.txt with title Thực sự là cô dâu
+ about 35.0% 
+grimmstories.com\vn\14.txt with title 
+Ba người lùn trong rừng
+ similarity with grimmstories_translated\14.txt with title Ba sao lùn trong rừng
+ about 74.07407% 
+grimmstories.com\vn\15.txt with title 
+Bảy con quạ
+ similarity with grimmstories_translated\15.txt with title Bảy con quạ
+ about 86.666664% 
+grimmstories.com\vn\16.txt with title 
+Chu du thiên hạ để học rùng mình
+ similarity with grimmstories_translated\16.txt with title Cậu bé ngu ngơ học cách sợ hãi
+ about 33.333332% 
+grimmstories.com\vn\17.txt with title 
+Sáu con thiên nga
+ similarity with grimmstories_translated\17.txt with title Sáu con thiên nga
+ about 90.47619% 
+grimmstories.com\vn\18.txt with title 
+Mèo, chuột kết nghĩa
+ similarity with grimmstories_translated\18.txt with title Quan hệ đối tác giữa chuột và mèo
+ about 37.5% 
+grimmstories.com\vn\19.txt with title 
+Ba chiếc lông chim
+ similarity with grimmstories_translated\19.txt with title Ba lông
+ about 40.909092% 
+grimmstories.com\vn\2.txt with title 
+Anh và em gái
+ similarity with grimmstories_translated\2.txt with title Em trai và em gái
+ about 63.157894% 
+grimmstories.com\vn\20.txt with title 
+Chiếc chìa khóa vàng
+ similarity with grimmstories_translated\20.txt with title Chìa khóa vàng
+ about 66.666664% 
+grimmstories.com\vn\21.txt with title 
+Ba chiếc lông chim
+ similarity with grimmstories_translated\21.txt with title Ba phụ nữ quay
+ about 40.909092% 
+grimmstories.com\vn\22.txt with title 
+Hai vợ chồng người đánh cá (hay chuyện Ông già và biển cả)
+ similarity with grimmstories_translated\22.txt with title Ngư dân và vợ
+ about 30.64516% 
+grimmstories.com\vn\3.txt with title 
+Công chúa ngủ trong rừng
+ similarity with grimmstories_translated\3.txt with title Công chúa hồng
+ about 53.57143% 
+grimmstories.com\vn\4.txt with title 
+Cô lọ lem
+ similarity with grimmstories_translated\4.txt with title Cinderella
+ about 35.294117% 
+grimmstories.com\vn\5.txt with title 
+Bà chúa tuyết
+ similarity with grimmstories_translated\5.txt with title Dì hower
+ about 64.70588% 
+grimmstories.com\vn\6.txt with title 
+Bạch Tuyết và bảy chú lùn
+ similarity with grimmstories_translated\6.txt with title Bạch Tuyết
+ about 41.37931% 
+grimmstories.com\vn\7.txt with title 
+Vua Ếch
+ similarity with grimmstories_translated\7.txt with title Hoàng tử ếch
+ about 42.857143% 
+grimmstories.com\vn\8.txt with title 
+Chú bé tí hon
+ similarity with grimmstories_translated\8.txt with title Thumb Tom
+ about 41.17647% 
+grimmstories.com\vn\9.txt with title 
+Con rắn trắng
+ similarity with grimmstories_translated\9.txt with title Rắn trắng
+ about 64.70588% 
