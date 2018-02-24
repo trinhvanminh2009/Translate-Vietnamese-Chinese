@@ -1,5 +1,5 @@
-Người thứ hai nói:- Ta ban cho cô ấy điều này: cứ nói xong một tiếng lại có một đồng tiền vàng ở miệng rơi ra
+Vua hỏi thăm sức khỏe hoàng hậu, cứ sau mỗi tiếng hoàng hậu nói ra khi trả lời có một con cóc nhảy ra từ mồm chứ không phải tiền vàng
 -----------------
-"第二个矮人说："我送给她的礼物是：她一开口说话就吐出金子来
+"可等她出去后，三个小矮人却商量了起来："她这么可爱，又把面包分给了我们，我们送她什么好呢？"第一个矮人说："我送给她的礼物是：她一天比一天更美丽
 -----------------
-similarity about 33%
+similarity about 31%

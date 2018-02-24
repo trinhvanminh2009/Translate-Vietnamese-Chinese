@@ -1,5 +1,5 @@
-Em mang cỏ non về cho Mang, đút cho Mang ăn
+Mang nhanh nhẹn, vui vẻ chạy vào rừng
 -----------------
-小鹿受到了细心的照料，在王宫的花园里跑来跑去
+小鹿吃着她手里的草，总是高兴地围着她跳来跳去
 -----------------
-similarity about 32%
+similarity about 40%

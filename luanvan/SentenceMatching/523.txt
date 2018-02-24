@@ -1,5 +1,5 @@
-Bố đích thân đi lên xem thấy đúng như lời con nói
+Tới nơi, cô thấy ba người lùn cũng đang đứng trông ra
 -----------------
-他俩立刻就举行了婚礼，正像三个小矮人许诺过的一样
+她来到森林里后，看到一座小房子，里面有三个小矮人在向外张望
 -----------------
-similarity about 34%
+similarity about 35%

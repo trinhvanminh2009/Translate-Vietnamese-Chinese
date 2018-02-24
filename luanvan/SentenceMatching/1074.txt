@@ -1,5 +1,5 @@
-Mang vui thích nhảy nhót quanh em
+Thấy Mang, vua ra lệnh cho các người đi săn:- Giờ phải đuổi săn cho bằng được con Mang ấy, đuổi cả ngày lẫn đêm luôn, nhưng không ai được bắn
 -----------------
-小鹿吃着她手里的草，总是高兴地围着她跳来跳去
+国王和猎手们看到这头美丽的小鹿，便追了过来，可他们怎么也抓不住它
 -----------------
-similarity about 33%
+similarity about 31%

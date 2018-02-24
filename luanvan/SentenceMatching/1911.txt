@@ -1,5 +1,5 @@
-Cô hầu vội vã chạy lên tìm cha xứ và mách:- Trời ơi, con bò nó biết nói cha ạ
+Thuở ấy có một ông vua nổi tiếng trong cả nước là thông minh, học rộng, biết nhiều
 -----------------
-他们急忙起来，由厨房的门缝往里一瞧，看见里面竟是一条狼，他俩这下可吓了一大跳
+从前有位以他的智慧而闻名全国的国王，世界上的事情他没有不知道的，而且，好像再秘密的事情也能有风声传到他的耳朵里
 -----------------
-similarity about 33%
+similarity about 32%

@@ -1,5 +1,5 @@
-Một hôm anh đi qua một cái ao, thấy ba con cá bị mắc cạn trong đám lau sậy, đang ngáp thoi thóp
+Nó bơi đến, đặt sò lên bãi biển dưới chân anh
 -----------------
-一天，他来到了一个池塘边，看到池塘里有三条鱼让芦苇缠住了，嘴一张一张地想喝水
+过了一会儿，他觉得好像听到脚底下的沙子里有什么声音
 -----------------
-similarity about 46%
+similarity about 35%

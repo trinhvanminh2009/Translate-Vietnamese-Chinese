@@ -1,5 +1,5 @@
-Vừa đóng xong cửa một lát thì sói đến gõ cửa gọi:- Bà ơi bà mở cửa cho cháu
+Đến trưa, đứa nào lấy phần của đứa đó ra ăn
 -----------------
-"不一会儿，狼真的一面敲着门一面叫道："奶奶，快开门呀
+到了中午时分，他们就吃掉了自己的那一小块面包
 -----------------
-similarity about 36%
+similarity about 41%

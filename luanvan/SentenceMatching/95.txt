@@ -1,5 +1,5 @@
-Cô bước vào trong nhà thì gặp một chàng trai, người này hỏi:- Cô ở đâu tới đây? Cô định đi đâu?Chàng ngạc nhiên vì vẻ đẹp lộng lẫy của nàng, người đã xinh đẹp lại có ngôi sao vàng ở trán
+Đám cưới được tổ chức rất linh đình và tưng bừng, nhưng cô dâu chẳng nói mà cũng chẳng cười
 -----------------
-国王跟了过来，看到了额头上有金色星星的美丽公主，一下子就被她的美貌迷住了
+庄严的婚礼壮观而又热闹，可新娘却既不说话也不欢笑
 -----------------
-similarity about 28%
+similarity about 56%

@@ -1,5 +1,5 @@
-Khi họ đã đi được một đoạn đường dài thì hoàng tử nghe thấy ở đằng sau có tiếng kêu răng rắc như có gì gãy
+Xe chạy thẳng một mạch vào rừng, rồi dừng lại đúng chỗ có củi đã để sẵn
 -----------------
-他们上路后刚走了不远，突然听见噼噼啦啦的响声，好像有什么东西断裂了
+"这样他们跟着马车走进了树林，最后来到了樵夫所在的地方
 -----------------
-similarity about 34%
+similarity about 33%

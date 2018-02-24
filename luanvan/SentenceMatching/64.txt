@@ -1,5 +1,5 @@
-Nếu mẹ sinh con trai thì sẽ có cờ trắng ở tháp canh, các con có thể trở về hoàng cung
+- Thế chuyện gì nào?- Trong lúc các anh đi săn, em ở nhà và có chuyện
 -----------------
-如果我生下的是个小弟弟，我就升起一面白旗，你们就可以回来了
+他们在这小屋子里一起生活了十年，并没有感到时间很长
 -----------------
-similarity about 38%
+similarity about 30%

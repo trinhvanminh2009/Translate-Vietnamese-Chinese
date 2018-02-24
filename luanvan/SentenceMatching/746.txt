@@ -1,5 +1,5 @@
-Rồi anh quay về chỗ cũ, thổi cho lửa lại cháy to lên để sưởi
+Tao cũng khỏe bằng mày, thậm chí còn khỏe hơn là đằng khác
 -----------------
-他回屋后，把余烬吹了又吹，使火重新熊熊燃烧起来，然后坐在火边暖和暖和身子
+可是这些家伙坐在那里纹丝不动，甚至火烧着了他们的衣服，他们还是一动也不动
 -----------------
-similarity about 35%
+similarity about 33%

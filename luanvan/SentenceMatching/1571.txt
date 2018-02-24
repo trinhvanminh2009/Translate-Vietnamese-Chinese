@@ -1,5 +1,5 @@
-Cô bị ngất đi, khi cô mở mắt và hồi tỉnh thì thấy mình đang nằm ở trên một cánh đồng cỏ đẹp đẽ, ngàn hoa đua sắc dưới ánh nắng chói chang
+Rồi cô vào gặp dì ghẻ
 -----------------
-在井里，她失去了知觉，等苏醒过来时，发现自己躺在一片美丽的草地上，草地沐浴着灿烂的阳光，四周环绕着万紫千红的花朵，各自争妍斗艳
+然后，她把纺锤投入井里，自己也随即跳了进去
 -----------------
-similarity about 35%
+similarity about 27%

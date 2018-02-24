@@ -1,5 +1,5 @@
-Nhà vua nói:- Ai mang được về đây chiếc nhẫn đẹp nhất sẽ trị vì vương quốc này
+Sáng hôm sau, khi hai anh em bừng mắt dậy thì mặt trời đã lên cao, ánh nắng oi bức chiếu vào hốc cây
 -----------------
-国王于是说："谁带给我的戒指最漂亮，谁就继承王位
+当他们第二天醒来时，太阳早已高高地挂在了天上，温暖地照进了这棵空心大树
 -----------------
-similarity about 48%
+similarity about 33%

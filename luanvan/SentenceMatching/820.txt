@@ -1,5 +1,5 @@
-Khi bóng đêm đổ xuống cánh rừng, nhà vua mới đứng lặng nhìn quanh, bối rối, thấy mình đã lạc đường, không tìm được đường ra
+Cô đi tới, bước vào nhà thì thấy có sáu chiếc giường nhỏ
 -----------------
-天色渐晚，国王停下脚步环顾四周，这才发现自己已经迷了路
+老巫婆把国王领到她的小屋子里，只见她的女儿正坐在那儿烤火
 -----------------
-similarity about 41%
+similarity about 31%

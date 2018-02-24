@@ -1,5 +1,5 @@
-Nàng còn quét dọn nhà cửa, xếp chăn giường ngay ngắn
+Nhà bà nội ở trong rừng, cách làng không xa lắm, đi chừng nửa tiếng đồng hồ thì tới
 -----------------
-她还收拾小屋，给小床铺上了漂漂亮亮、干干净净的床单
+到奶奶家的时候，别忘了说'早上好'，也不要一进屋就东瞧西瞅
 -----------------
-similarity about 34%
+similarity about 31%

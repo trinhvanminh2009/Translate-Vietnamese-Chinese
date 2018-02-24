@@ -1,5 +1,5 @@
-Vua thích lắm, mở hội lớn ăn mừng
+Thỉnh thoảng cũng có một vài hoàng tử nghe kể về câu chuyện truyền thuyết ấy đã chui vào bụi hồng gai tìm cách vào lâu đài, nhưng bụi gai như có tay giữ chặt họ lại, khiến họ bị mắc nghẽn
 -----------------
-然而，她并没有死，只是倒在那里沉沉地睡去了
+从那以后，有不少王子来探险，他们披荆斩棘想穿过树篱到王宫里去，但都没有成功，不是被蒺藜缠住就是被树丛跘倒在里面，就像是有无数只手牢牢地抓住他们难以脱身一样，他们最终都痛苦地死去
 -----------------
-similarity about 25%
+similarity about 29%

@@ -1,5 +1,5 @@
-Xe chạy thẳng một mạch vào rừng, rồi dừng lại đúng chỗ có củi đã để sẵn
+Vừa mới chợp mắt được một lúc thì nó nghe thấy có tiếng hai người đi qua
 -----------------
-"这样他们跟着马车走进了树林，最后来到了樵夫所在的地方
+从前有一个贫穷的樵夫，夫妻两个一直没有孩子
 -----------------
-similarity about 33%
+similarity about 31%

@@ -1,5 +1,5 @@
-Mọi thứ đều có, nào là rỏ than, thùng chứa nước, chẳng thiếu một thứ gì cả
+Khi vũ hội vừa kết thúc, cô gái liền đi lẫn vào trong đám người đông đúc về làng
 -----------------
-太阳下山时，小女孩醒来了，千万盏灯光正照在她的脸上
+当她进入灯火辉煌的大厅时，人群都惊奇的望着她，但没有人知道她是谁
 -----------------
-similarity about 31%
+similarity about 34%

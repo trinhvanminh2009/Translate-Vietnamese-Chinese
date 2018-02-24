@@ -1,5 +1,5 @@
-Hoàng tử nghĩ ra một kế, chàng cho đổ nhựa thông lên thang, vì thế khi cô nhảy lên thang, chiếc giày bên trái bị dính lại
+Khi cô đứng dậy, hoàng tử nhìn thấy mặt nhận ngay ra cô gái xinh đẹp đã nhảy với mình bèn reo lên:- Cô dâu thật đây rồi!Dì ghẻ và hai cô con gái mặt tái đi vì hoảng sợ và tức giận
 -----------------
-王子看到她，很快向她走来，伸出手挽着她，请她跳起舞来
+王子没有看到她，他不知道她去了哪儿，只好又一直等到她父亲回来，才走上前对他说："那个与我跳舞的不知姓名的姑娘溜走了，我认为她肯定是跳上梨树去了
 -----------------
-similarity about 39%
+similarity about 30%

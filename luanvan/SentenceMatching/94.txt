@@ -1,5 +1,5 @@
-Cô đi suốt ngày, khi trời tối thì cũng là lúc cô tới căn nhà nhỏ trong rừng sâu
+Nhà vua thân chinh trèo lên cây, bồng cô xuống, đặt cô lên ngựa và đi về hoàng cung
 -----------------
-屋子和花园也立刻消失了，荒凉的森林里现在只剩下了公主一个人
+于是，国王便亲自爬到树上，把她抱下来放到马背上，带着她回到宫中
 -----------------
-similarity about 35%
+similarity about 37%

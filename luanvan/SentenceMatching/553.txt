@@ -1,5 +1,5 @@
-Người thứ ba nói:- Ta ban cho cô ấy điều này: Có một ông vua sẽ đến chọn cô làm hoàng hậu
+Vua hỏi tại sao như vậy, mụ già bảo đó là tại mồ hôi ra nhiều quá, chắc cơn bệnh sẽ qua
 -----------------
-"第三个矮人说："我送给她的礼物是：一个国王娶她当王后
+姑娘坐到国王的马车上，和国王一起回到宫中
 -----------------
-similarity about 40%
+similarity about 27%

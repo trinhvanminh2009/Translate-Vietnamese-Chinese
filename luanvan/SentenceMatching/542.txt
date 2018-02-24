@@ -1,5 +1,5 @@
-Tối giữa rừng cô thấy có một căn nhà nhỏ, có ba người lùn đứng nhìn ra
+Lòng cô mừng phen này có dịp đi cho rảnh mắt mẹ con mụ dì ghẻ
 -----------------
-她来到森林里后，看到一座小房子，里面有三个小矮人在向外张望
+""好的，"她说着便把面包掰成两半，给了他们一半
 -----------------
-similarity about 64%
+similarity about 29%

@@ -1,5 +1,5 @@
-Thấy Mang, vua ra lệnh cho các người đi săn:- Giờ phải đuổi săn cho bằng được con Mang ấy, đuổi cả ngày lẫn đêm luôn, nhưng không ai được bắn
+Lần nào, người bảo mẫu cũng nhìn thấy bà, nhưng không dám nói hở cho ai biết
 -----------------
-继母天天打我们，而且只要我们走到她的跟前，她就用脚把我们踢开
+保姆每次都看见她，可又不敢把这告诉任何人
 -----------------
-similarity about 31%
+similarity about 38%

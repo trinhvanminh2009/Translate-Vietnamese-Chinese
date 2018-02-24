@@ -1,5 +1,5 @@
-" Thế là nghĩa lý gì nhỉ?Chẳng nói chẳng rằng, mèo chỉ lắc đầu, nằm cuộn tròn người lại và đánh một giấc
+Nhà vua nói:- Ai mang được về đây chiếc nhẫn đẹp nhất sẽ trị vì vương quốc này
 -----------------
-"它们动身去教堂，可它们到达那里后，看到猪油罐倒是还在那里，里面却是空的
+国王于是说："谁带给我的戒指最漂亮，谁就继承王位
 -----------------
-similarity about 29%
+similarity about 48%

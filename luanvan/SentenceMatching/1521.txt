@@ -1,5 +1,5 @@
-Hoàng tử định đưa về nhưng cô lẩn nhanh như chạch làm hoàng tử không theo kịp
+Cô ngồi lên ghế đẩu, rút bàn chân ra khỏi chiếc guốc nặng chình chịch, cho chân vào chiếc hài thì vừa như in
 -----------------
-王子打算从这些参加舞会的姑娘中选一个作自己的新娘
+她们把她叫来说道："现在来为我们梳好头发，擦亮鞋子，系好腰带，我们要去参加国王举办的舞会
 -----------------
-similarity about 35%
+similarity about 31%

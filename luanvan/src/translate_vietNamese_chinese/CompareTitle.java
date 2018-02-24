@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.sun.deploy.uitoolkit.impl.fx.Utils;
 
 public class CompareTitle {
 
@@ -136,7 +135,7 @@ public class CompareTitle {
 			if (item.getTitleCN() != null && item.getTitleVN() != null) {
 				currentString = item.getPathVN() + " with title " + item.getTitleVN() + " similarity with "
 						+ item.getPathCN() + " with title " + item.getTitleCN() + " about "
-						+ item.getPercentSimilarity() + "% \n";
+						+ (int)item.getPercentSimilarity() + "% \n";
 			}
 			if (!currentString.equals("")) {
 				WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle1");
@@ -174,7 +173,7 @@ public class CompareTitle {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return result;
+		return result.trim();
 	}
 
 	public static String readFileFromPathChinese(String filePath) // Return title in

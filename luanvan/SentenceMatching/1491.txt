@@ -1,5 +1,5 @@
-Hoàng tử không muốn nhảy với ai nữa nên không chịu rời tay cô ra
+Hoàng tử cầm lên ngắm thì thấy chiếc hài nhỏ nhắn, xinh đẹp toàn bằng vàng
 -----------------
-王子看她穿好了鞋子，就把她当成了新娘，与她并排骑在马上，把她带走了
+王子打算从这些参加舞会的姑娘中选一个作自己的新娘
 -----------------
-similarity about 36%
+similarity about 34%

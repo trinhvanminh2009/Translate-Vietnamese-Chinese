@@ -1,5 +1,5 @@
-Bà nói:- Công chúa sẽ không chết, mà chỉ ngủ một giấc dài trăm năm
+Vào tới sân lâu đài, chàng thấy ngựa và những con chó tam thể đang nằm ngủ
 -----------------
-她不会死去，而只是昏睡过去，而且一睡就是一百年
+然而，她并没有死，只是倒在那里沉沉地睡去了
 -----------------
-similarity about 43%
+similarity about 31%

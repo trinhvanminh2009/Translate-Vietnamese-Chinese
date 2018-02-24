@@ -1,5 +1,5 @@
-" Nhưng dù sao bác cảm thấy trút được gánh nặng trong lòng vì chẳng phải giết người
+Mụ đứng ngắm mình trước gương và hỏi:- Gương kia ngự ở trên tường,Nước này ai đẹp được dường như ta
 -----------------
-严冬时节，鹅毛一样的大雪片在天空中到处飞舞着，有一个王后坐在王宫里的一扇窗子边，正在为她的女儿做针线活儿，寒风卷着雪片飘进了窗子，乌木窗台上飘落了不少雪花
+"王后连忙说道："你只要看看我这把漂亮的梳子就行了
 -----------------
-similarity about 30%
+similarity about 31%

@@ -1,5 +1,5 @@
-Hai chiếc giường nhỏ xinh trải khăn trắng tinh để cho Hãnsel và Gretel trèo lên nằm ngủ
+Gretel nói thế rồi nhét đầy tạp dề
 -----------------
-但他心里又有了新的主意，他又安慰他的小妹妹说："别哭，格莱特，不用担心，好好睡觉
+于是格莱特把草绳套在他的脖子上，他们便一起离开了小屋
 -----------------
-similarity about 33%
+similarity about 29%

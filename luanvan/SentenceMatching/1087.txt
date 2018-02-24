@@ -1,5 +1,5 @@
-" Nếu anh không nói thế thì em không mở cửa đâu nhé!Rồi Mang ra ngoài, tung tăng nhảy trong bầu không khí mát lành
+Khi mụ được tin cả hai đều sống sung sướng và hạnh phúc thì cơn ghen tức trong lòng mụ lại nổi lên làm mụ mất ăn mất ngủ
 -----------------
-要是她的弟弟还保持着人的形状，这种生活倒也挺美！他们就这样孤单寂寞地在野外生活了一段时间
+当小鹿再次听到号角声以及猎手们发出的"嗬嗬嗬"的喊叫声时，它再也安静不下来了
 -----------------
-similarity about 33%
+similarity about 32%

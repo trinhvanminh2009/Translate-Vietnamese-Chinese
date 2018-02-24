@@ -1,5 +1,5 @@
-Bà Chúa Tuyết dẫn cô tới cổng, khi cô vừa đặt chân tới thềm cổng thì một nồi nhựa thông đổ xuống chứ chẳng có mưa vàng nào cả
+" Nhưng dù sao bác cảm thấy trút được gánh nặng trong lòng vì chẳng phải giết người
 -----------------
-最后，姑娘来到一幢小房子前，只见一个老太太在窗前望着她
+严冬时节，鹅毛一样的大雪片在天空中到处飞舞着，有一个王后坐在王宫里的一扇窗子边，正在为她的女儿做针线活儿，寒风卷着雪片飘进了窗子，乌木窗台上飘落了不少雪花
 -----------------
-similarity about 31%
+similarity about 30%

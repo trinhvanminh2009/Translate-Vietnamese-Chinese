@@ -1,5 +1,5 @@
-Anh tới bên cửa sổ lắng nghe, thì ra chim sẻ chuyện trò với nhau, kể cho nhau nghe những gì đã thấy ở ngoài đồng và ở trong rừng
+Anh lắng tai thì nghe một con kiến chúa đang phàn nàn:- Giá loài người đừng để con vật vụng về thô lỗ đụng đến chúng ta có hay không! Cái con ngựa ngu ngốc này lại sắp giẫm nát những người bà con của chúng ta mà không hề mủi lòng
 -----------------
-他走到窗边侧耳细听，发现原来是一群麻雀在聊天，相互说着在田野和森林里的所见所闻
+他听了一会儿，听到一只蚁王在抱怨："那些骑着笨牲口的人类为什么不离我们远一点呢？这匹蠢马沉重的蹄子踩死了我们多少人呵！"于是，他赶紧把马带到旁边的小路上
 -----------------
-similarity about 38%
+similarity about 35%

@@ -1,5 +1,5 @@
-Chúng ta đem cất niêu mỡ dưới gầm nhà thờ, chúng ta chỉ rờ đến nó khi nào chúng ta cần đến mỡ
+" Thế là nghĩa lý gì nhỉ?Chẳng nói chẳng rằng, mèo chỉ lắc đầu, nằm cuộn tròn người lại và đánh một giấc
 -----------------
-我们把猪油藏在祭坛下，不到万不得已的时候决不动它
+"它们动身去教堂，可它们到达那里后，看到猪油罐倒是还在那里，里面却是空的
 -----------------
-similarity about 40%
+similarity about 29%

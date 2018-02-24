@@ -1,5 +1,5 @@
-" Biết chuyện, cô buồn lắm, cô gạn hỏi cha mẹ về các người anh trai của mình
+Rồi một lần người cha bảo con út:- Này, cái thằng ngồi trong xó nhà kia! Giờ mày đã lớn, lại khỏe mạnh, mày phải đi học lấy một nghề mà kiếm ăn
 -----------------
-终于有一天，她偶然听到人们谈起有关她的事情，他们说："她的的确确很漂亮，但可惜的是她的七个哥哥却因为她的缘故而遭到不幸
+"小伙子回答说，"要是我真的这么快就学会了害怕，我这五十个银币就归你啦
 -----------------
-similarity about 34%
+similarity about 30%

@@ -1,5 +1,5 @@
-Cô lượm đầy lẵng, lòng hết sức vui mừng và chạy vào nhà bắt tay từng người lùn và cảm ơn họ
+"Thiên nga liền hiện nguyên hình thành hoàng hậu, lại cho con bú, trải lại nệm, đắp chăn lên người đứa bé, rồi lại biến thành thiên nga, bơi theo rãnh nước ra ngoài
 -----------------
-她来到森林里后，看到一座小房子，里面有三个小矮人在向外张望
+她开口给母亲讲自己在森林里的遭遇，可是，她每讲一句话，嘴里就跳出来一只癞蛤蟆，把大家都吓坏了
 -----------------
-similarity about 36%
+similarity about 26%

@@ -1,5 +1,5 @@
-Cô nhận lời ở lại giúp việc cho bà
+Mụ cho gọi một người thợ săn đến và bảo:- Ngươi hãy mang con bé này vào trong rừng sâu, ta không muốn nhìn mặt nó nữa
 -----------------
-懒姑娘就这样回到了家里，浑身上下糊满了沥青
+她叫来了一名仆人对他说："给我把白雪公主抓到大森林里去，我再也不希望看到她了
 -----------------
-similarity about 35%
+similarity about 41%

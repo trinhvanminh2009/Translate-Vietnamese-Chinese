@@ -1,5 +1,5 @@
-Từ đó trở đi, mỗi khi thoáng nhìn thấy Bạch Tuyết là mụ đã khó chịu, bực tức, rồi đâm ra căm ghét cô bé
+Mấy chú lùn lại hỏi tiếp:- Làm sao mà cô tới được nhà của chúng tôi?Thế là cô kể cho họ nghe chuyện dì ghẻ định ám hại cô, nhưng người thợ săn đã để cho cô sống và cô đã chạy trốn suốt cả ngày trong rừng tới khi sẩm tối thì thấy căn nhà của họ
 -----------------
-幸运的是这天晚上，小矮人们回来得很早，当他们看见白雪公主躺在地上时，知道一定又发生了不幸的事情，急忙将她抱起来查看，很快就发现了那把有毒的梳子
+晚上，七个小矮人回来了，当他们看到他们诚实可爱的白雪公主躺在地上一动不动，就像死了一样时，他们的心马上缩紧了，急忙上前将她抬了起来，他们马上剪断了带子
 -----------------
-similarity about 31%
+similarity about 25%

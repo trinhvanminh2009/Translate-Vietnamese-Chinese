@@ -1,5 +1,5 @@
-Cô gái lại gần lò bánh, lấy xẻng dỡ hết bánh ra
+Cô kể lại những chuyện mắt thấy tai nghe
 -----------------
-"姑娘走上前去，拿起面包铲，把面包一个接一个地全取了出来
+懒姑娘就这样回到了家里，浑身上下糊满了沥青
 -----------------
-similarity about 44%
+similarity about 31%

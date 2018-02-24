@@ -1,5 +1,5 @@
-Về nhà cô kể lại cho mẹ nghe chuyện kiếm dâu ở trong rừng của cô, cứ mỗi tiếng cô nói ra là lại có một con cóc nhảy từ trong mồm nhảy ra, khiến cho mọi người kinh tởm
+Cha mẹ cô tránh không bao giờ nhắc tới chuyện ấy cho cô biết
 -----------------
-她开口给母亲讲自己在森林里的遭遇，可是，她每讲一句话，嘴里就跳出来一只癞蛤蟆，把大家都吓坏了
+"小矮人说道："我的主人不在家，如果你非要等他们回来的话，就请进来吧
 -----------------
-similarity about 36%
+similarity about 30%

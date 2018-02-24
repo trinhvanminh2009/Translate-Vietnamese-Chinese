@@ -1,5 +1,5 @@
-Mụ hớn hở về nhà, tưởng như vậy là đã trừ được lũ con chồng
+Vua hỏi:- Nàng là ai? Nàng ngồi trên cây làm gì?Cô không đáp
 -----------------
-女儿接待了国王，那神色好像她早就料到国王会来似的
+国王问她："你是谁？在树上干什么呢？"可她并不回答
 -----------------
-similarity about 33%
+similarity about 43%

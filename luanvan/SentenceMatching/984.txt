@@ -1,5 +1,5 @@
-Nhà vua có ba người con trai
+Ba chiếc lại bay ra ba hướng như trước
 -----------------
-他们吵得国王不得安宁，非要再比试比试不可
+国王还是朝天上吹了三片羽毛，它们所指的方向和以前一样
 -----------------
-similarity about 30%
+similarity about 52%

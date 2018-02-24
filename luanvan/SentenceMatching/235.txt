@@ -1,5 +1,5 @@
-Nhà thường sống bữa đói bữa no cho qua ngày
+Lần này ta đem bỏ chúng vào rừng sâu hơn trước để chúng không tìm được lối mà về nhà
 -----------------
-这已是他们离开父亲家的第三天早晨了，他们深陷丛林，已经迷路了
+他们追了他一整天，最后终于把他给围住了，其中一个猎人还射中了他的一条脚
 -----------------
-similarity about 31%
+similarity about 33%
