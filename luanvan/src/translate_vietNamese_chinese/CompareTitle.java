@@ -102,9 +102,9 @@ public class CompareTitle {
 		File listFileVN[] = folderVN.listFiles();
 		File listFileCN[] = folderCN.listFiles();
 		for (int i = 0; i < listFileVN.length; i++) {
-			percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
-					readFileFromPathChinese(listFileCN[0].getPath()));
 			for (int j = 0; j < listFileCN.length; j++) {
+				percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
+						readFileFromPathChinese(listFileCN[j].getPath()));
 				if ((printSimilarity(readFileFromPath(listFileVN[i].getPath()),
 						readFileFromPathChinese(listFileCN[j].getPath())) > percentBiggest)) {
 					percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
@@ -272,9 +272,9 @@ public class CompareTitle {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		final File folder1 = new File(
-				"grimmstories.com/vn");
+				"luanvan/DATA/A");
 		final File folder2 = new File(
-				"grimmstories_translated");
+				"luanvan/DATA/B");
 		listFilesForFolder(folder1, folder2);
 
 	}
