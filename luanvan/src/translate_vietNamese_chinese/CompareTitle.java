@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
 public class CompareTitle {
 
 	public CompareTitle() {
@@ -102,10 +101,12 @@ public class CompareTitle {
 		File listFileVN[] = folderVN.listFiles();
 		File listFileCN[] = folderCN.listFiles();
 		for (int i = 0; i < listFileVN.length; i++) {
+		
 			for (int j = 0; j < listFileCN.length; j++) {
-				
+
 				percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
 						readFileFromPathChinese(listFileCN[0].getPath()));
+				
 				if ((printSimilarity(readFileFromPath(listFileVN[i].getPath()),
 						readFileFromPathChinese(listFileCN[j].getPath())) > percentBiggest)) {
 					percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
@@ -114,40 +115,33 @@ public class CompareTitle {
 					pathCN = listFileCN[j].getPath();
 					titleVN = readFileFromPath(listFileVN[i].getPath());
 					titleCN = readFileFromPathChinese(listFileCN[j].getPath());
-					System.out.println(titleVN + " " + titleCN);
+					
 				}
 			}
-			if (!pathVN.equals("") && !pathCN.equals("") && !titleVN.equals("") && !titleCN.equals("")) {
-				pathVN = listFileVN[i].getPath();
-				pathCN = listFileCN[i].getPath();
-				titleVN = readFileFromPath(listFileVN[i].getPath());
-				titleCN = readFileFromPathChinese(listFileCN[i].getPath());
-                 PercentSimilarityTitle percentSimilarity = new PercentSimilarityTitle(percentBiggest, pathVN, pathCN,
-					titleVN, titleCN);
-          
-			listPercentSimilarity.add(percentSimilarity);
-			}
+			if (!pathVN.equals("") && !pathCN.equals("") && !titleVN.equals("") && !titleCN.equals("") 
+					&& pathVN != null && pathCN != null && titleVN != null && titleCN != null
+					&& percentBiggest >= 30) {
 			
-
+				PercentSimilarityTitle percentSimilarity = new PercentSimilarityTitle(percentBiggest, pathVN, pathCN,
+						titleVN, titleCN);
+				listPercentSimilarity.add(percentSimilarity);
+				System.out.println(titleVN + " " + titleCN);
+			}
 		}
 
 		String currentString = "";
 		for (int i = 0; i < listPercentSimilarity.size(); i++) {
 			PercentSimilarityTitle item = listPercentSimilarity.get(i);
-                        System.out.println(item.getTitleCN()+" "+item.getTitleVN());
 			if (item.getTitleCN() != null && item.getTitleVN() != null) {
 				currentString = item.getPathVN() + " with title " + item.getTitleVN() + " similarity with "
 						+ item.getPathCN() + " with title " + item.getTitleCN() + " about "
-						+ (int)item.getPercentSimilarity() + "% \n";
-				
+						+ (int) item.getPercentSimilarity() + "% \n";
 			}
 			if (!currentString.equals("")) {
 				System.out.println(currentString);
 				WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle1");
 			}
 		}
-		
-		
 
 		System.out.println("Write file successfully!");
 	}
@@ -276,10 +270,8 @@ public class CompareTitle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final File folder1 = new File(
-				"luanvan/DATA/A");
-		final File folder2 = new File(
-				"luanvan/DATA/B");
+		final File folder1 = new File("luanvan/DATA/A");
+		final File folder2 = new File("luanvan/DATA/B");
 		listFilesForFolder(folder1, folder2);
 
 	}
