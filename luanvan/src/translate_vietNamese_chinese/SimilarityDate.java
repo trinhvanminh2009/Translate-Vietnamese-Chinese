@@ -16,6 +16,12 @@ public class SimilarityDate {
 		this.filePathCN = filePathCN;
 		this.percentSimilarity = percentSimilarity;
 	}
+        public SimilarityDate(String dateVN, String dateCN,  int percentSimilarity) {
+		super();
+		this.dateVN = dateVN;
+		this.dateCN = dateCN;
+		this.percentSimilarity = percentSimilarity;
+	}
 	
 	public String getDateVN() {
 		return dateVN;

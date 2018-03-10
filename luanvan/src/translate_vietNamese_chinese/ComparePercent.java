@@ -51,6 +51,16 @@ public class ComparePercent {
 		}
 		System.out.println("Write file successfully!");
 	}
+        public static int percentSimilarityTwoString(String vn, String cn) {
+		
+            try{
+                 return percentSimilarityBetweenTwoFiles(getPercentObject(vn).getListPercent(),
+						getPercentObject(cn).getListPercent());
+            }catch(Exception e){
+                return 0;
+            }
+               		
+	}
 
 	public static PercentObject readFileFromPath(String filePath) {
 		PercentObject result = new PercentObject();
@@ -131,8 +141,43 @@ public class ComparePercent {
 		}
 		return null;
 	}
+        private static PercentObject getPercentObject(String mainContent) {
 
-	private static float percentSimilarityBetweenTwoFiles(ArrayList<String> listPercentVN,
+		int lastIndex = 0;
+		ArrayList<String> listPercent = new ArrayList<>();
+		String tempString;
+		String percent;
+		while (lastIndex != -1) {
+			lastIndex = mainContent.indexOf("%", lastIndex);
+			if (lastIndex != -1) {
+
+				tempString = mainContent.substring(lastIndex - 6, lastIndex + 1);
+				tempString = tempString.replace(".", ",");// Some string contain
+															// character . in
+															// number percent
+				tempString = tempString.replace(" ", "");
+				// Regex only get number with character percent
+				percent = String.valueOf(tempString.replaceAll("[^\\d,%]+|\\.(?!\\d%)", ""));
+				if (percent.startsWith("%")) {
+					percent = percent.substring(1, percent.length());
+				}
+				listPercent.add(percent);
+
+			} else {
+				break;// Not found any percent in here
+			}
+			tempString = "";
+			lastIndex++;// find next percent
+		}
+		if (listPercent.size() > 0) {
+			PercentObject result = new PercentObject(listPercent);
+			return result;
+		}
+		return null;
+	}
+
+
+	private static int percentSimilarityBetweenTwoFiles(ArrayList<String> listPercentVN,
 			ArrayList<String> listPercentCN) {
 		int count = 0;
 		for (int i = 0; i < listPercentVN.size(); i++) {
@@ -142,12 +187,15 @@ public class ComparePercent {
 				}
 			}
 		}
-		return ((float) count / ((listPercentVN.size() + listPercentCN.size()) / 2)) * 100;
+                System.out.println(listPercentVN.size()+" "+listPercentCN.size());
+		return (int)((float) count / ((listPercentVN.size() + listPercentCN.size()) / 2) * 100);
 	}
 
+
 	public static void main(String[] args) throws IOException {
-		File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
-		File folder2 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
-		listFilesForFolder(folder, folder2);
+//		File folder = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politics_VietNamese");
+//		File folder2 = new File("D:/Dowloads/luanvan/luanvan/DATA/Politics/Politis_Chinese");
+//		listFilesForFolder(folder, folder2);
+System.out.println(percentSimilarityTwoString("GDP của Việt Nam tháng  tăng  trong nửa đầu tháng ","GDP của Việt 7% Nam tháng  tăng 5,52% trong nửa đầu tháng "));
 	}
 }

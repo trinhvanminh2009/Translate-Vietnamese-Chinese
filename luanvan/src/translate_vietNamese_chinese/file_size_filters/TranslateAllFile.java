@@ -233,9 +233,9 @@ public class TranslateAllFile {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File("grimmstories.com/cn");
+		final File folder = new File("a");
 		try {
-			listFilesForFolder(folder, "grimmstories_translated");
+			listFilesForFolder(folder, "b");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

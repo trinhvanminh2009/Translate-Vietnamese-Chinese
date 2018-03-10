@@ -73,6 +73,10 @@ public class CompareTitle {
 
 	}
 
+        public static int printSimilarityDateWithoutPath(String stringVN, String stringCN){
+             
+            return (int)similarity(stringVN,stringCN)* 100;
+        }
 	public static SimilarityDate printSimilarityDate(ConvertDate convertDateCN, ConvertDate convertDateVN) {
 		SimilarityDate similarityDate = null;
 		if ((int) (similarity(convertDateCN.getContent(), convertDateVN.getContent()) * 100) > 92) {
@@ -91,6 +95,23 @@ public class CompareTitle {
 		return similarityDate;
 	}
 
+        public static SimilarityDate printSimilarityDateWithoutPath(ConvertDate convertDateCN, ConvertDate convertDateVN) {
+		SimilarityDate similarityDate = null;
+		if ((int) (similarity(convertDateCN.getContent(), convertDateVN.getContent()) * 100) > 92) {
+			/*
+			 * System.out.println((int)(similarity(convertDateCN.getContent(),
+			 * convertDateVN.getContent()) *100) + "% is the similarity between "+
+			 * convertDateCN.getContent() + "\n with link "+convertDateCN.getFilePath()
+			 * +"\n and "+ convertDateVN.getContent() + " with link "+
+			 * convertDateVN.getFilePath());
+			 */
+			similarityDate = new SimilarityDate(convertDateVN.getContent(), convertDateCN.getContent(),
+					
+					(int) (similarity(convertDateCN.getContent(), convertDateVN.getContent()) * 100));
+			return similarityDate;
+		}
+		return similarityDate;
+	}
 	public static void listFilesForFolder(final File folderVN, final File folderCN) {
 		ArrayList<PercentSimilarityTitle> listPercentSimilarity = new ArrayList<>();
 		float percentBiggest = 0;
@@ -101,12 +122,9 @@ public class CompareTitle {
 		File listFileVN[] = folderVN.listFiles();
 		File listFileCN[] = folderCN.listFiles();
 		for (int i = 0; i < listFileVN.length; i++) {
-		
-			for (int j = 0; j < listFileCN.length; j++) {
-
-				percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
+		percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
 						readFileFromPathChinese(listFileCN[0].getPath()));
-				
+			for (int j = 0; j < listFileCN.length; j++) {
 				if ((printSimilarity(readFileFromPath(listFileVN[i].getPath()),
 						readFileFromPathChinese(listFileCN[j].getPath())) > percentBiggest)) {
 					percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
@@ -120,12 +138,12 @@ public class CompareTitle {
 			}
 			if (!pathVN.equals("") && !pathCN.equals("") && !titleVN.equals("") && !titleCN.equals("") 
 					&& pathVN != null && pathCN != null && titleVN != null && titleCN != null
-					&& percentBiggest >= 30) {
+				&& percentBiggest >= 30) {
 			
 				PercentSimilarityTitle percentSimilarity = new PercentSimilarityTitle(percentBiggest, pathVN, pathCN,
 						titleVN, titleCN);
 				listPercentSimilarity.add(percentSimilarity);
-				System.out.println(titleVN + " " + titleCN);
+				System.out.println(i+" "+titleVN + " " + titleCN);
 			}
 		}
 
@@ -139,7 +157,7 @@ public class CompareTitle {
 			}
 			if (!currentString.equals("")) {
 				System.out.println(currentString);
-				WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle1");
+				WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle1-3000");
 			}
 		}
 
@@ -270,8 +288,8 @@ public class CompareTitle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final File folder1 = new File("luanvan/DATA/A");
-		final File folder2 = new File("luanvan/DATA/B");
+		final File folder1 = new File("C:/Politics_VietNamese/");
+		final File folder2 = new File("C:/Politics_Chinese_Translted/");
 		listFilesForFolder(folder1, folder2);
 
 	}
