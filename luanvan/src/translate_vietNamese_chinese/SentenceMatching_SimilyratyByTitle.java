@@ -237,15 +237,19 @@ public class SentenceMatching_SimilyratyByTitle {
         int datePercent=ConvertDate.dateSimilarityTwoString(s1, s2);
        // System.out.println("asd"+editDistancePercent+"percent :"+percent+" date: "+datePercent);
         if(percent>=50&&datePercent>=50){
+           // System.out.println("-----------------1");
             return (editDistancePercent*0.8+percent*0.002+datePercent*0.002);
         }
         else if(percent>=50){
+            // System.out.println("-----------------2");
             return (editDistancePercent*0.8+percent*0.002);
         }
         else if(datePercent>=50){
+            // System.out.println("-----------------3");
             return (editDistancePercent*0.8+datePercent*0.002);
         }
         else{
+            // System.out.println("-----------------4");
             return (editDistancePercent);
         }
 
@@ -374,8 +378,8 @@ public class SentenceMatching_SimilyratyByTitle {
     public static void main(String[] args) {
         SentenceMatching_SimilyratyByTitle s = new SentenceMatching_SimilyratyByTitle();
         //  s.writeFilterFileByPercent("SentenceMatching/","95-100/", 95,100);sys
-        s.setFolderVN("grimmstories.com/vn/");
-        s.setFolderCN("grimmstories.com/cn/");
-        s.readFileSimilyratyByTitle("SimilyratyByTitle_gim.txt");
+        s.setFolderVN("G:\\IT\\luanvan\\DATA\\grimmstories.com\\vn\\");
+        s.setFolderCN("G:\\IT\\luanvan\\DATA\\grimmstories.com\\cn\\");
+        s.readFileSimilyratyByTitle("SimilyratyByTitle-grim.txt");
     }
 }
