@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CompareTitle {
 
@@ -27,7 +28,7 @@ public class CompareTitle {
 		 * return (longerLength - StringUtils.getLevenshteinDistance(longer, shorter)) /
 		 * (double) longerLength;
 		 */
-		return (longerLength - editDistance(longer, shorter)) / (double) longerLength;
+		return (longerLength - calculate(longer, shorter)) / (double) longerLength;
 
 	}
 
@@ -63,6 +64,37 @@ public class CompareTitle {
 
 	}
 
+	public static int calculate(String x, String y) {
+		int[][] dp = new int[x.length() + 1][y.length() + 1];
+
+		for (int i = 0; i <= x.length(); i++) {
+			for (int j = 0; j <= y.length(); j++) {
+				if (i == 0) {
+					dp[i][j] = j;
+				} else if (j == 0) {
+					dp[i][j] = i;
+				} else {
+					dp[i][j] = min(dp[i - 1][j - 1] + costOfSubstitution(x.charAt(i - 1), y.charAt(j - 1)),
+							dp[i - 1][j] + 1, dp[i][j - 1] + 1);
+				}
+			}
+		}
+
+		return dp[x.length()][y.length()];
+	}
+
+	public static int costOfSubstitution(char a, char b) {
+		return a == b ? 0 : 1;
+	}
+
+	public static int min(int number1, int number2, int number3) {
+		int[] numbers = new int[3];
+		numbers[0] = number1;
+		numbers[1] = number2;
+		numbers[2] = number3;
+		return Arrays.stream(numbers).min().orElse(Integer.MAX_VALUE);
+	}
+
 	public static boolean printSimilarity1(String s, String t) {
 		if ((int) (similarity(s, t) * 100) > 92) {
 			// System.out.println((int)(similarity(s, t) *100) +"% is the
@@ -73,10 +105,11 @@ public class CompareTitle {
 
 	}
 
-        public static int printSimilarityDateWithoutPath(String stringVN, String stringCN){
-             
-            return (int)similarity(stringVN,stringCN)* 100;
-        }
+	public static int printSimilarityDateWithoutPath(String stringVN, String stringCN) {
+
+		return (int) similarity(stringVN, stringCN) * 100;
+	}
+
 	public static SimilarityDate printSimilarityDate(ConvertDate convertDateCN, ConvertDate convertDateVN) {
 		SimilarityDate similarityDate = null;
 		if ((int) (similarity(convertDateCN.getContent(), convertDateVN.getContent()) * 100) > 92) {
@@ -95,7 +128,7 @@ public class CompareTitle {
 		return similarityDate;
 	}
 
-        public static SimilarityDate printSimilarityDateWithoutPath(ConvertDate convertDateCN, ConvertDate convertDateVN) {
+	public static SimilarityDate printSimilarityDateWithoutPath(ConvertDate convertDateCN, ConvertDate convertDateVN) {
 		SimilarityDate similarityDate = null;
 		if ((int) (similarity(convertDateCN.getContent(), convertDateVN.getContent()) * 100) > 92) {
 			/*
@@ -106,12 +139,13 @@ public class CompareTitle {
 			 * convertDateVN.getFilePath());
 			 */
 			similarityDate = new SimilarityDate(convertDateVN.getContent(), convertDateCN.getContent(),
-					
+
 					(int) (similarity(convertDateCN.getContent(), convertDateVN.getContent()) * 100));
 			return similarityDate;
 		}
 		return similarityDate;
 	}
+
 	public static void listFilesForFolder(final File folderVN, final File folderCN) {
 		ArrayList<PercentSimilarityTitle> listPercentSimilarity = new ArrayList<>();
 		float percentBiggest = 0;
@@ -122,8 +156,8 @@ public class CompareTitle {
 		File listFileVN[] = folderVN.listFiles();
 		File listFileCN[] = folderCN.listFiles();
 		for (int i = 0; i < listFileVN.length; i++) {
-		percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
-						readFileFromPathChinese(listFileCN[0].getPath()));
+			percentBiggest = printSimilarity(readFileFromPath(listFileVN[i].getPath()),
+					readFileFromPathChinese(listFileCN[0].getPath()));
 			for (int j = 0; j < listFileCN.length; j++) {
 				if ((printSimilarity(readFileFromPath(listFileVN[i].getPath()),
 						readFileFromPathChinese(listFileCN[j].getPath())) > percentBiggest)) {
@@ -133,17 +167,16 @@ public class CompareTitle {
 					pathCN = listFileCN[j].getPath();
 					titleVN = readFileFromPath(listFileVN[i].getPath());
 					titleCN = readFileFromPathChinese(listFileCN[j].getPath());
-					
+
 				}
 			}
-			if (!pathVN.equals("") && !pathCN.equals("") && !titleVN.equals("") && !titleCN.equals("") 
-					&& pathVN != null && pathCN != null && titleVN != null && titleCN != null
-				&& percentBiggest >= 30) {
-			
+			if (!pathVN.equals("") && !pathCN.equals("") && !titleVN.equals("") && !titleCN.equals("") && pathVN != null
+					&& pathCN != null && titleVN != null && titleCN != null && percentBiggest >= 30) {
+
 				PercentSimilarityTitle percentSimilarity = new PercentSimilarityTitle(percentBiggest, pathVN, pathCN,
 						titleVN, titleCN);
 				listPercentSimilarity.add(percentSimilarity);
-				System.out.println(i+" "+titleVN + " " + titleCN);
+				System.out.println(i + " " + titleVN + " " + titleCN);
 			}
 		}
 
@@ -288,9 +321,11 @@ public class CompareTitle {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final File folder1 = new File("C:/Politics_VietNamese/");
+
+		/*final File folder1 = new File("C:/Politics_VietNamese/");
 		final File folder2 = new File("C:/Politics_Chinese_Translted/");
-		listFilesForFolder(folder1, folder2);
+		listFilesForFolder(folder1, folder2);*/
+		System.out.println(similarity("aaa", "ccc"));
 
 	}
 
