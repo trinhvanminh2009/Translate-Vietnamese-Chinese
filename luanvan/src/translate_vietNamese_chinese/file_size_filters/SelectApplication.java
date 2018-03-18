@@ -117,7 +117,6 @@ public class SelectApplication {
 					e1.printStackTrace();
 				}
 				
-				
 			}
 		});
 		btnNext.setBounds(88, 217, 89, 23);

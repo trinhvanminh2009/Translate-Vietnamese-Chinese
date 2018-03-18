@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import translate_vietNamese_chinese.CompareTitle;
+import translate_vietNamese_chinese.SentenceMatching_SimilyratyByTitle;
 import translate_vietNamese_chinese.file_size_filters.TranslateAllFile;
 import javax.swing.JLabel;
 
@@ -18,7 +19,7 @@ public class Step2Application extends JFrame {
 	private JPanel contentPane;
 	private String pathVN;
 	private String pathCN;
-	CountDownLatch latch = new CountDownLatch(1);
+	public static final String SIMILARITYDEMO = "SimilarityDemo";
 
 	/**
 	 * Launch the application.
@@ -72,11 +73,8 @@ public class Step2Application extends JFrame {
 					TranslateAllFile translateAllFile = new TranslateAllFile();
 					try {
 						translateAllFile.listFilesForFolder(new File(pathCN), pathCN + "Translated");
-						latch.countDown();
-						//Compare title
-						CompareTitle compareTitle = new CompareTitle();
-						//compareTitle.listFilesForFolder(folderVN, folderCN);
-				
+						
+
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -84,15 +82,50 @@ public class Step2Application extends JFrame {
 				}
 			});
 			thread.start();
-
 			try {
-				latch.await();
-				System.out.println("Done");
-			} catch (InterruptedException e) {
+				thread.join();
+				System.out.println("Translate All File Done");
+				// Compare title
+				runCompareTitle();
+			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // W
+				e1.printStackTrace();
+			}
 
 		}
+	}
+
+	private void runCompareTitle() {
+		Thread thread = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				CompareTitle compareTitle = new CompareTitle();
+				String pathVNFolder = pathVN + "\\";
+				String pathCNFolder = pathCN + "Translated\\";
+				System.out.println(pathVNFolder + " \n" + pathCNFolder);
+				File folderVN = new File(pathVNFolder);
+				File folderCN = new File(pathCNFolder);
+				compareTitle.listFilesForFolder(folderVN.getAbsoluteFile(), folderCN.getAbsoluteFile());
+				
+			}
+		});
+		thread.start();
+		try {
+			thread.join();
+			System.out.println("Compare title Done");
+			// Get file similarity over 30% going to compare file
+			SentenceMatching_SimilyratyByTitle sentenceMaching = new SentenceMatching_SimilyratyByTitle();
+			sentenceMaching.setFolderVN(pathVN);
+			String pathForCN = pathCN +"\\";
+			sentenceMaching.setFolderCN(pathForCN);
+			String similarityDemoPath = System.getProperty("user.dir") + "\\" + SIMILARITYDEMO + ".txt";
+			sentenceMaching.readFileSimilyratyByTitle(similarityDemoPath);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 }
