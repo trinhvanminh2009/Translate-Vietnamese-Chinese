@@ -322,10 +322,10 @@ public class CompareTitle {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		/*final File folder1 = new File("C:/Politics_VietNamese/");
-		final File folder2 = new File("C:/Politics_Chinese_Translted/");
-		listFilesForFolder(folder1, folder2);*/
-		System.out.println(similarity("aaa", "ccc"));
+		final File folder1 = new File("E:\\Project\\Translate\\Translate-Vietnamese-Chinese\\baochinhphuVN\\chinhtri\\");
+		final File folder2 = new File("E:\\Project\\Translate\\Translate-Vietnamese-Chinese\\baochinhphuCN\\Government activity\\");
+		listFilesForFolder(folder1, folder2);
+		
 
 	}
 

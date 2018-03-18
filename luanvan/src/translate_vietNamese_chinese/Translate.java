@@ -141,7 +141,7 @@ public class Translate {
 	 
 	public static void writeTranstedToText(String folderName, String fileName, String content) throws IOException
 	{
-		 File file = new File(System.getProperty("user.dir") + "/"+folderName);
+		 File file = new File(folderName);
 	        if (!file.exists()) {
 	            if (file.mkdir()) {
 	                System.out.println("Directory is created!");
@@ -151,7 +151,7 @@ public class Translate {
 	        }
 	        
 	        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(System.getProperty("user.dir") + "/"+folderName+"/"+fileName), "utf-8"))) {
+                    new FileOutputStream(folderName+"/"+fileName), "utf-8"))) {
                 	writer.write(content);
                 	  System.out.println(fileName + ""+ "Successfully");
                 }

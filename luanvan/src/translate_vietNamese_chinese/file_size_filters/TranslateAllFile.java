@@ -16,6 +16,8 @@ import translate_vietNamese_chinese.Translate;
 
 public class TranslateAllFile {
 
+	private String pathToSave;
+	private String pathCN;
 	/**
 	 * @param content
 	 * @param key
@@ -76,16 +78,16 @@ public class TranslateAllFile {
 			}
 			// Starting translate each sentence
 			TranslateAllFile http = new TranslateAllFile();
-			listMainContentTranslated.add(http.callUrlAndParseResult("zh-CN", "vi",title));
+			listMainContentTranslated.add(http.callUrlAndParseResult("zh-CN", "vi", title));
 			listMainContentTranslated.add(key);
 			for (int i = 0; i < listMainContentCutted.size(); i++) {
 				listMainContentTranslated.add(http.callUrlAndParseResult("zh-CN", "vi",
 						listMainContentCutted.get(i).trim().replace("。", "")));
 			}
-			//Convert list 
-			String contentVN = listMainContentTranslated.get(0) + listMainContentTranslated.get(1)+"\n" ;
-			for(int i = 2 ; i < listMainContentTranslated.size(); i++){
-				contentVN = contentVN + listMainContentTranslated.get(i) + ".\n" ;
+			// Convert list
+			String contentVN = listMainContentTranslated.get(0) + listMainContentTranslated.get(1) + "\n";
+			for (int i = 2; i < listMainContentTranslated.size(); i++) {
+				contentVN = contentVN + listMainContentTranslated.get(i) + ".\n";
 			}
 			System.out.println(contentVN);
 			Translate.writeTranstedToText(folderName, fileName, contentVN);
@@ -218,8 +220,14 @@ public class TranslateAllFile {
 	public TranslateAllFile() {
 
 	}
-
-	public static void listFilesForFolder(final File folder, String folderName) throws Exception {
+	
+	public TranslateAllFile(String pathCN, String pathToSave) throws Exception {
+		this.pathCN = pathCN;
+		this.pathToSave = pathToSave;
+		//listFilesForFolder(new File(pathCN),pathToSave);
+	}
+	
+	public void listFilesForFolder(final File folder, String folderName) throws Exception {
 		// This function call another function to read all file from folder
 		for (final File file : folder.listFiles()) {
 			if (file.isDirectory()) {
@@ -233,13 +241,14 @@ public class TranslateAllFile {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		final File folder = new File("a");
+	/*	final File folder = new File(
+				"E:\\Project\\Translate\\Translate-Vietnamese-Chinese\\baochinhphuCN\\Government activity");
 		try {
 			listFilesForFolder(folder, "b");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 
