@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import part3.Step2Application;
+
 public class CompareTitle {
 
 	public CompareTitle() {
@@ -146,7 +148,7 @@ public class CompareTitle {
 		return similarityDate;
 	}
 
-	public static void listFilesForFolder(final File folderVN, final File folderCN) {
+	public void listFilesForFolder(final File folderVN, final File folderCN) {
 		ArrayList<PercentSimilarityTitle> listPercentSimilarity = new ArrayList<>();
 		float percentBiggest = 0;
 		String pathVN = "";
@@ -190,7 +192,7 @@ public class CompareTitle {
 			}
 			if (!currentString.equals("")) {
 				System.out.println(currentString);
-				WriteFile.writeDateTimeSimilarity(currentString, "SimilyratyByTitle1-3000");
+				WriteFile.writeDateTimeSimilarity(currentString, Step2Application.SIMILARITYDEMO);
 			}
 		}
 
@@ -201,6 +203,7 @@ public class CompareTitle {
 															// file
 	{
 		final BufferedReader bufferedReader;
+		System.out.println(filePath);
 		String result = "";
 		try {
 			File file = new File(filePath);
@@ -318,15 +321,12 @@ public class CompareTitle {
 		return titleContent;
 
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		final File folder1 = new File("E:\\Project\\Translate\\Translate-Vietnamese-Chinese\\baochinhphuVN\\chinhtri\\");
-		final File folder2 = new File("E:\\Project\\Translate\\Translate-Vietnamese-Chinese\\baochinhphuCN\\Government activity\\");
-		listFilesForFolder(folder1, folder2);
-		
-
-	}
+	
+	public static void main(String[] args) throws Exception 
+	 {
+		CompareTitle compareTitle = new CompareTitle();
+		compareTitle.listFilesForFolder(new File("E:/Project/Translate/Translate-Vietnamese-Chinese/baochinhphuVN/chinhtri"),
+				new File("E:/Project/Translate/Translate-Vietnamese-Chinese//baochinhphuCNTranslated/"));
+	 }
 
 }
