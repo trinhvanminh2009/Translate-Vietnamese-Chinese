@@ -1,18 +1,20 @@
 package part3;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.io.File;
-import java.util.concurrent.CountDownLatch;
+import java.net.URL;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import translate_vietNamese_chinese.CompareTitle;
 import translate_vietNamese_chinese.SentenceMatching_SimilyratyByTitle;
 import translate_vietNamese_chinese.file_size_filters.TranslateAllFile;
-import javax.swing.JLabel;
 
 public class Step2Application extends JFrame {
 
@@ -48,17 +50,19 @@ public class Step2Application extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JButton btnNewButton = new JButton("New button");
 
-		btnNewButton.setBounds(10, 103, 89, 23);
+		btnNewButton.setBounds(159, 227, 89, 23);
 		contentPane.add(btnNewButton);
-
-		JLabel lblNewLabel = new JLabel("Tranlsating...");
-		lblNewLabel.setBounds(10, 31, 101, 23);
+		URL url = Step2Application.class.getResource("/resources/processing.gif");
+		ImageIcon imageIcon = new ImageIcon(url);
+		JLabel lblNewLabel = new JLabel(imageIcon);
+		lblNewLabel.setBounds(78, 11, 250, 200);
 		contentPane.add(lblNewLabel);
 
 	}
