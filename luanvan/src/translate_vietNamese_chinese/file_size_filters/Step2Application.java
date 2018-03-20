@@ -2,9 +2,13 @@ package part3;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.CountDownLatch;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +26,8 @@ public class Step2Application extends JFrame {
 	private String pathVN;
 	private String pathCN;
 	public static final String SIMILARITYDEMO = "SimilarityDemo";
+	private JLabel lblNewLabel;
+	private static Step2Application frame;
 
 	/**
 	 * Launch the application.
@@ -30,8 +36,9 @@ public class Step2Application extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Step2Application frame = new Step2Application("", "");
-					frame.setVisible(true);
+					frame = new Step2Application("", "");
+					frame.setVisible(true);	
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,6 +48,7 @@ public class Step2Application extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
 	 * 
 	 * @throws Exception
 	 */
@@ -59,15 +67,29 @@ public class Step2Application extends JFrame {
 
 		btnNewButton.setBounds(159, 227, 89, 23);
 		contentPane.add(btnNewButton);
-		URL url = Step2Application.class.getResource("/resources/processing.gif");
-		ImageIcon imageIcon = new ImageIcon(url);
-		JLabel lblNewLabel = new JLabel(imageIcon);
-		lblNewLabel.setBounds(78, 11, 250, 200);
-		contentPane.add(lblNewLabel);
+		CountDownLatch latch = new CountDownLatch(1);
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				URL url = Step2Application.class.getResource("/resources/processing.gif");
+				ImageIcon imageIcon = new ImageIcon(url);
+				 lblNewLabel = new JLabel(imageIcon);
+				lblNewLabel.setBounds(78, 11, 250, 200);
+				contentPane.add(lblNewLabel);
+				latch.countDown();
+				
+			}
+		});
+		thread.start();
+		latch.await();
+		//runTranslate();
 
 	}
 
 	public void runTranslate() {
+		
 		if (pathVN != null && pathCN != null && !pathVN.isEmpty() && !pathCN.isEmpty()) {
 			Thread thread = new Thread(new Runnable() {
 
@@ -91,6 +113,7 @@ public class Step2Application extends JFrame {
 				System.out.println("Translate All File Done");
 				// Compare title
 				runCompareTitle();
+		
 			} catch (InterruptedException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -118,14 +141,26 @@ public class Step2Application extends JFrame {
 		thread.start();
 		try {
 			thread.join();
-			System.out.println("Compare title Done");
-			// Get file similarity over 30% going to compare file
-			SentenceMatching_SimilyratyByTitle sentenceMaching = new SentenceMatching_SimilyratyByTitle();
-			sentenceMaching.setFolderVN(pathVN);
-			String pathForCN = pathCN +"\\";
-			sentenceMaching.setFolderCN(pathForCN);
-			String similarityDemoPath = System.getProperty("user.dir") + "\\" + SIMILARITYDEMO + ".txt";
-			sentenceMaching.readFileSimilyratyByTitle(similarityDemoPath);
+			Thread thread2 = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					System.out.println("Compare title Done");
+					// Get file similarity over 30% going to compare file
+					SentenceMatching_SimilyratyByTitle sentenceMaching = new SentenceMatching_SimilyratyByTitle();
+					sentenceMaching.setFolderVN(pathVN);
+					String pathForCN = pathCN +"\\";
+					sentenceMaching.setFolderCN(pathForCN);
+					String similarityDemoPath = System.getProperty("user.dir") + "\\" + SIMILARITYDEMO + ".txt";
+					sentenceMaching.readFileSimilyratyByTitle(similarityDemoPath);
+				}
+			});
+		thread2.start();
+		thread2.join();
+		System.out.println("Done");
+		lblNewLabel.setVisible(false);
+		
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
